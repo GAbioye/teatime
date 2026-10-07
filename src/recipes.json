@@ -1,0 +1,3220 @@
+[
+{
+"appliances": [
+"Air fryer",
+"Hob"
+],
+"fav": false,
+"id": "s-air-fryer-teriyaki-chicken",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2.6,
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.5,
+"name": "Teriyaki sauce",
+"qty": 3,
+"unit": "tbsp"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 1,
+"name": "Pak choi",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.55,
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch"
+},
+{
+"aisle": "World foods",
+"cost": 0.1,
+"name": "Sesame seeds",
+"qty": 1,
+"unit": "tsp"
+}
+],
+"macros": {
+"carbs": 66,
+"fat": 18,
+"kcal": 600,
+"protein": 42
+},
+"meal": "dinner",
+"name": "Air fryer teriyaki chicken",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Toss the chicken in half the teriyaki sauce.",
+"Air fry at 200°C for 15–18 minutes, turning halfway. Brush with the rest of the sauce for the last 3 minutes.",
+"Cook the rice. Steam or stir-fry the pak choi for 3 minutes.",
+"Slice the chicken and scatter with spring onion and sesame seeds."
+],
+"style": "Fakeaway",
+"tags": [
+"dairy-free",
+"high-protein"
+],
+"time": 25
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-apple-peanut-butter",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.5,
+"name": "Apples",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.2,
+"name": "Peanut butter",
+"qty": 2,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 22,
+"fat": 9,
+"kcal": 190,
+"protein": 5
+},
+"meal": "snack",
+"name": "Apple & peanut butter",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Slice the apples and serve with the peanut butter for dipping."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"time": 2
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-beef-veg-noodle-stir-fry",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 3,
+"name": "Beef stir-fry strips",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.4,
+"name": "Egg noodles",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 1,
+"name": "Stir-fry vegetables",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.15,
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.15,
+"name": "Honey",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Garlic",
+"qty": 1,
+"unit": "clove"
+}
+],
+"macros": {
+"carbs": 66,
+"fat": 16,
+"kcal": 590,
+"protein": 38
+},
+"meal": "dinner",
+"name": "Beef & veg noodle stir-fry",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cook the noodles, drain and rinse under cold water.",
+"Sear the beef in a very hot wok for 2 minutes, then lift out.",
+"Stir-fry the vegetables and garlic for 3 minutes.",
+"Return the beef with the noodles, soy and honey. Toss for 1 minute."
+],
+"style": "Quick",
+"tags": [
+"dairy-free",
+"high-protein"
+],
+"time": 15
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-berry-overnight-oats",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.12,
+"name": "Porridge oats",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.3,
+"name": "Semi-skimmed milk",
+"qty": 300,
+"unit": "ml"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.6,
+"name": "0% fat Greek yoghurt",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "Frozen",
+"cost": 0.6,
+"name": "Frozen mixed berries",
+"qty": 160,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 52,
+"fat": 8,
+"kcal": 380,
+"protein": 22
+},
+"meal": "breakfast",
+"name": "Berry overnight oats",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Mix the oats, milk and yoghurt in two jars.",
+"Top with the frozen berries.",
+"Cover and chill overnight. Keeps for 2 days, so it works well across two mornings."
+],
+"style": "Quick",
+"tags": [
+"vegetarian"
+],
+"time": 5
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-boiled-eggs-cherry-tomatoes",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1,
+"name": "Eggs",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 4,
+"fat": 11,
+"kcal": 170,
+"protein": 13
+},
+"meal": "snack",
+"name": "Boiled eggs & cherry tomatoes",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Boil the eggs for 8 minutes, then cool in cold water.",
+"Peel and serve with the tomatoes and a pinch of salt."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"gluten-free",
+"dairy-free",
+"high-protein"
+],
+"time": 10
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-chicken-avocado-salad-box",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Chicken breast",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Mixed salad leaves",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.75,
+"name": "Avocado",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 10,
+"fat": 26,
+"kcal": 420,
+"protein": 36
+},
+"meal": "lunch",
+"name": "Chicken & avocado salad box",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Griddle the seasoned chicken for 5–6 minutes a side, then slice.",
+"Split the leaves, halved tomatoes and sliced avocado between two boxes.",
+"Top with the chicken and drizzle with oil. Keeps for a day in the fridge."
+],
+"style": "Light",
+"tags": [
+"gluten-free",
+"dairy-free",
+"high-protein"
+],
+"time": 15
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-chicken-caesar-wraps",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Chicken breast",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Bakery",
+"cost": 0.7,
+"name": "Tortilla wraps",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.65,
+"name": "Romaine lettuce",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Chilled",
+"cost": 0.4,
+"name": "Caesar dressing",
+"qty": 3,
+"unit": "tbsp"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.4,
+"name": "Italian hard cheese",
+"qty": 20,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 44,
+"fat": 20,
+"kcal": 520,
+"protein": 40
+},
+"meal": "dinner",
+"name": "Chicken Caesar wraps",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Flatten the chicken slightly, season and griddle for 5–6 minutes a side.",
+"Shred the lettuce and halve the tomatoes. Toss with the dressing.",
+"Slice the chicken and pile into the wraps with the salad and grated cheese.",
+"Roll up tightly and cut in half."
+],
+"style": "Quick",
+"tags": [
+"high-protein"
+],
+"time": 15
+},
+{
+"appliances": [
+"Oven",
+"Hob"
+],
+"fav": false,
+"id": "s-chicken-chorizo-pasta-bake",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Chicken breast",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Meat & fish",
+"cost": 1.25,
+"name": "Chorizo",
+"qty": 70,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.25,
+"name": "Penne",
+"qty": 180,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.3,
+"name": "Passata",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.55,
+"name": "Mozzarella",
+"qty": 125,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 80,
+"fat": 24,
+"kcal": 760,
+"protein": 52
+},
+"meal": "dinner",
+"name": "Chicken & chorizo pasta bake",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan). Cook the penne for 2 minutes less than the pack says.",
+"Fry the diced chicken and chorizo for 6 minutes. Add the passata and simmer for 5 minutes.",
+"Mix with the pasta in a baking dish and top with torn mozzarella.",
+"Bake for 15 minutes until bubbling."
+],
+"style": "Comfort",
+"tags": [
+"pork",
+"high-protein"
+],
+"time": 40
+},
+{
+"appliances": [
+"Oven"
+],
+"fav": false,
+"id": "s-chicken-fajita-traybake",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2.4,
+"name": "Chicken breast",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 1,
+"name": "Peppers",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.25,
+"name": "Red onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.3,
+"name": "Fajita seasoning",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Bakery",
+"cost": 0.7,
+"name": "Tortilla wraps",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.45,
+"name": "Soured cream",
+"qty": 75,
+"unit": "ml"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 52,
+"fat": 18,
+"kcal": 560,
+"protein": 42
+},
+"meal": "dinner",
+"name": "Chicken fajita traybake",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan).",
+"Slice the chicken, peppers and onion into strips. Toss on a tray with the oil and fajita seasoning.",
+"Roast for 20–25 minutes, turning once, until the chicken is cooked through.",
+"Warm the wraps for the last 2 minutes. Fill with the traybake and a spoon of soured cream."
+],
+"style": "Fakeaway",
+"tags": [
+"high-protein"
+],
+"time": 30
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-chicken-hummus-wraps",
+"ingredients": [
+{
+"aisle": "Bakery",
+"cost": 0.35,
+"name": "Tortilla wraps",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Chilled",
+"cost": 2.5,
+"name": "Cooked chicken pieces",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "Chilled",
+"cost": 0.5,
+"name": "Hummus",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Mixed salad leaves",
+"qty": 50,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 40,
+"fat": 15,
+"kcal": 450,
+"protein": 36
+},
+"meal": "lunch",
+"name": "Chicken & hummus wraps",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Spread the wraps with hummus.",
+"Add the leaves, sliced cucumber and chicken.",
+"Roll up tightly and cut in half."
+],
+"style": "Quick",
+"tags": [
+"dairy-free",
+"high-protein"
+],
+"time": 5
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-chicken-noodle-soup",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 1.6,
+"name": "Chicken breast",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.27,
+"name": "Egg noodles",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Chicken stock cube",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Carrot",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.55,
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch"
+},
+{
+"aisle": "World foods",
+"cost": 0.08,
+"name": "Soy sauce",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 46,
+"fat": 6,
+"kcal": 400,
+"protein": 34
+},
+"meal": "lunch",
+"name": "Chicken noodle soup",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Bring 900ml water to the boil with the stock cube and soy sauce.",
+"Add the whole chicken breasts and the sliced carrot. Simmer for 15 minutes.",
+"Lift out the chicken, shred it, and return it to the pan with the noodles for 4 minutes.",
+"Finish with sliced spring onions."
+],
+"style": "Comfort",
+"tags": [
+"dairy-free",
+"high-protein"
+],
+"time": 25
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-chickpea-feta-couscous-salad",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.25,
+"name": "Couscous",
+"qty": 120,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.5,
+"name": "Chickpeas",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.6,
+"name": "Feta",
+"qty": 60,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.45,
+"name": "Cherry tomatoes",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Lemon",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 64,
+"fat": 14,
+"kcal": 470,
+"protein": 20
+},
+"meal": "lunch",
+"name": "Chickpea, feta & couscous salad",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Pour 150ml boiling water over the couscous, cover for 5 minutes, then fluff with a fork.",
+"Stir in the drained chickpeas, diced cucumber and halved tomatoes.",
+"Dress with lemon juice and top with crumbled feta."
+],
+"style": "Light",
+"tags": [
+"vegetarian"
+],
+"time": 10
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-cottage-cheese-oatcakes",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1.1,
+"name": "Cottage cheese",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "Bakery",
+"cost": 0.45,
+"name": "Oatcakes",
+"qty": 6,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 16,
+"fat": 7,
+"kcal": 200,
+"protein": 18
+},
+"meal": "snack",
+"name": "Cottage cheese & oatcakes",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Spread the cottage cheese on the oatcakes and season with black pepper."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"high-protein"
+],
+"time": 2
+},
+{
+"appliances": [
+"Oven",
+"Hob"
+],
+"fav": false,
+"id": "s-cottage-pie",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Beef mince (5% fat)",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.55,
+"name": "Potatoes",
+"qty": 600,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Carrot",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Frozen",
+"cost": 0.12,
+"name": "Frozen peas",
+"qty": 80,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Beef stock cube",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.1,
+"name": "Worcestershire sauce",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.15,
+"name": "Butter",
+"qty": 15,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 62,
+"fat": 24,
+"kcal": 650,
+"protein": 38
+},
+"meal": "dinner",
+"name": "Cottage pie",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan). Boil the peeled potatoes for 15 minutes, then mash with the butter.",
+"Brown the mince with the chopped onion and carrot.",
+"Add the stock cube, Worcestershire sauce and 200ml water. Simmer for 15 minutes, then stir in the peas.",
+"Spoon into a dish, top with the mash and bake for 20 minutes until golden."
+],
+"style": "Comfort",
+"tags": [
+"high-protein"
+],
+"time": 60
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-creamy-mushroom-spinach-penne",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.9,
+"name": "Mushrooms",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.25,
+"name": "Penne",
+"qty": 180,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Garlic",
+"qty": 2,
+"unit": "clove"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.6,
+"name": "Light cream cheese",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Spinach",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.4,
+"name": "Italian hard cheese",
+"qty": 20,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 80,
+"fat": 16,
+"kcal": 560,
+"protein": 20
+},
+"meal": "dinner",
+"name": "Creamy mushroom & spinach penne",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cook the penne. Save a mugful of the water before draining.",
+"Fry the sliced mushrooms until golden, then add the garlic.",
+"Stir in the cream cheese with a splash of pasta water to make a sauce. Wilt in the spinach.",
+"Toss with the pasta and finish with grated cheese."
+],
+"style": "Quick",
+"tags": [
+"vegetarian"
+],
+"time": 20
+},
+{
+"appliances": [
+"Oven"
+],
+"fav": false,
+"id": "s-fish-finger-tacos",
+"ingredients": [
+{
+"aisle": "Frozen",
+"cost": 1.75,
+"name": "Fish fingers",
+"qty": 10,
+"unit": "whole"
+},
+{
+"aisle": "Bakery",
+"cost": 0.7,
+"name": "Tortilla wraps",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Red cabbage",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Lime",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.15,
+"name": "Light mayonnaise",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "World foods",
+"cost": 0.1,
+"name": "Sriracha",
+"qty": 1,
+"unit": "tsp"
+}
+],
+"macros": {
+"carbs": 66,
+"fat": 22,
+"kcal": 580,
+"protein": 26
+},
+"meal": "dinner",
+"name": "Fish finger tacos",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Bake the fish fingers following the pack instructions.",
+"Finely shred the cabbage and squeeze over half the lime with a pinch of salt.",
+"Mix the mayo with the sriracha and the rest of the lime juice.",
+"Warm the wraps and fill with slaw, fish fingers and the spicy mayo."
+],
+"style": "Fakeaway",
+"tags": [
+"fish"
+],
+"time": 20
+},
+{
+"appliances": [
+"Microwave"
+],
+"fav": false,
+"id": "s-greek-chicken-rice-bowl",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 1,
+"name": "Microwave rice pouch",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Chilled",
+"cost": 2.5,
+"name": "Cooked chicken pieces",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.45,
+"name": "Cherry tomatoes",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.5,
+"name": "Feta",
+"qty": 50,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.3,
+"name": "0% fat Greek yoghurt",
+"qty": 100,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 50,
+"fat": 15,
+"kcal": 520,
+"protein": 42
+},
+"meal": "lunch",
+"name": "Greek chicken rice bowl",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the rice pouch.",
+"Dice the cucumber and halve the tomatoes.",
+"Split the rice between two bowls and top with the chicken, veg, crumbled feta and a spoon of yoghurt."
+],
+"style": "Light",
+"tags": [
+"gluten-free",
+"high-protein"
+],
+"time": 10
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-greek-yoghurt-berry-granola-pot",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1.2,
+"name": "0% fat Greek yoghurt",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "Frozen",
+"cost": 0.6,
+"name": "Frozen mixed berries",
+"qty": 160,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.3,
+"name": "Granola",
+"qty": 60,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.15,
+"name": "Honey",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 40,
+"fat": 6,
+"kcal": 330,
+"protein": 26
+},
+"meal": "breakfast",
+"name": "Greek yoghurt, berry & granola pot",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Thaw the berries in the fridge overnight, or microwave for 1 minute.",
+"Spoon the yoghurt into two bowls or jars.",
+"Top with the berries, granola and a drizzle of honey."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"high-protein"
+],
+"time": 5
+},
+{
+"appliances": [
+"Oven"
+],
+"fav": false,
+"id": "s-halloumi-chickpea-traybake",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 2,
+"name": "Halloumi",
+"qty": 225,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.5,
+"name": "Chickpeas",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Sweet potatoes",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.25,
+"name": "Red onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "World foods",
+"cost": 0.4,
+"name": "Harissa paste",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 58,
+"fat": 30,
+"kcal": 610,
+"protein": 30
+},
+"meal": "dinner",
+"name": "Halloumi & chickpea traybake",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan).",
+"Cube the sweet potato and cut the onion into wedges. Toss with the drained chickpeas, oil and harissa.",
+"Roast for 25 minutes.",
+"Add the sliced halloumi on top and roast for 10 more minutes until golden."
+],
+"style": "Light",
+"tags": [
+"vegetarian",
+"gluten-free"
+],
+"time": 40
+},
+{
+"appliances": [
+"Air fryer",
+"Hob"
+],
+"fav": false,
+"id": "s-honey-soy-salmon-with-rice",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 3.5,
+"name": "Salmon fillets",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 1.5,
+"name": "Tenderstem broccoli",
+"qty": 200,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.15,
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.15,
+"name": "Honey",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Garlic",
+"qty": 1,
+"unit": "clove"
+}
+],
+"macros": {
+"carbs": 58,
+"fat": 22,
+"kcal": 590,
+"protein": 36
+},
+"meal": "dinner",
+"name": "Honey-soy salmon with rice",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Mix the soy sauce, honey and grated garlic. Brush half over the salmon.",
+"Air fry the salmon at 190°C for 10–12 minutes.",
+"Meanwhile cook the rice on the hob. Steam or boil the broccoli for the last 4 minutes.",
+"Spoon the rest of the glaze over the salmon and serve with the rice and broccoli."
+],
+"style": "Light",
+"tags": [
+"fish",
+"dairy-free",
+"high-protein"
+],
+"time": 25
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-hummus-veg-sticks",
+"ingredients": [
+{
+"aisle": "Chilled",
+"cost": 0.5,
+"name": "Hummus",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Carrot",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 13,
+"fat": 8,
+"kcal": 150,
+"protein": 5
+},
+"meal": "snack",
+"name": "Hummus & veg sticks",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cut the carrots and half the cucumber into sticks.",
+"Serve with the hummus."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"time": 5
+},
+{
+"appliances": [
+"Microwave"
+],
+"fav": false,
+"id": "s-jacket-potato-with-beans-cheese",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Baking potatoes",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Baked beans",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.4,
+"name": "Mature cheddar",
+"qty": 40,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 75,
+"fat": 9,
+"kcal": 470,
+"protein": 20
+},
+"meal": "lunch",
+"name": "Jacket potato with beans & cheese",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Prick the potatoes and microwave for 8–10 minutes, turning halfway.",
+"Heat the beans.",
+"Split the potatoes and top with the beans and grated cheese."
+],
+"style": "Comfort",
+"tags": [
+"vegetarian",
+"gluten-free"
+],
+"time": 12
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-leek-potato-soup",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.9,
+"name": "Leeks",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.45,
+"name": "Potatoes",
+"qty": 500,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Vegetable stock cube",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Bakery",
+"cost": 0.75,
+"name": "Crusty baguette",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 78,
+"fat": 6,
+"kcal": 420,
+"protein": 12
+},
+"meal": "dinner",
+"name": "Leek & potato soup",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Slice the leeks and onion and soften gently in a little oil for 10 minutes.",
+"Add the diced potatoes, the stock cube and 900ml water.",
+"Simmer for 20 minutes, then blend until smooth.",
+"Season well and serve with crusty bread."
+],
+"style": "Light",
+"tags": [
+"vegetarian",
+"vegan",
+"dairy-free"
+],
+"time": 40
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-mushroom-stroganoff",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 1.05,
+"name": "Mushrooms",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Garlic",
+"qty": 2,
+"unit": "clove"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.55,
+"name": "Half-fat crème fraîche",
+"qty": 100,
+"unit": "ml"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 82,
+"fat": 12,
+"kcal": 490,
+"protein": 14
+},
+"meal": "dinner",
+"name": "Mushroom stroganoff",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cook the rice.",
+"Soften the sliced onion, then add the mushrooms and cook on a high heat until golden.",
+"Add the garlic and paprika for 1 minute.",
+"Stir in the crème fraîche with a splash of water and bubble for 2 minutes. Serve over the rice."
+],
+"style": "Comfort",
+"tags": [
+"vegetarian",
+"gluten-free"
+],
+"time": 25
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-peanut-butter-banana-toast",
+"ingredients": [
+{
+"aisle": "Bakery",
+"cost": 0.3,
+"name": "Wholemeal bread",
+"qty": 4,
+"unit": "slice"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.2,
+"name": "Peanut butter",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Bananas",
+"qty": 2,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 55,
+"fat": 14,
+"kcal": 400,
+"protein": 13
+},
+"meal": "breakfast",
+"name": "Peanut butter & banana toast",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Toast the bread.",
+"Spread with peanut butter.",
+"Top with sliced banana and a pinch of cinnamon if you like."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"vegan",
+"dairy-free"
+],
+"time": 5
+},
+{
+"appliances": [
+"Oven"
+],
+"fav": false,
+"id": "s-pesto-chicken-traybake",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2.6,
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 1,
+"name": "Cherry tomatoes",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.8,
+"name": "New potatoes",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Green pesto",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.8,
+"name": "Green beans",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 42,
+"fat": 30,
+"kcal": 620,
+"protein": 40
+},
+"meal": "dinner",
+"name": "Pesto chicken traybake",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan). Halve the potatoes and roast for 15 minutes.",
+"Add the chicken, tossed in the pesto, and roast for 15 minutes.",
+"Add the tomatoes and green beans and roast for 10 more minutes.",
+"Check the chicken is cooked through and serve straight from the tray."
+],
+"style": "Comfort",
+"tags": [
+"gluten-free",
+"high-protein"
+],
+"time": 45
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-prawn-egg-fried-rice",
+"ingredients": [
+{
+"aisle": "Frozen",
+"cost": 2.5,
+"name": "King prawns",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.5,
+"name": "Eggs",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Frozen",
+"cost": 0.15,
+"name": "Frozen peas",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.55,
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch"
+},
+{
+"aisle": "World foods",
+"cost": 0.15,
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 70,
+"fat": 12,
+"kcal": 520,
+"protein": 32
+},
+"meal": "dinner",
+"name": "Prawn egg fried rice",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cook the rice, then spread it on a plate to steam dry (or use leftover cold rice).",
+"Stir-fry the prawns in a hot wok for 2 minutes. Add the peas.",
+"Push everything aside, scramble the eggs, then tip in the rice and stir-fry for 3 minutes.",
+"Add the soy sauce and sliced spring onions."
+],
+"style": "Quick",
+"tags": [
+"fish",
+"dairy-free"
+],
+"time": 20
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-protein-bar",
+"ingredients": [
+{
+"aisle": "Store cupboard",
+"cost": 2.4,
+"name": "Protein bars",
+"qty": 2,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 18,
+"fat": 7,
+"kcal": 200,
+"protein": 20
+},
+"meal": "snack",
+"name": "Protein bar",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Grab and go."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"high-protein"
+],
+"time": 1
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-protein-porridge-with-banana",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.12,
+"name": "Porridge oats",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.4,
+"name": "Semi-skimmed milk",
+"qty": 400,
+"unit": "ml"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 1,
+"name": "Skyr",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Bananas",
+"qty": 2,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 62,
+"fat": 7,
+"kcal": 420,
+"protein": 30
+},
+"meal": "breakfast",
+"name": "Protein porridge with banana",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Simmer the oats and milk for 4–5 minutes, stirring, until creamy.",
+"Take off the heat and stir through the skyr.",
+"Top with sliced banana."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"high-protein"
+],
+"time": 10
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-red-lentil-spinach-dal",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Red lentils",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Garlic",
+"qty": 2,
+"unit": "clove"
+},
+{
+"aisle": "World foods",
+"cost": 0.15,
+"name": "Ginger paste",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.15,
+"name": "Curry powder",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "World foods",
+"cost": 0.5,
+"name": "Light coconut milk",
+"qty": 200,
+"unit": "ml"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Spinach",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 84,
+"fat": 12,
+"kcal": 540,
+"protein": 24
+},
+"meal": "dinner",
+"name": "Red lentil & spinach dal",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Soften the onion, then add the garlic, ginger and curry powder for 1 minute.",
+"Add the rinsed lentils, coconut milk and 400ml water. Simmer for 20 minutes, stirring.",
+"Cook the rice alongside.",
+"Stir the spinach into the dal until wilted. Season with salt."
+],
+"style": "Comfort",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"time": 30
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-red-lentil-tomato-soup",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.24,
+"name": "Red lentils",
+"qty": 120,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Carrot",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.1,
+"name": "Vegetable stock cube",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+}
+],
+"macros": {
+"carbs": 60,
+"fat": 4,
+"kcal": 380,
+"protein": 20
+},
+"meal": "lunch",
+"name": "Red lentil & tomato soup",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Soften the chopped onion and carrot in a little oil for 5 minutes.",
+"Add the rinsed lentils, tomatoes, stock cube and 700ml water.",
+"Simmer for 20 minutes, then blend. Good for two days of lunches."
+],
+"style": "Comfort",
+"tags": [
+"vegetarian",
+"vegan",
+"dairy-free"
+],
+"time": 30
+},
+{
+"appliances": [
+"Microwave"
+],
+"fav": false,
+"id": "s-salted-edamame",
+"ingredients": [
+{
+"aisle": "Frozen",
+"cost": 1.35,
+"name": "Frozen edamame beans",
+"qty": 200,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 6,
+"fat": 6,
+"kcal": 130,
+"protein": 12
+},
+"meal": "snack",
+"name": "Salted edamame",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Microwave the edamame for 3–4 minutes.",
+"Sprinkle with sea salt."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free",
+"high-protein"
+],
+"time": 5
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-sausage-butter-bean-casserole",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Pork sausages",
+"qty": 6,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.55,
+"name": "Butter beans",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Bakery",
+"cost": 0.75,
+"name": "Crusty baguette",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 62,
+"fat": 34,
+"kcal": 690,
+"protein": 32
+},
+"meal": "dinner",
+"name": "Sausage & butter bean casserole",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Brown the sausages in a casserole pan, then lift out and cut in half.",
+"Soften the sliced onion in the same pan for 5 minutes. Add the paprika.",
+"Return the sausages with the tomatoes and drained beans. Simmer for 25 minutes.",
+"Serve with warm baguette for mopping up."
+],
+"style": "Comfort",
+"tags": [
+"pork"
+],
+"time": 45
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-scrambled-eggs-spinach-on-toast",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1.25,
+"name": "Eggs",
+"qty": 5,
+"unit": "whole"
+},
+{
+"aisle": "Bakery",
+"cost": 0.3,
+"name": "Wholemeal bread",
+"qty": 4,
+"unit": "slice"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.45,
+"name": "Spinach",
+"qty": 80,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.1,
+"name": "Butter",
+"qty": 10,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 30,
+"fat": 18,
+"kcal": 390,
+"protein": 25
+},
+"meal": "breakfast",
+"name": "Scrambled eggs & spinach on toast",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Toast the bread.",
+"Wilt the spinach in a non-stick pan with the butter, then push to one side.",
+"Add the beaten eggs and stir gently over a low heat until just set.",
+"Season and pile onto the toast."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"high-protein"
+],
+"time": 10
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-shakshuka-with-feta",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1,
+"name": "Eggs",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.5,
+"name": "Peppers",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Ground cumin",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.6,
+"name": "Feta",
+"qty": 60,
+"unit": "g"
+},
+{
+"aisle": "Bakery",
+"cost": 0.75,
+"name": "Crusty baguette",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 44,
+"fat": 20,
+"kcal": 470,
+"protein": 24
+},
+"meal": "dinner",
+"name": "Shakshuka with feta",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Soften the sliced onion and pepper for 8 minutes. Add the spices for 1 minute.",
+"Add the tomatoes and simmer for 8 minutes until thick.",
+"Make 4 wells and crack in the eggs. Cover and cook for 5–6 minutes until the whites set.",
+"Crumble over the feta and serve with bread."
+],
+"style": "Light",
+"tags": [
+"vegetarian"
+],
+"time": 25
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-skyr-with-honey",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1,
+"name": "Skyr",
+"qty": 300,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.15,
+"name": "Honey",
+"qty": 1,
+"unit": "tbsp"
+}
+],
+"macros": {
+"carbs": 14,
+"fat": 0,
+"kcal": 140,
+"protein": 17
+},
+"meal": "snack",
+"name": "Skyr with honey",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Spoon the skyr into two pots and drizzle with honey."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"gluten-free",
+"high-protein"
+],
+"time": 2
+},
+{
+"appliances": [
+"Slow cooker"
+],
+"fav": false,
+"id": "s-slow-cooker-chicken-tikka-masala",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2.6,
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.9,
+"name": "Tikka masala paste",
+"qty": 3,
+"unit": "tbsp"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.25,
+"name": "Natural yoghurt",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Fresh coriander",
+"qty": 15,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 62,
+"fat": 24,
+"kcal": 640,
+"protein": 40
+},
+"meal": "dinner",
+"name": "Slow cooker chicken tikka masala",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Put the chicken, sliced onion, curry paste and tomatoes in the slow cooker. Stir well.",
+"Cook on low for 4 hours (or high for 2½).",
+"Cook the rice 15 minutes before serving.",
+"Stir the yoghurt into the curry off the heat. Scatter with coriander."
+],
+"style": "Fakeaway",
+"tags": [
+"gluten-free",
+"high-protein"
+],
+"time": 260
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-smoked-salmon-cream-cheese-bagels",
+"ingredients": [
+{
+"aisle": "Bakery",
+"cost": 0.7,
+"name": "Bagels",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Meat & fish",
+"cost": 2.5,
+"name": "Smoked salmon",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.35,
+"name": "Light cream cheese",
+"qty": 60,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Lemon",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 42,
+"fat": 10,
+"kcal": 360,
+"protein": 24
+},
+"meal": "breakfast",
+"name": "Smoked salmon & cream cheese bagels",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Split and toast the bagels.",
+"Spread with cream cheese and top with the salmon.",
+"Finish with a squeeze of lemon and black pepper."
+],
+"style": "Quick",
+"tags": [
+"fish",
+"high-protein"
+],
+"time": 5
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-spaghetti-bolognese",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2,
+"name": "Beef mince (5% fat)",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.25,
+"name": "Spaghetti",
+"qty": 180,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Carrot",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Garlic",
+"qty": 2,
+"unit": "clove"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Dried oregano",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.3,
+"name": "Mature cheddar",
+"qty": 30,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 78,
+"fat": 20,
+"kcal": 680,
+"protein": 42
+},
+"meal": "dinner",
+"name": "Spaghetti bolognese",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Brown the mince in a hot pan. Add the finely chopped onion and grated carrot and cook for 5 minutes.",
+"Stir in the garlic, oregano and tomatoes. Simmer for 25 minutes, adding water if it gets thick.",
+"Cook the spaghetti, then toss with the sauce.",
+"Serve with grated cheddar."
+],
+"style": "Comfort",
+"tags": [
+"high-protein"
+],
+"time": 40
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-sweet-potato-black-bean-burritos",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Sweet potatoes",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.6,
+"name": "Black beans",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Bakery",
+"cost": 0.7,
+"name": "Tortilla wraps",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.25,
+"name": "Red onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Ground cumin",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.3,
+"name": "Lime",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.75,
+"name": "Avocado",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 96,
+"fat": 16,
+"kcal": 610,
+"protein": 18
+},
+"meal": "dinner",
+"name": "Sweet potato & black bean burritos",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Dice the sweet potato small and fry with the cumin for 10–12 minutes until soft.",
+"Add the drained beans and half the onion. Cook for 3 minutes and lightly mash.",
+"Mash the avocado with the lime juice and the rest of the onion, finely chopped.",
+"Fill the wraps, roll up and toast seam-side down in a dry pan."
+],
+"style": "Fakeaway",
+"tags": [
+"vegetarian",
+"vegan",
+"dairy-free"
+],
+"time": 30
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-thai-green-veg-curry",
+"ingredients": [
+{
+"aisle": "World foods",
+"cost": 0.5,
+"name": "Green curry paste",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "World foods",
+"cost": 1,
+"name": "Coconut milk",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Sweet potatoes",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.8,
+"name": "Green beans",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.5,
+"name": "Chickpeas",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.35,
+"name": "Jasmine rice",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 80,
+"fat": 26,
+"kcal": 620,
+"protein": 16
+},
+"meal": "dinner",
+"name": "Thai green veg curry",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Fry the curry paste for 1 minute, then add the coconut milk.",
+"Add the cubed sweet potato and drained chickpeas. Simmer for 15 minutes.",
+"Add the green beans for the last 5 minutes. Cook the rice alongside.",
+"Check the curry paste is vegan if that matters to you; some contain fish sauce."
+],
+"style": "Fakeaway",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"time": 30
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-three-bean-veggie-chilli",
+"ingredients": [
+{
+"aisle": "Tins & jars",
+"cost": 0.45,
+"name": "Kidney beans",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.6,
+"name": "Black beans",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.4,
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.15,
+"name": "Onion",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.5,
+"name": "Peppers",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.2,
+"name": "Garlic",
+"qty": 2,
+"unit": "clove"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Chilli powder",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Herbs & spices",
+"cost": 0.1,
+"name": "Ground cumin",
+"qty": 1,
+"unit": "tsp"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.3,
+"name": "Basmati rice",
+"qty": 150,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 96,
+"fat": 5,
+"kcal": 520,
+"protein": 22
+},
+"meal": "dinner",
+"name": "Three-bean veggie chilli",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Soften the chopped onion and pepper in a little oil for 6–8 minutes. Add the garlic and spices for 1 minute.",
+"Tip in the tomatoes and the drained beans with a splash of water. Simmer for 20 minutes.",
+"Cook the rice while the chilli simmers.",
+"Season and serve the chilli over the rice."
+],
+"style": "Comfort",
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"time": 35
+},
+{
+"appliances": [
+"Hob",
+"Microwave"
+],
+"fav": false,
+"id": "s-tofu-edamame-rice-bowl",
+"ingredients": [
+{
+"aisle": "Chilled",
+"cost": 1.6,
+"name": "Firm tofu",
+"qty": 280,
+"unit": "g"
+},
+{
+"aisle": "Frozen",
+"cost": 1,
+"name": "Frozen edamame beans",
+"qty": 150,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 1,
+"name": "Microwave rice pouch",
+"qty": 250,
+"unit": "g"
+},
+{
+"aisle": "World foods",
+"cost": 0.15,
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "World foods",
+"cost": 0.1,
+"name": "Sesame seeds",
+"qty": 1,
+"unit": "tsp"
+}
+],
+"macros": {
+"carbs": 56,
+"fat": 18,
+"kcal": 520,
+"protein": 32
+},
+"meal": "lunch",
+"name": "Tofu & edamame rice bowl",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Press the tofu dry, cube it and fry until golden on all sides.",
+"Add the soy sauce and toss to coat.",
+"Cook the edamame and rice, then top with the tofu and sesame seeds."
+],
+"style": "Light",
+"tags": [
+"vegetarian",
+"vegan",
+"dairy-free",
+"high-protein"
+],
+"time": 15
+},
+{
+"appliances": [
+"Air fryer"
+],
+"fav": false,
+"id": "s-tuna-sweetcorn-jacket-potatoes",
+"ingredients": [
+{
+"aisle": "Fruit & veg",
+"cost": 0.6,
+"name": "Baking potatoes",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.9,
+"name": "Tuna chunks",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.45,
+"name": "Sweetcorn",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.15,
+"name": "Light mayonnaise",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.7,
+"name": "Mixed salad leaves",
+"qty": 100,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 68,
+"fat": 8,
+"kcal": 480,
+"protein": 28
+},
+"meal": "dinner",
+"name": "Tuna & sweetcorn jacket potatoes",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Prick the potatoes, rub with a little oil and salt.",
+"Air fry at 200°C for 40–45 minutes, turning halfway.",
+"Mix the drained tuna and sweetcorn with the mayo and black pepper.",
+"Split the potatoes, pile in the filling and serve with salad."
+],
+"style": "Light",
+"tags": [
+"fish",
+"gluten-free"
+],
+"time": 50
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-tuna-sweetcorn-pasta-salad",
+"ingredients": [
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.17,
+"name": "Penne",
+"qty": 120,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 1.8,
+"name": "Tuna chunks",
+"qty": 2,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.45,
+"name": "Sweetcorn",
+"qty": 1,
+"unit": "tin"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.15,
+"name": "Light mayonnaise",
+"qty": 2,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.25,
+"name": "Red onion",
+"qty": 1,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 58,
+"fat": 9,
+"kcal": 480,
+"protein": 38
+},
+"meal": "lunch",
+"name": "Tuna & sweetcorn pasta salad",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Cook the pasta, rinse under cold water and drain.",
+"Mix with the drained tuna, sweetcorn, finely chopped onion and mayo.",
+"Season and split between two boxes."
+],
+"style": "Light",
+"tags": [
+"fish",
+"dairy-free",
+"high-protein"
+],
+"time": 15
+},
+{
+"appliances": [
+"Oven",
+"Hob"
+],
+"fav": false,
+"id": "s-turkey-meatballs-in-tomato-sauce",
+"ingredients": [
+{
+"aisle": "Meat & fish",
+"cost": 2.7,
+"name": "Turkey mince",
+"qty": 400,
+"unit": "g"
+},
+{
+"aisle": "Store cupboard",
+"cost": 0.2,
+"name": "Panko breadcrumbs",
+"qty": 30,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.25,
+"name": "Eggs",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.55,
+"name": "Passata",
+"qty": 500,
+"unit": "g"
+},
+{
+"aisle": "Pasta, rice & grains",
+"cost": 0.25,
+"name": "Spaghetti",
+"qty": 180,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.1,
+"name": "Garlic",
+"qty": 1,
+"unit": "clove"
+}
+],
+"macros": {
+"carbs": 72,
+"fat": 14,
+"kcal": 640,
+"protein": 50
+},
+"meal": "dinner",
+"name": "Turkey meatballs in tomato sauce",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Heat the oven to 200°C (180°C fan). Mix the mince, breadcrumbs and egg. Roll into 12 balls.",
+"Bake the meatballs for 15 minutes.",
+"Warm the passata with the garlic, then add the meatballs and simmer for 10 minutes.",
+"Cook the spaghetti and serve with the meatballs and sauce."
+],
+"style": "Comfort",
+"tags": [
+"high-protein"
+],
+"time": 40
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-turkey-rasher-egg-muffins",
+"ingredients": [
+{
+"aisle": "Bakery",
+"cost": 0.5,
+"name": "English muffins",
+"qty": 2,
+"unit": "whole"
+},
+{
+"aisle": "Meat & fish",
+"cost": 1,
+"name": "Turkey rashers",
+"qty": 4,
+"unit": "whole"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.5,
+"name": "Eggs",
+"qty": 2,
+"unit": "whole"
+}
+],
+"macros": {
+"carbs": 28,
+"fat": 11,
+"kcal": 340,
+"protein": 30
+},
+"meal": "breakfast",
+"name": "Turkey rasher & egg muffins",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Grill or dry-fry the turkey rashers for 3 minutes a side.",
+"Fry the eggs in a non-stick pan.",
+"Toast the muffins and fill with the rashers and egg."
+],
+"style": "Quick",
+"tags": [
+"high-protein",
+"dairy-free"
+],
+"time": 10
+},
+{
+"appliances": [],
+"fav": false,
+"id": "s-turkey-salad-sandwich",
+"ingredients": [
+{
+"aisle": "Bakery",
+"cost": 0.3,
+"name": "Wholemeal bread",
+"qty": 4,
+"unit": "slice"
+},
+{
+"aisle": "Chilled",
+"cost": 1.5,
+"name": "Cooked turkey slices",
+"qty": 120,
+"unit": "g"
+},
+{
+"aisle": "Tins & jars",
+"cost": 0.08,
+"name": "Light mayonnaise",
+"qty": 1,
+"unit": "tbsp"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Mixed salad leaves",
+"qty": 50,
+"unit": "g"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Cherry tomatoes",
+"qty": 80,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 40,
+"fat": 9,
+"kcal": 380,
+"protein": 32
+},
+"meal": "lunch",
+"name": "Turkey salad sandwich",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Spread the bread thinly with mayo.",
+"Layer the turkey, leaves and sliced tomatoes.",
+"Close and cut in half."
+],
+"style": "Quick",
+"tags": [
+"high-protein",
+"dairy-free"
+],
+"time": 5
+},
+{
+"appliances": [
+"Hob"
+],
+"fav": false,
+"id": "s-veggie-omelette",
+"ingredients": [
+{
+"aisle": "Dairy & eggs",
+"cost": 1.25,
+"name": "Eggs",
+"qty": 5,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.5,
+"name": "Peppers",
+"qty": 1,
+"unit": "whole"
+},
+{
+"aisle": "Fruit & veg",
+"cost": 0.35,
+"name": "Mushrooms",
+"qty": 100,
+"unit": "g"
+},
+{
+"aisle": "Dairy & eggs",
+"cost": 0.3,
+"name": "Mature cheddar",
+"qty": 30,
+"unit": "g"
+}
+],
+"macros": {
+"carbs": 6,
+"fat": 22,
+"kcal": 330,
+"protein": 26
+},
+"meal": "breakfast",
+"name": "Veggie omelette",
+"serves": 2,
+"source": "starter",
+"steps": [
+"Fry the sliced pepper and mushrooms for 4 minutes, then remove.",
+"Pour in half the beaten eggs and cook until almost set.",
+"Add half the veg and cheese, fold and slide out. Repeat for the second omelette."
+],
+"style": "Quick",
+"tags": [
+"vegetarian",
+"gluten-free",
+"high-protein"
+],
+"time": 10
+}
+]

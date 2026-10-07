@@ -1,0 +1,8 @@
+{
+  "appId": "app.teatime.planner",
+  "appName": "Teatime",
+  "webDir": "www",
+  "plugins": {
+    "CapacitorHttp": { "enabled": true }
+  }
+}

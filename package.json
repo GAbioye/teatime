@@ -1,0 +1,25 @@
+{
+  "name": "teatime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Teatime: a personal weekly meal planner for Android",
+  "scripts": {
+    "build:web": "node scripts/build-web.mjs",
+    "sync": "npm run build:web && npx cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/preferences": "8.0.1",
+    "@capacitor/share": "8.0.3",
+    "@capacitor/status-bar": "8.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3",
+    "@fontsource/bricolage-grotesque": "latest",
+    "@fontsource/figtree": "latest",
+    "@fontsource/jetbrains-mono": "latest",
+    "esbuild": "0.28.2"
+  }
+}
