@@ -31,6 +31,13 @@ estimates the portion and works out calories, protein, carbs and fat. You can ch
 grams of any item before logging it. Photos stay on the phone as small thumbnails for three weeks; only
 the estimate is kept after that.
 
+## Order with Claude
+
+Shopping → **Order with Claude** copies a ready-to-send request with your list and opens the Claude app.
+Start a new chat, paste and send. Claude uses the built-in browser in the Claude desktop app on your
+computer to fill your Tesco basket, then stops before checkout. Keep the desktop app open, and sign in to
+Tesco in its browser once. You book the delivery slot and pay yourself.
+
 ## Data
 
 Everything is stored on the phone. Settings → Backup saves a file you can restore later. Your API keys are

@@ -207,6 +207,16 @@ dialog::backdrop{background:var(--scrim)}
 .sheet-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:14px}
 .sheet-actions select{width:auto;flex:1;min-width:120px}
 
+/* order with Claude */
+.btn.order{justify-content:flex-start;gap:12px;padding:12px 16px;text-align:left;border-radius:16px}
+.btn.order .ico{width:26px;height:26px}
+.btn.order span{display:flex;flex-direction:column;gap:1px}
+.btn.order b{font-size:16px}
+.btn.order small{font-weight:500;font-size:12px;opacity:.85}
+.howto{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.howto li::marker{font-family:var(--f-mono);font-weight:700;color:var(--basil)}
+.preview{font-family:var(--f-mono);font-size:12px;white-space:pre-wrap;background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:180px;overflow:auto}
+
 /* food log from photos */
 .ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ate{margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}

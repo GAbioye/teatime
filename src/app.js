@@ -5,6 +5,8 @@ import { App } from "@capacitor/app";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Share } from "@capacitor/share";
 import { Camera } from "@capacitor/camera";
+import { Clipboard } from "@capacitor/clipboard";
+import { AppLauncher } from "@capacitor/app-launcher";
 import STARTER from "./recipes.json";
 
 const AISLES = ["Fruit & veg","Meat & fish","Dairy & eggs","Bakery","Chilled","Frozen","Tins & jars","Pasta, rice & grains","World foods","Herbs & spices","Store cupboard","Household","Other"];
@@ -288,6 +290,75 @@ function listText(){
   for (const a of AISLES){ const g = items.filter(i=>i.aisle===a && !checked[i.key]); if (!g.length) continue; out.push("", a.toUpperCase()); g.forEach(i => out.push("- " + (i.extra ? i.name : i.live ? `${i.packs} × ${i.live.product} (${gbp(i.till)})` : fmtQty(roundUp(i.need,i.unit), i.unit) + " " + i.name))); }
   out.push("", "Total: " + gbp(shopTotals().total));
   return out.join("\n");
+}
+
+// ---------- order with Claude (copy list, open the Claude app) ----------
+const CLAUDE_PACKAGE = "com.anthropic.claude";
+function orderText(){
+  const checked = S.list.checked || {};
+  const items = shoppingItems().filter(i => !i.pantry && !checked[i.key]);
+  const week = fromIso(S.week).toLocaleDateString("en-GB",{day:"numeric",month:"short"});
+  const lines = [
+    "Please fill my Tesco basket with this week's Teatime shopping list. Use my tesco-basket skill if I have it saved. Otherwise:",
+    "1. Use the built-in browser on my computer (or Claude in Chrome) and go to tesco.com. If I'm not signed in, stop and ask me to sign in.",
+    "2. Add every item below at the quantity shown. Where a Tesco product is named, add that product. Otherwise pick a sensible everyday Tesco own-brand pack that covers the amount.",
+    "3. If something is unavailable, add the closest alternative and tell me.",
+    "4. Leave anything already in my basket alone.",
+    "5. Don't book a delivery slot, check out or pay. Stop when everything is added.",
+    "6. Finish with a short summary: items added, swaps, anything you couldn't add, and the basket total.",
+    "",
+    `TEATIME SHOPPING LIST · week of ${week} · ${S.settings.clubcard ? "I have a Clubcard" : "No Clubcard"} · ${items.filter(i=>!i.extra).length} items`
+  ];
+  for (const a of AISLES){
+    const g = items.filter(i => i.aisle === a); if (!g.length) continue;
+    lines.push("", a.toUpperCase());
+    for (const i of g){
+      if (i.extra) lines.push(`- ${i.name}`);
+      else if (i.live) lines.push(`- ${i.packs} × ${i.live.product}${i.live.packLabel && !i.live.product.toLowerCase().includes(String(i.live.packLabel).toLowerCase()) ? " ("+i.live.packLabel+")" : ""} · ${gbp(packPrice(i.live))} each · need ${fmtQty(roundUp(i.need,i.unit), i.unit)} ${i.name.toLowerCase()}`);
+      else lines.push(`- ${i.name} · need ${fmtQty(roundUp(i.need,i.unit), i.unit)}`);
+    }
+  }
+  lines.push("", `Teatime's estimate: ${gbp(shopTotals().total)}. Already in my cupboard, don't buy: ${shoppingItems().filter(i=>i.pantry).map(i=>i.name).join(", ") || "nothing"}.`);
+  return { text: lines.join("\n"), count: items.length };
+}
+async function copyText(text){
+  try { await Clipboard.write({ string: text }); return true; }
+  catch { try { await navigator.clipboard.writeText(text); return true; } catch { return false; } }
+}
+async function openClaude(){
+  if (NATIVE){
+    try { const r = await AppLauncher.openUrl({ url: CLAUDE_PACKAGE }); if (r?.completed) return "app"; } catch {}
+    try { const r = await AppLauncher.openUrl({ url: "https://claude.ai/new" }); if (r?.completed) return "web"; } catch {}
+    return null;
+  }
+  window.open("https://claude.ai/new", "_blank", "noopener"); return "web";
+}
+async function orderWithClaude(fromSheet = false){
+  const { text, count } = orderText();
+  if (!count){ toast("Your shopping list is empty. Plan some meals first."); return; }
+  if (!fromSheet && !(await KV.get("orderHowtoSeen"))){ orderHowto(text); return; }
+  const copied = await copyText(text);
+  if (!copied){ orderHowto(text, true); return; }
+  if (dlg.open) dlg.close();
+  const how = await openClaude();
+  if (how === "app") toast("List copied. In Claude, start a new chat, paste and send.");
+  else if (how === "web") toast("List copied. Claude opened in your browser. Paste and send.");
+  else toast("List copied. Open the Claude app, start a new chat, paste and send.");
+}
+function orderHowto(text, copyFailed = false){
+  const ta = el("div",{class:"preview",text});
+  openDialog(
+    el("div",{class:"row",style:"justify-content:space-between;flex-wrap:nowrap"}, el("h2",{text:"Order with Claude"}), closeBtn()),
+    copyFailed ? el("p",{class:"banner",text:"Teatime couldn't copy automatically. Press and hold the list below, choose Select all, then Copy."}) : null,
+    el("ol",{class:"howto"},
+      el("li",{text:"Keep the Claude desktop app open on your computer. Claude uses its browser to shop for you."}),
+      el("li",{text:"The first time, sign in to Tesco in that browser. Claude remembers it after that."}),
+      el("li",{text:"Tap the button below. Teatime copies your list and opens Claude on your phone."}),
+      el("li",{text:"Start a new chat, paste and send. Claude fills your basket and stops before checkout."}),
+      el("li",{text:"Open the Tesco app to pick a delivery slot and pay."})),
+    el("span",{class:"eyebrow",text:"What gets copied"}), ta,
+    el("div",{class:"sheet-actions"},
+      el("button",{class:"btn primary grow",text:"Copy list and open Claude",onclick:async()=>{ await KV.set("orderHowtoSeen", true); orderWithClaude(true); }})));
 }
 
 // ---------- Claude (Anthropic API, called from the phone) ----------
@@ -590,7 +661,7 @@ function renderRecipes(){
 
 // ---------- sheets ----------
 const dlg = $("#dlg"), dlgBody = $("#dlgBody");
-function openDialog(...kids){ dlgBody.textContent = ""; dlgBody.append(...kids); if (!dlg.open) dlg.showModal(); dlgBody.scrollTop = 0; }
+function openDialog(...kids){ dlgBody.textContent = ""; dlgBody.append(...kids.filter(k => k != null && k !== false)); if (!dlg.open) dlg.showModal(); dlgBody.scrollTop = 0; }
 dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 const closeBtn = () => el("button",{class:"iconbtn","aria-label":"Close",text:"×",onclick:()=>dlg.close()});
 function recipeSheet(r, opts = {}){
@@ -944,6 +1015,7 @@ $("#clearWk").onclick = () => { $("#clearConfirm").hidden = false; };
 $("#clearNo").onclick = () => { $("#clearConfirm").hidden = true; };
 $("#clearYes").onclick = () => { S.plan = emptyPlan(); S.list = {checked:{}, extras:S.list.extras||[]}; saveList(); $("#clearConfirm").hidden = true; savePlan(); toast("Week cleared."); };
 $("#refreshPrices").onclick = () => checkPrices(false);
+$("#orderClaude").onclick = () => orderWithClaude(false);
 $("#search").addEventListener("input", e => { S.query = e.target.value; renderRecipes(); });
 $("#extraForm").addEventListener("submit", e => { e.preventDefault(); const v = $("#extraInput").value.trim(); if (!v) return; S.list.extras = [...(S.list.extras||[]), {id:Date.now().toString(36), name:v.slice(0,80)}]; $("#extraInput").value = ""; saveList(); });
 $("#untick").onclick = () => { S.list.checked = {}; saveList(); };

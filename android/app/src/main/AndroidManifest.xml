@@ -35,6 +35,15 @@
         </provider>
     </application>
 
+    <!-- Lets Teatime open the Claude app and links on the phone -->
+    <queries>
+        <package android:name="com.anthropic.claude" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+    </queries>
+
     <!-- Permissions -->
 
     <uses-permission android:name="android.permission.INTERNET" />
