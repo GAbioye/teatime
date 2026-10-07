@@ -4,6 +4,7 @@ import { Preferences } from "@capacitor/preferences";
 import { App } from "@capacitor/app";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { Share } from "@capacitor/share";
+import { Camera } from "@capacitor/camera";
 import STARTER from "./recipes.json";
 
 const AISLES = ["Fruit & veg","Meat & fish","Dairy & eggs","Bakery","Chilled","Frozen","Tins & jars","Pasta, rice & grains","World foods","Herbs & spices","Store cupboard","Household","Other"];
@@ -57,7 +58,7 @@ function persist(key, getVal){ SAVERS[key] = getVal; save(key, getVal); }
 // ---------- state ----------
 const S = {
   settings:{...DEFAULT_SETTINGS}, keys:{anthropic:"", firecrawl:""},
-  recipes:new Map(), prices:new Map(),
+  recipes:new Map(), prices:new Map(), logs:{},
   week:null, plan:emptyPlan(), list:{checked:{},extras:[]},
   day:0, tab:"plan", filter:"all", mealFilter:"all", query:"",
   loaded:false, job:null, priceError:null, directBlocked:false
@@ -501,12 +502,26 @@ function renderPlan(){
   }
   const card = $("#dayCard"); card.textContent = "";
   if (S.loaded && !S.recipes.size){ card.append(el("div",{class:"empty-state"}, el("b",{text:"Your recipe book is empty"}), el("span",{text:"Add a recipe in the Recipes tab, then come back here to plan your week."}))); return; }
-  const i = S.day, d = addDays(mon,i), tot = dayTotals(i);
+  const i = S.day, d = addDays(mon,i), tot = dayTotals(i), dIso = iso(d), eaten = logTotals(dIso), entries = S.logs[dIso] || [];
   const wrap = el("div",{class:"daycard"},
     el("div",{class:"dayhead"}, el("h2",{text:d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}),
-      targetBar("Calories", tot.kcal, S.settings.kcal, ""), targetBar("Protein", tot.protein, S.settings.protein, "g")));
+      el("span",{class:"eyebrow",text:"Planned"}),
+      targetBar("Calories", tot.kcal, S.settings.kcal, ""), targetBar("Protein", tot.protein, S.settings.protein, "g"),
+      entries.length ? el("span",{class:"eyebrow",style:"margin-top:4px",text:"Eaten (from your photos)"}) : null,
+      entries.length ? targetBar("Calories", eaten.kcal, S.settings.kcal, "") : null,
+      entries.length ? targetBar("Protein", eaten.protein, S.settings.protein, "g") : null));
   for (const m of MEALS){ const s = slot(i,m); if (!S.settings.meals.includes(m) && !s) continue; wrap.append(mealRow(i, m, s)); }
-  card.append(wrap);
+  const ate = el("div",{class:"ate"},
+    el("div",{class:"ate-head"}, el("div",{}, el("h3",{text:"What you ate"}), el("span",{class:"muted small",text: entries.length ? `${fmtN(eaten.kcal)} kcal · ${Math.round(eaten.protein)}g protein so far` : "Snap a photo of a meal and Claude estimates the calories."})),
+      el("button",{class:"btn primary",onclick:()=>openSnap(dIso)}, cameraIcon(), "Snap a meal")));
+  for (const e of entries.slice().sort((a,b)=>a.at.localeCompare(b.at))){
+    const t = entryTotals(e);
+    ate.append(el("button",{class:"ate-row",onclick:()=>openSnap(dIso, e)},
+      e.thumb ? el("img",{src:e.thumb,alt:"",class:"thumb"}) : el("span",{class:"thumb ph"}),
+      el("span",{class:"grow",style:"min-width:0"}, el("span",{class:"eyebrow",text:MEAL_LABEL[e.meal]+" · "+new Date(e.at).toLocaleTimeString("en-GB",{hour:"2-digit",minute:"2-digit"})}), el("b",{class:"ate-name",text:e.name})),
+      el("span",{class:"ate-num"}, el("b",{text:fmtN(t.kcal)}), el("span",{class:"muted small",text:" kcal"}), el("br"), el("span",{class:"muted small",text:Math.round(t.protein)+"g protein"}))));
+  }
+  card.append(ate, wrap);
   card.append(el("p",{class:"muted small",style:"margin:8px 2px 0",text:`Calories and protein are per person. Costs are for ${S.settings.serves} ${S.settings.serves>1?"people":"person"}.`}));
 }
 function mealRow(i, m, s){
@@ -616,6 +631,140 @@ function openPicker(i, m){
   const d = addDays(fromIso(S.week), i);
   openDialog(el("div",{class:"row",style:"justify-content:space-between;flex-wrap:nowrap"}, el("h2",{text:MEAL_LABEL[m]+", "+d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric"})}), closeBtn()),
     el("p",{class:"muted small",style:"margin:0",text:`Best fit for today's ${fmtN(S.settings.kcal)} kcal and ${S.settings.protein}g protein first.`}), search, list);
+}
+
+// ---------- meal photos: calorie estimates ----------
+const PORTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+const portionLabel = p => ({0.5:"½",0.75:"¾",1:"All",1.25:"1¼",1.5:"1½",2:"2×"})[p] || p+"×";
+function entryTotals(e){ const t = {kcal:0, protein:0, carbs:0, fat:0}; for (const it of e.items||[]) for (const k in t) t[k] += (+it[k]||0); for (const k in t) t[k] *= (e.portion||1); return t; }
+function logTotals(dIso){ const t = {kcal:0, protein:0, carbs:0, fat:0}; for (const e of S.logs[dIso]||[]){ const x = entryTotals(e); for (const k in t) t[k] += x[k]; } return t; }
+function saveLog(dIso){ const arr = S.logs[dIso] || []; if (arr.length) persist("log:"+dIso, () => S.logs[dIso] || []); else { clearTimeout(timers.get("log:"+dIso)); timers.delete("log:"+dIso); KV.remove("log:"+dIso); } }
+function mealForTime(d = new Date()){ const h = d.getHours() + d.getMinutes()/60; return h < 11 ? "breakfast" : h < 15 ? "lunch" : h < 17.5 ? "snack" : "dinner"; }
+function cameraIcon(){ const s = document.createElementNS("http://www.w3.org/2000/svg","svg"); s.setAttribute("viewBox","0 0 24 24"); s.setAttribute("class","ico"); s.setAttribute("aria-hidden","true"); s.innerHTML = '<path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.4-2h5l1.4 2h1.6A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.5"/>'; return s; }
+function loadImage(src, max, quality){
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const k = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+      const c = document.createElement("canvas"); c.width = Math.round(img.naturalWidth*k); c.height = Math.round(img.naturalHeight*k);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      resolve(c.toDataURL("image/jpeg", quality));
+    };
+    img.onerror = () => reject(new AppError("image", "That photo couldn't be opened. Try another one."));
+    img.src = src;
+  });
+}
+async function getPhoto(fromGallery){
+  try {
+    if (fromGallery){ const r = await Camera.chooseFromGallery({ limit: 1 }); return r?.results?.[0]?.webPath || null; }
+    const r = await Camera.takePhoto({ quality: 85, targetWidth: 1600, targetHeight: 1600, correctOrientation: true, webUseInput: true });
+    return r?.webPath || null;
+  } catch(e){
+    if (/cancel/i.test(String(e?.message||e))) return null;
+    throw new AppError("camera", "The camera couldn't be opened. Check Teatime's camera permission in your phone's settings.");
+  }
+}
+async function estimateMeal(photoDataUrl, note){
+  const prompt = `You estimate the nutrition of a meal from a photo, for a UK calorie and protein tracking app.
+Identify each distinct food and drink item. Estimate each portion in grams, using the plate, bowl, cutlery, hands or packaging for scale (a standard UK dinner plate is about 27 cm across). Estimate kcal, protein, carbs and fat for that portion, including visible oil, butter, dressings and sauces. Be realistic rather than optimistic. If the photo shows packaging with nutrition information, use it.
+${note ? "The person adds: " + note.slice(0, 500) + "\n" : ""}
+Reply with only a JSON object:
+{"isFood": true or false, "name": short name for the whole meal, "items": [{"name": string, "grams": number, "kcal": number, "protein": number, "carbs": number, "fat": number}], "confidence": "low" | "medium" | "high", "notes": one short sentence on what would most change the estimate}
+If the photo doesn't show food or drink, set isFood to false and items to [].`;
+  const r = parseJSON(await claude(prompt, { images:[{type:"image/jpeg", b64: photoDataUrl.split(",")[1]}], maxTokens: 1500 }));
+  if (!r || r.isFood === false || !Array.isArray(r.items) || !r.items.length) throw new AppError("not_food", "Claude couldn't see a meal in that photo. Try again closer up, with the whole plate in view.");
+  const num = v => { const n = Number(v); return Number.isFinite(n) && n >= 0 ? Math.round(n*10)/10 : 0; };
+  return { name: String(r.name || "Meal").slice(0,80), confidence: ["low","medium","high"].includes(r.confidence) ? r.confidence : "medium", notes: String(r.notes||"").slice(0,200),
+    items: r.items.slice(0,15).map(it => ({ name:String(it.name||"Item").slice(0,60), grams:num(it.grams), kcal:num(it.kcal), protein:num(it.protein), carbs:num(it.carbs), fat:num(it.fat) })) };
+}
+function openSnap(dIso, existing = null){
+  const draft = existing ? JSON.parse(JSON.stringify(existing)) : null;
+  let photo = null, note = "";
+  const body = el("div",{class:"snap"});
+  const dayLabel = fromIso(dIso).toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"short"});
+  const header = el("div",{class:"row",style:"justify-content:space-between;flex-wrap:nowrap"}, el("div",{}, el("span",{class:"eyebrow",text:dayLabel}), el("h2",{text: existing ? "Edit meal" : "Snap a meal"})), closeBtn());
+  openDialog(header, body);
+
+  const start = () => {
+    body.textContent = "";
+    if (!S.keys.anthropic){ body.append(el("p",{class:"banner",text:"Photo estimates use Claude. Add your Anthropic API key in Settings first."}), el("button",{class:"btn",text:"Go to Settings",onclick:()=>{ dlg.close(); showTab("settings"); }})); return; }
+    const noteIn = el("input",{type:"text",id:"snapNote",placeholder:"Optional: anything the photo won't show",value:note,oninput:e=>{ note = e.target.value; }});
+    body.append(
+      el("p",{class:"muted small",style:"margin:0",text:"Get the whole plate in the photo, from a little above. Claude identifies each food, estimates the portion and works out calories and protein."}),
+      el("div",{class:"row"}, el("button",{class:"btn primary grow",onclick:()=>capture(false)}, cameraIcon(), "Take photo"), el("button",{class:"btn grow",text:"Choose from gallery",onclick:()=>capture(true)})),
+      el("label",{class:"field"}, el("span",{text:"Notes for Claude"}), noteIn),
+      el("p",{class:"muted small",style:"margin:0",text:"For example: cooked in butter, large portion, diet cola, half the rice left."}));
+  };
+  const capture = async (gallery) => {
+    let src;
+    try { src = await getPhoto(gallery); } catch(e){ toast(e.message); return; }
+    if (!src) return;
+    body.textContent = ""; body.append(el("div",{class:"thinking"}, el("i",{class:"dot"}), "Preparing photo…"));
+    try { photo = { full: await loadImage(src, 1568, 0.85), thumb: await loadImage(src, 200, 0.6) }; }
+    catch(e){ body.textContent = ""; body.append(el("p",{class:"banner",text:e.message})); setTimeout(start, 2500); return; }
+    body.textContent = "";
+    body.append(el("img",{src:photo.full,alt:"Your meal",class:"snap-photo"}), el("div",{class:"thinking"}, el("i",{class:"dot"}), "Claude is looking at your meal. This takes about 10–30 seconds."));
+    try {
+      const est = await estimateMeal(photo.full, note);
+      editor({ id: "l-" + Date.now().toString(36), at: new Date().toISOString(), meal: mealForTime(), portion: 1, thumb: photo.thumb, note, ...est }, false);
+    } catch(e){
+      body.textContent = "";
+      body.append(el("img",{src:photo.full,alt:"Your meal",class:"snap-photo"}), el("p",{class:"banner",text:e.message}), el("div",{class:"row"}, el("button",{class:"btn primary",text:"Try again",onclick:()=>{ body.textContent=""; body.append(el("img",{src:photo.full,alt:"",class:"snap-photo"}), el("div",{class:"thinking"}, el("i",{class:"dot"}), "Claude is looking at your meal…")); estimateMeal(photo.full, note).then(est => editor({ id:"l-"+Date.now().toString(36), at:new Date().toISOString(), meal:mealForTime(), portion:1, thumb:photo.thumb, note, ...est }, false)).catch(err => { body.textContent=""; body.append(el("p",{class:"banner",text:err.message}), el("button",{class:"btn",text:"Start again",onclick:start})); }); }}), el("button",{class:"btn ghost",text:"Use another photo",onclick:start})));
+    }
+  };
+  const editor = (e, saved) => {
+    body.textContent = "";
+    const orig = e.items.map(it => ({...it}));
+    const totalsBox = el("div",{class:"macros"});
+    const drawTotals = () => { const t = entryTotals(e); totalsBox.textContent = ""; [["kcal","kcal",""],["protein","protein","g"],["carbs","carbs","g"],["fat","fat","g"]].forEach(([k,l,u]) => totalsBox.append(el("div",{}, el("b",{text:fmtN(t[k])+u}), el("span",{text:l})))); };
+    const rows = el("div",{class:"est-items"});
+    const drawRows = () => {
+      rows.textContent = "";
+      e.items.forEach((it, n) => {
+        const base = orig[n] && orig[n].grams > 0 ? orig[n] : null;
+        const g = el("input",{type:"number",inputmode:"numeric",min:"0",value:String(Math.round(it.grams)),"aria-label":"Grams of "+it.name,onchange:ev=>{
+          const v = Math.max(0, +ev.target.value || 0);
+          if (base){ const k = v / base.grams; for (const f of ["kcal","protein","carbs","fat"]) it[f] = Math.round(base[f]*k*10)/10; }
+          it.grams = v; drawRows(); drawTotals(); }});
+        rows.append(el("div",{class:"est-row"},
+          el("span",{class:"grow",style:"min-width:0"}, el("b",{text:it.name}), el("span",{class:"muted small",style:"display:block",text:`${fmtN(it.kcal)} kcal · ${Math.round(it.protein)}g protein`})),
+          el("label",{class:"grams"}, g, el("span",{class:"muted small",text:"g"})),
+          el("button",{class:"iconbtn sm","aria-label":"Remove "+it.name,text:"×",onclick:()=>{ e.items.splice(n,1); orig.splice(n,1); drawRows(); drawTotals(); }})));
+      });
+      if (!e.items.length) rows.append(el("p",{class:"muted small",style:"margin:0",text:"No items left. Discard this entry or take another photo."}));
+    };
+    const nameIn = el("input",{type:"text",id:"snapName",value:e.name,oninput:ev=>{ e.name = ev.target.value.slice(0,80); }});
+    const mealSel = el("select",{id:"snapMeal",onchange:ev=>{ e.meal = ev.target.value; }}, MEALS.map(m => el("option",{value:m,text:MEAL_LABEL[m]})));
+    mealSel.value = e.meal;
+    const chips = el("div",{class:"chips"}, PORTIONS.map(p => el("button",{class:"chip","aria-pressed":String((e.portion||1)===p),text:portionLabel(p),onclick:ev=>{ e.portion = p; chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === ev.currentTarget))); drawTotals(); }})));
+    const delRow = el("div",{class:"confirm",hidden:true}, el("span",{text:"Delete this meal from your log?"}), el("div",{class:"row"}, el("button",{class:"btn sm danger",text:"Delete",onclick:()=>{ S.logs[dIso] = (S.logs[dIso]||[]).filter(x => x.id !== e.id); if (!S.logs[dIso].length) delete S.logs[dIso]; saveLog(dIso); dlg.close(); renderAll(); toast("Meal deleted."); }}), el("button",{class:"btn sm ghost",text:"Keep it",onclick:()=>{ delRow.hidden = true; }})));
+    body.append(
+      e.thumb ? el("img",{src: photo?.full || e.thumb, alt:"Your meal", class:"snap-photo"+(photo?"":" small")}) : null,
+      el("div",{class:"row"}, el("span",{class:"src "+(e.confidence==="high"?"live":"est"),text:`${e.confidence} confidence`}), e.notes ? el("span",{class:"muted small grow",text:e.notes}) : null),
+      totalsBox,
+      el("div",{class:"two"}, el("label",{class:"field"}, el("span",{text:"Meal name"}), nameIn), el("label",{class:"field"}, el("span",{text:"Counts as"}), mealSel)),
+      el("div",{class:"field"}, el("span",{text:"How much did you eat?"}), chips),
+      el("div",{class:"field"}, el("span",{text:"What Claude saw (change grams to adjust)"}), rows),
+      el("p",{class:"muted small",style:"margin:0",text:"Photo estimates are rough. Oils, sauces and hidden ingredients can make them 20–30% out either way."}),
+      el("div",{class:"sheet-actions"},
+        el("button",{class:"btn primary",text: saved ? "Save changes" : "Add to "+fromIso(dIso).toLocaleDateString("en-GB",{weekday:"short"}),onclick:()=>{
+          if (!e.items.length){ toast("Add at least one item, or discard this entry."); return; }
+          e.name = (e.name||"").trim() || "Meal";
+          const list = (S.logs[dIso] || []).filter(x => x.id !== e.id); list.push(e); S.logs[dIso] = list; saveLog(dIso);
+          dlg.close(); renderAll(); const t = entryTotals(e); toast(`Logged ${fmtN(t.kcal)} kcal and ${Math.round(t.protein)}g protein.`); }}),
+        saved ? el("button",{class:"btn ghost danger",text:"Delete",onclick:()=>{ delRow.hidden = false; }}) : el("button",{class:"btn ghost",text:"Discard",onclick:()=>dlg.close()})),
+      delRow);
+    drawRows(); drawTotals();
+  };
+  if (draft) editor(draft, true); else start();
+}
+async function pruneOldThumbs(){
+  const cutoff = iso(addDays(new Date(), -21));
+  for (const k of await KV.keys()){
+    if (!k.startsWith("log:") || k.slice(4) >= cutoff) continue;
+    const arr = await KV.get(k); if (!Array.isArray(arr) || !arr.some(e => e.thumb)) continue;
+    await KV.set(k, arr.map(({thumb, ...rest}) => rest));
+  }
 }
 
 // ---------- import with Claude ----------
@@ -833,6 +982,8 @@ function migrate(d){
 }
 async function loadWeek(){
   S.plan = migrate(await KV.get(planKey()));
+  S.logs = {};
+  for (let i=0;i<7;i++){ const d = iso(addDays(fromIso(S.week), i)); const l = await KV.get("log:" + d); if (Array.isArray(l) && l.length) S.logs[d] = l; }
   const l = await KV.get(listKey()); S.list = l ? {checked:{...(l.checked||{})}, extras:[...(l.extras||[])]} : {checked:{}, extras:[]};
 }
 async function changeWeek(n){ await flushAll(); S.week = iso(addDays(fromIso(S.week), n)); S.day = 0; await loadWeek(); renderAll(); }
@@ -852,6 +1003,7 @@ async function loadAll(){
 (async function boot(){
   renderFilters(); renderAll();
   await loadAll();
+  pruneOldThumbs().catch(() => {});
   if (NATIVE){
     App.addListener("backButton", () => {
       if (dlg.open) dlg.close();

@@ -207,6 +207,26 @@ dialog::backdrop{background:var(--scrim)}
 .sheet-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px solid var(--line);padding-top:14px}
 .sheet-actions select{width:auto;flex:1;min-width:120px}
 
+/* food log from photos */
+.ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ate{margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.ate-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px}
+.ate-head h3{font-size:17px}
+.ate-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:10px 14px}
+.ate-row .eyebrow{display:block}
+.ate-name{display:block;font-family:var(--f-display);font-size:16px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ate-num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.thumb{width:52px;height:52px;border-radius:12px;object-fit:cover;flex:none;background:var(--sunk)}
+.snap{display:flex;flex-direction:column;gap:12px}
+.snap-photo{width:100%;max-height:38vh;object-fit:cover;border-radius:14px;background:var(--sunk)}
+.snap-photo.small{max-height:140px}
+.est-items{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.est-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line)}
+.est-row:first-child{border-top:0}
+.grams{display:flex;align-items:center;gap:4px;flex:none}
+.grams input{width:76px;min-height:40px;padding:6px 8px;text-align:right;font-family:var(--f-mono)}
+.iconbtn.sm{width:36px;height:36px;font-size:18px}
+
 .banner{background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 14px;font-size:14px;margin:0}
 .empty-state{border:1px dashed var(--line);border-radius:16px;padding:26px 18px;text-align:center;color:var(--muted);display:flex;flex-direction:column;gap:8px;align-items:center}
 .empty-state b{color:var(--ink);font-family:var(--f-display);font-size:18px}
