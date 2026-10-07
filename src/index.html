@@ -55,7 +55,7 @@
       <button class="btn" type="submit">Add</button>
     </form>
     <div class="row">
-      <button class="btn grow" id="refreshPrices">Check Tesco prices</button>
+      <button class="btn grow" id="refreshPrices">Check prices</button>
       <button class="btn" id="shareList">Share list</button>
       <button class="btn ghost" id="untick">Untick all</button>
     </div>
@@ -134,11 +134,11 @@
 
     <form class="panel" id="priceForm">
       <h2>Live Tesco prices</h2>
-      <p class="muted small" style="margin:0">Teatime reads Tesco's website from your phone. If Tesco blocks that, it can use Firecrawl instead (free plan at <a href="https://www.firecrawl.dev" target="_blank" rel="noopener">firecrawl.dev</a>). Either way, Claude does the product matching.</p>
+      <p class="muted small" style="margin:0">Auto reads Tesco's website from your phone, and switches to Firecrawl if Tesco blocks it (free plan at <a href="https://www.firecrawl.dev" target="_blank" rel="noopener">firecrawl.dev</a>). Either way, Claude does the product matching.</p>
       <div class="two">
-        <label class="field"><span>Read prices using</span><select id="sSource"><option value="auto">Tesco, then Firecrawl</option><option value="direct">Tesco only</option><option value="firecrawl">Firecrawl only</option></select></label>
+        <label class="field"><span>Read prices using</span><select id="sSource"><option value="auto">Auto</option><option value="direct">Tesco only</option><option value="firecrawl">Firecrawl only</option></select></label>
         <label class="field"><span>Firecrawl API key (optional)</span><input type="password" id="kFirecrawl" autocomplete="off" placeholder="fc-..."></label>
-        <label class="field"><span>Use Clubcard prices</span><select id="sClub"><option value="1">Yes, I have a Clubcard</option><option value="0">No, shelf prices</option></select></label>
+        <label class="field"><span>Use Clubcard prices</span><select id="sClub"><option value="1">Yes</option><option value="0">No</option></select></label>
         <label class="field"><span>Re-check a price after</span><select id="sFresh"><option value="1">1 day</option><option value="3">3 days</option><option value="7">7 days</option></select></label>
       </div>
       <div class="row"><button class="btn" type="submit">Save and test</button><span class="muted small grow" id="priceOut"></span></div>
