@@ -28,6 +28,7 @@
       </div>
       <div><span class="eyebrow">Avg kcal / day</span><div class="big" id="avgKcal">–</div><span class="muted small" id="avgKcalNote">&nbsp;</span></div>
       <div><span class="eyebrow">Avg protein / day</span><div class="big" id="avgProt">–</div><span class="muted small" id="avgProtNote">&nbsp;</span></div>
+      <div class="wide" id="carbCell" hidden><span class="eyebrow">Avg carbs / day</span><div class="big" id="avgCarbs">–</div><span class="muted small" id="avgCarbsNote">&nbsp;</span></div>
     </div>
     <div id="priceStatus"></div>
     <div class="row">
@@ -109,8 +110,9 @@
         <label class="field"><span>Calories per person (kcal)</span><input type="number" inputmode="numeric" id="sKcal" min="800" max="5000" step="50"></label>
         <label class="field"><span>Protein per person (g)</span><input type="number" inputmode="numeric" id="sProt" min="20" max="400" step="5"></label>
       </div>
+      <label class="field"><span>Carb limit per person (g a day, 0 for no limit)</span><input type="number" inputmode="numeric" id="sCarbs" min="0" max="500" step="5" placeholder="0"></label>
       <div class="field"><span>Meals to plan</span><div class="checks" id="sMeals"></div></div>
-      <p class="muted small" style="margin:0">The planner picks each day's meals to land within about 10% of your calorie target and at or above your protein target.</p>
+      <p class="muted small" style="margin:0">The planner picks each day's meals to land within about 10% of your calorie target, at or above your protein target and under your carb limit. For low carb, 50g is a common daily limit.</p>
     </form>
 
     <form class="panel" id="settingsForm2">

@@ -218,6 +218,7 @@ dialog::backdrop{background:var(--scrim)}
 .preview{font-family:var(--f-mono);font-size:12px;white-space:pre-wrap;background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:180px;overflow:auto}
 
 /* food log from photos */
+.linkbtn{background:none;border:0;padding:0;color:var(--tesco);text-decoration:underline;font:inherit}
 .ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ate{margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .ate-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px}

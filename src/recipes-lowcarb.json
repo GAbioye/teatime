@@ -1,0 +1,2528 @@
+[
+{
+"name": "Spinach & feta omelette",
+"meal": "breakfast",
+"time": 10,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 473,
+"protein": 32,
+"carbs": 3,
+"fat": 37
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 6,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Spinach",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.6
+},
+{
+"name": "Feta",
+"qty": 60,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.6
+},
+{
+"name": "Butter",
+"qty": 15,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.15
+},
+{
+"name": "Mature cheddar",
+"qty": 40,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.4
+}
+],
+"steps": [
+"Wilt the spinach in half the butter, then tip it out.",
+"Melt the rest of the butter, pour in half the beaten eggs and cook until almost set.",
+"Scatter over half the spinach and feta, fold and slide out. Repeat for the second omelette."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-spinach-feta-omelette"
+},
+{
+"name": "Greek yoghurt, berry & almond bowl",
+"meal": "breakfast",
+"time": 3,
+"serves": 2,
+"appliances": [],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 390,
+"protein": 28,
+"carbs": 13,
+"fat": 23
+},
+"ingredients": [
+{
+"name": "0% fat Greek yoghurt",
+"qty": 400,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.2
+},
+{
+"name": "Frozen mixed berries",
+"qty": 120,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.45
+},
+{
+"name": "Flaked almonds",
+"qty": 80,
+"unit": "g",
+"aisle": "Store cupboard",
+"cost": 1.2
+}
+],
+"steps": [
+"Thaw the berries overnight in the fridge, or microwave for 1 minute.",
+"Spoon the yoghurt into two bowls and top with the berries and almonds."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-greek-yoghurt-berry-almond-bowl"
+},
+{
+"name": "Smoked salmon, eggs & avocado",
+"meal": "breakfast",
+"time": 10,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 420,
+"protein": 27,
+"carbs": 3,
+"fat": 33
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 4,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Smoked salmon",
+"qty": 100,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.5
+},
+{
+"name": "Avocado",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.75
+},
+{
+"name": "Butter",
+"qty": 10,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.1
+}
+],
+"steps": [
+"Scramble the eggs gently in the butter until just set.",
+"Slice the avocado.",
+"Serve the eggs with the salmon and avocado, and plenty of black pepper."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-smoked-salmon-eggs-avocado"
+},
+{
+"name": "Bacon, eggs & mushrooms",
+"meal": "breakfast",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"gluten-free",
+"high-protein",
+"low-carb",
+"pork"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 462,
+"protein": 36,
+"carbs": 3,
+"fat": 33
+},
+"ingredients": [
+{
+"name": "Back bacon",
+"qty": 4,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 1.4
+},
+{
+"name": "Eggs",
+"qty": 6,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Mushrooms",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Cherry tomatoes",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Grill or dry-fry the bacon until crisp.",
+"Fry the sliced mushrooms and halved tomatoes in the oil for 5 minutes.",
+"Fry the eggs and serve everything together."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-bacon-eggs-mushrooms"
+},
+{
+"name": "Ham & cheese omelette",
+"meal": "breakfast",
+"time": 10,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 420,
+"protein": 35,
+"carbs": 2,
+"fat": 30
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 6,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Cooked ham slices",
+"qty": 100,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 1.1
+},
+{
+"name": "Mature cheddar",
+"qty": 50,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+},
+{
+"name": "Butter",
+"qty": 10,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.1
+}
+],
+"steps": [
+"Beat the eggs with a pinch of salt.",
+"Melt half the butter, add half the eggs and cook until almost set.",
+"Add half the torn ham and grated cheese, fold and slide out. Repeat."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-ham-cheese-omelette"
+},
+{
+"name": "Halloumi, egg & tomato fry-up",
+"meal": "breakfast",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"vegetarian"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 430,
+"protein": 30,
+"carbs": 5,
+"fat": 32
+},
+"ingredients": [
+{
+"name": "Halloumi",
+"qty": 150,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.35
+},
+{
+"name": "Eggs",
+"qty": 4,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Spinach",
+"qty": 80,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Fry the sliced halloumi in a dry pan until golden on both sides, then keep warm.",
+"Add the oil and blister the tomatoes for 3 minutes. Wilt in the spinach.",
+"Fry the eggs and serve with the halloumi and veg."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-halloumi-egg-tomato-fry-up"
+},
+{
+"name": "Chicken Caesar salad",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 490,
+"protein": 42,
+"carbs": 3,
+"fat": 34
+},
+"ingredients": [
+{
+"name": "Chicken breast",
+"qty": 300,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.4
+},
+{
+"name": "Romaine lettuce",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.65
+},
+{
+"name": "Caesar dressing",
+"qty": 4,
+"unit": "tbsp",
+"aisle": "Chilled",
+"cost": 0.55
+},
+{
+"name": "Italian hard cheese",
+"qty": 30,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.6
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Griddle the seasoned chicken in the oil for 5–6 minutes a side, then slice.",
+"Toss the torn lettuce with the dressing.",
+"Top with the chicken and shaved cheese. Skip the croutons to keep the carbs down."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-chicken-caesar-salad"
+},
+{
+"name": "Tuna Niçoise salad",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 530,
+"protein": 42,
+"carbs": 6,
+"fat": 37
+},
+"ingredients": [
+{
+"name": "Tuna chunks",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 1.8
+},
+{
+"name": "Eggs",
+"qty": 4,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Green beans",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.8
+},
+{
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Black olives",
+"qty": 50,
+"unit": "g",
+"aisle": "Tins & jars",
+"cost": 0.45
+},
+{
+"name": "Olive oil",
+"qty": 3,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.3
+}
+],
+"steps": [
+"Boil the eggs for 8 minutes, adding the green beans for the last 4. Cool in cold water.",
+"Peel and halve the eggs.",
+"Arrange the beans, tomatoes, olives, drained tuna and eggs in two boxes and dress with the oil and a squeeze of lemon if you have one."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-tuna-ni-oise-salad"
+},
+{
+"name": "Greek salad with chicken",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 578,
+"protein": 42,
+"carbs": 7,
+"fat": 42
+},
+"ingredients": [
+{
+"name": "Chicken breast",
+"qty": 250,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.0
+},
+{
+"name": "Feta",
+"qty": 150,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.6
+},
+{
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Black olives",
+"qty": 50,
+"unit": "g",
+"aisle": "Tins & jars",
+"cost": 0.45
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Griddle the seasoned chicken for 5–6 minutes a side, then slice.",
+"Chop the cucumber and halve the tomatoes. Mix with the olives and oil.",
+"Top with the chicken and crumbled feta."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-greek-salad-with-chicken"
+},
+{
+"name": "Prawn & avocado salad",
+"meal": "lunch",
+"time": 10,
+"serves": 2,
+"appliances": [],
+"tags": [
+"dairy-free",
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 520,
+"protein": 31,
+"carbs": 6,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Cooked king prawns",
+"qty": 300,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 4.0
+},
+{
+"name": "Avocado",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.5
+},
+{
+"name": "Mixed salad leaves",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Mayonnaise",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.2
+},
+{
+"name": "Lemon",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.3
+}
+],
+"steps": [
+"Mix the mayonnaise with a squeeze of lemon and black pepper.",
+"Toss the prawns in the dressing.",
+"Serve on the leaves with sliced avocado."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-prawn-avocado-salad"
+},
+{
+"name": "Smoked mackerel & egg salad",
+"meal": "lunch",
+"time": 12,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 450,
+"protein": 29,
+"carbs": 3,
+"fat": 36
+},
+"ingredients": [
+{
+"name": "Smoked mackerel",
+"qty": 200,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 2.2
+},
+{
+"name": "Eggs",
+"qty": 2,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+},
+{
+"name": "Mixed salad leaves",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.6
+},
+{
+"name": "Lemon",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.3
+}
+],
+"steps": [
+"Boil the eggs for 8 minutes, cool and quarter.",
+"Flake the mackerel and slice the cucumber.",
+"Pile everything onto the leaves and squeeze over the lemon."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-smoked-mackerel-egg-salad"
+},
+{
+"name": "Turkey & cheese lettuce wraps",
+"meal": "lunch",
+"time": 5,
+"serves": 2,
+"appliances": [],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 493,
+"protein": 38,
+"carbs": 5,
+"fat": 34
+},
+"ingredients": [
+{
+"name": "Cooked turkey slices",
+"qty": 200,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 2.5
+},
+{
+"name": "Mature cheddar",
+"qty": 100,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Romaine lettuce",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.65
+},
+{
+"name": "Mayonnaise",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.2
+},
+{
+"name": "Cherry tomatoes",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.45
+}
+],
+"steps": [
+"Separate the large lettuce leaves to use as wraps.",
+"Spread each with a little mayo, then add turkey, sliced cheese and tomato.",
+"Roll up and eat straight away, or pack the parts separately for later."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-turkey-cheese-lettuce-wraps"
+},
+{
+"name": "Chicken pesto courgetti",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 482,
+"protein": 44,
+"carbs": 7,
+"fat": 30
+},
+"ingredients": [
+{
+"name": "Chicken breast",
+"qty": 300,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.4
+},
+{
+"name": "Courgettes",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.9
+},
+{
+"name": "Green pesto",
+"qty": 4,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.8
+},
+{
+"name": "Italian hard cheese",
+"qty": 20,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.4
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Spiralise the courgettes, or cut them into ribbons with a peeler.",
+"Fry the diced chicken in the oil for 8 minutes until cooked through.",
+"Add the courgetti for 2 minutes, then stir through the pesto. Finish with grated cheese."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-chicken-pesto-courgetti"
+},
+{
+"name": "Halloumi & roasted veg salad",
+"meal": "lunch",
+"time": 25,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"gluten-free",
+"low-carb",
+"vegetarian"
+],
+"style": "Light",
+"macros": {
+"kcal": 470,
+"protein": 24,
+"carbs": 9,
+"fat": 37
+},
+"ingredients": [
+{
+"name": "Halloumi",
+"qty": 200,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.8
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Courgettes",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Mixed salad leaves",
+"qty": 60,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.4
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Roast the chopped pepper and courgette in half the oil for 15 minutes.",
+"Add the sliced halloumi and roast for 8 more minutes.",
+"Serve over the leaves with the rest of the oil."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-halloumi-roasted-veg-salad"
+},
+{
+"name": "Lemon & garlic chicken thighs with greens",
+"meal": "dinner",
+"time": 35,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"dairy-free",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 648,
+"protein": 62,
+"carbs": 7,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 500,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.25
+},
+{
+"name": "Tenderstem broccoli",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.5
+},
+{
+"name": "Green beans",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.8
+},
+{
+"name": "Lemon",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.3
+},
+{
+"name": "Garlic",
+"qty": 2,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.2
+},
+{
+"name": "Olive oil",
+"qty": 3,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.3
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Toss the chicken with half the oil, crushed garlic, lemon zest and juice.",
+"Roast for 20 minutes.",
+"Add the broccoli and beans tossed in the rest of the oil, and roast for 10–12 more minutes."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-lemon-garlic-chicken-thighs-with-greens"
+},
+{
+"name": "Burger bowl",
+"meal": "dinner",
+"time": 20,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 603,
+"protein": 53,
+"carbs": 6,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Beef mince (5% fat)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Mature cheddar",
+"qty": 80,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.8
+},
+{
+"name": "Romaine lettuce",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.65
+},
+{
+"name": "Cherry tomatoes",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Gherkins",
+"qty": 60,
+"unit": "g",
+"aisle": "Tins & jars",
+"cost": 0.3
+},
+{
+"name": "Mayonnaise",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.2
+}
+],
+"steps": [
+"Shape the mince into 4 patties, season and fry for 4 minutes a side. Top with cheese for the last minute.",
+"Chop the lettuce, halve the tomatoes and slice the gherkins.",
+"Serve the burgers on the salad with mayo mixed with a spoon of gherkin juice."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-burger-bowl"
+},
+{
+"name": "Garlic butter salmon with spinach",
+"meal": "dinner",
+"time": 20,
+"serves": 2,
+"appliances": [
+"Hob",
+"Oven"
+],
+"tags": [
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 525,
+"protein": 32,
+"carbs": 5,
+"fat": 41
+},
+"ingredients": [
+{
+"name": "Salmon fillets",
+"qty": 2,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 3.5
+},
+{
+"name": "Spinach",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.2
+},
+{
+"name": "Tenderstem broccoli",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.5
+},
+{
+"name": "Butter",
+"qty": 40,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.4
+},
+{
+"name": "Garlic",
+"qty": 2,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.2
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan) and roast the salmon for 12–14 minutes.",
+"Steam the broccoli for 4 minutes.",
+"Melt the butter with the sliced garlic, wilt in the spinach and serve with the salmon and broccoli."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-garlic-butter-salmon-with-spinach"
+},
+{
+"name": "Steak with peppercorn sauce & greens",
+"meal": "dinner",
+"time": 20,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 600,
+"protein": 52,
+"carbs": 6,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Sirloin steaks",
+"qty": 2,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 9.0
+},
+{
+"name": "Double cream",
+"qty": 80,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+},
+{
+"name": "Black peppercorns",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Green beans",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Mushrooms",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.55
+}
+],
+"steps": [
+"Bring the steaks to room temperature and season well.",
+"Sear in a very hot pan for 2–3 minutes a side, then rest. Fry the mushrooms in the same pan.",
+"Add the crushed peppercorns and cream, bubble for 1 minute and pour over the steaks. Serve with boiled green beans."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-steak-with-peppercorn-sauce-greens"
+},
+{
+"name": "Pork chops with mustard cream & cabbage",
+"meal": "dinner",
+"time": 25,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"pork"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 575,
+"protein": 45,
+"carbs": 8,
+"fat": 39
+},
+"ingredients": [
+{
+"name": "Pork loin chops",
+"qty": 2,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 3.0
+},
+{
+"name": "Half-fat crème fraîche",
+"qty": 100,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 0.55
+},
+{
+"name": "Wholegrain mustard",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.15
+},
+{
+"name": "Savoy cabbage",
+"qty": 300,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Butter",
+"qty": 30,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.3
+}
+],
+"steps": [
+"Season the chops and fry for 5–6 minutes a side until cooked through. Rest.",
+"Stir the crème fraîche and mustard into the pan juices and bubble for 1 minute.",
+"Fry the shredded cabbage in the butter for 5 minutes and serve with the chops and sauce."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-pork-chops-with-mustard-cream-cabbage"
+},
+{
+"name": "Cod with chorizo & tomatoes",
+"meal": "dinner",
+"time": 20,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"dairy-free",
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb",
+"pork"
+],
+"style": "Light",
+"macros": {
+"kcal": 572,
+"protein": 43,
+"carbs": 6,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Cod fillets",
+"qty": 2,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 4.0
+},
+{
+"name": "Chorizo",
+"qty": 120,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.1
+},
+{
+"name": "Cherry tomatoes",
+"qty": 250,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Spinach",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.6
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Roast the sliced chorizo and tomatoes in the oil for 8 minutes.",
+"Nestle in the cod and roast for 10–12 minutes.",
+"Stir the spinach through the hot tomatoes to wilt, then serve."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-cod-with-chorizo-tomatoes"
+},
+{
+"name": "Thai green chicken curry with cauliflower rice",
+"meal": "dinner",
+"time": 30,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 600,
+"protein": 52,
+"carbs": 13,
+"fat": 37
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.6
+},
+{
+"name": "Green curry paste",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.5
+},
+{
+"name": "Light coconut milk",
+"qty": 400,
+"unit": "ml",
+"aisle": "World foods",
+"cost": 1.0
+},
+{
+"name": "Green beans",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.8
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+}
+],
+"steps": [
+"Fry the paste for 1 minute, then add the diced chicken and cook for 5 minutes.",
+"Pour in the coconut milk and simmer for 15 minutes, adding the beans for the last 5.",
+"Cook the cauliflower rice following the pack and serve with the curry."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-thai-green-veg-curry",
+"id": "lc-thai-green-chicken-curry-with-cauliflower-rice"
+},
+{
+"name": "Halloumi & Mediterranean veg traybake",
+"meal": "dinner",
+"time": 35,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"gluten-free",
+"low-carb",
+"vegetarian"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 560,
+"protein": 30,
+"carbs": 17,
+"fat": 40
+},
+"ingredients": [
+{
+"name": "Halloumi",
+"qty": 250,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 2.25
+},
+{
+"name": "Courgettes",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.9
+},
+{
+"name": "Peppers",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Red onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.25
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Roast the chopped courgettes, peppers and onion in the oil for 20 minutes.",
+"Add the sliced halloumi and roast for 10 more minutes until golden."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-halloumi-chickpea-traybake",
+"id": "lc-halloumi-mediterranean-veg-traybake"
+},
+{
+"name": "Bolognese with courgetti",
+"meal": "dinner",
+"time": 40,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 634,
+"protein": 58,
+"carbs": 18,
+"fat": 35
+},
+"ingredients": [
+{
+"name": "Beef mince (5% fat)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Courgettes",
+"qty": 3,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.35
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Garlic",
+"qty": 2,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.2
+},
+{
+"name": "Dried oregano",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Mature cheddar",
+"qty": 80,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.8
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Brown the mince, then add the finely chopped onion and cook for 5 minutes.",
+"Add the garlic, oregano and tomatoes. Simmer for 25 minutes.",
+"Spiralise the courgettes and fry for 2 minutes. Serve topped with the sauce and grated cheddar."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-spaghetti-bolognese",
+"id": "lc-bolognese-with-courgetti"
+},
+{
+"name": "Beef chilli with cauliflower rice",
+"meal": "dinner",
+"time": 40,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 623,
+"protein": 55,
+"carbs": 21,
+"fat": 35
+},
+"ingredients": [
+{
+"name": "Beef mince (5% fat)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Chilli powder",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Ground cumin",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+},
+{
+"name": "Soured cream",
+"qty": 150,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 0.9
+},
+{
+"name": "Mature cheddar",
+"qty": 40,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.4
+}
+],
+"steps": [
+"Brown the mince with the chopped onion and pepper for 8 minutes. Add the spices for 1 minute.",
+"Add the tomatoes and a splash of water and simmer for 20 minutes.",
+"Cook the cauliflower rice and serve with the chilli and a spoon of soured cream."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-three-bean-veggie-chilli",
+"id": "lc-beef-chilli-with-cauliflower-rice"
+},
+{
+"name": "Chicken tikka masala with cauliflower rice",
+"meal": "dinner",
+"time": 35,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 540,
+"protein": 55,
+"carbs": 18,
+"fat": 26
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.6
+},
+{
+"name": "Tikka masala paste",
+"qty": 3,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.9
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Natural yoghurt",
+"qty": 100,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.25
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+},
+{
+"name": "Fresh coriander",
+"qty": 15,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+}
+],
+"steps": [
+"Fry the diced chicken with the paste for 5 minutes.",
+"Add the tomatoes and simmer for 20 minutes.",
+"Stir in the yoghurt off the heat. Serve with the cauliflower rice and coriander."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-slow-cooker-chicken-tikka-masala",
+"id": "lc-chicken-tikka-masala-with-cauliflower-rice"
+},
+{
+"name": "Chicken fajita bowl",
+"meal": "dinner",
+"time": 25,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 560,
+"protein": 52,
+"carbs": 18,
+"fat": 30
+},
+"ingredients": [
+{
+"name": "Chicken breast",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Peppers",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Red onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.25
+},
+{
+"name": "Fajita seasoning",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Herbs & spices",
+"cost": 0.3
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+},
+{
+"name": "Soured cream",
+"qty": 75,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 0.45
+},
+{
+"name": "Avocado",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.75
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Fry the sliced chicken, peppers and onion in the oil with the seasoning for 10–12 minutes.",
+"Cook the cauliflower rice.",
+"Serve in bowls with sliced avocado and soured cream. No wraps needed."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-chicken-fajita-traybake",
+"id": "lc-chicken-fajita-bowl"
+},
+{
+"name": "Prawn egg-fried cauliflower rice",
+"meal": "dinner",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"fish",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 546,
+"protein": 52,
+"carbs": 9,
+"fat": 33
+},
+"ingredients": [
+{
+"name": "King prawns",
+"qty": 350,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 5.8
+},
+{
+"name": "Eggs",
+"qty": 6,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+},
+{
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.15
+},
+{
+"name": "Sesame oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.4
+}
+],
+"steps": [
+"Stir-fry the prawns in the sesame oil for 2 minutes, then push aside.",
+"Scramble the eggs in the pan, then add the cauliflower rice and stir-fry for 4 minutes.",
+"Add the soy sauce and sliced spring onions. Use tamari instead of soy sauce if you need it gluten-free."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-prawn-egg-fried-rice",
+"id": "lc-prawn-egg-fried-cauliflower-rice"
+},
+{
+"name": "Turkey meatballs with courgetti",
+"meal": "dinner",
+"time": 35,
+"serves": 2,
+"appliances": [
+"Oven",
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 590,
+"protein": 60,
+"carbs": 15,
+"fat": 31
+},
+"ingredients": [
+{
+"name": "Turkey mince",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.7
+},
+{
+"name": "Eggs",
+"qty": 1,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 0.25
+},
+{
+"name": "Italian hard cheese",
+"qty": 50,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Passata",
+"qty": 300,
+"unit": "g",
+"aisle": "Tins & jars",
+"cost": 0.35
+},
+{
+"name": "Courgettes",
+"qty": 3,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.35
+},
+{
+"name": "Garlic",
+"qty": 1,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.1
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Mix the mince, egg and grated cheese and roll into 12 balls. Bake for 15 minutes.",
+"Warm the passata with the garlic, add the meatballs and simmer for 10 minutes.",
+"Fry the spiralised courgettes for 2 minutes and serve with the meatballs."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-turkey-meatballs-in-tomato-sauce",
+"id": "lc-turkey-meatballs-with-courgetti"
+},
+{
+"name": "Pesto chicken traybake with green veg",
+"meal": "dinner",
+"time": 35,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 570,
+"protein": 51,
+"carbs": 10,
+"fat": 35
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.6
+},
+{
+"name": "Cherry tomatoes",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.9
+},
+{
+"name": "Green pesto",
+"qty": 4,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.8
+},
+{
+"name": "Green beans",
+"qty": 150,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.8
+},
+{
+"name": "Courgettes",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.45
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Toss the chicken in the pesto and roast for 15 minutes.",
+"Add the tomatoes, beans and sliced courgette and roast for 15 more minutes."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-pesto-chicken-traybake",
+"id": "lc-pesto-chicken-traybake-with-green-veg"
+},
+{
+"name": "Cottage pie with cauliflower mash",
+"meal": "dinner",
+"time": 60,
+"serves": 2,
+"appliances": [
+"Oven",
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 603,
+"protein": 58,
+"carbs": 16,
+"fat": 34
+},
+"ingredients": [
+{
+"name": "Beef mince (5% fat)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Cauliflower",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Carrot",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.1
+},
+{
+"name": "Beef stock cube",
+"qty": 1,
+"unit": "whole",
+"aisle": "Store cupboard",
+"cost": 0.1
+},
+{
+"name": "Worcestershire sauce",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.1
+},
+{
+"name": "Mature cheddar",
+"qty": 80,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.8
+},
+{
+"name": "Butter",
+"qty": 15,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.15
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Boil the cauliflower florets for 10 minutes, drain well and mash with the butter.",
+"Brown the mince with the chopped onion and carrot. Add the stock cube, Worcestershire sauce and 150ml water and simmer for 15 minutes.",
+"Spoon into a dish, top with the mash and cheese, and bake for 20 minutes."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-cottage-pie",
+"id": "lc-cottage-pie-with-cauliflower-mash"
+},
+{
+"name": "Chicken & mushroom stroganoff with cauliflower rice",
+"meal": "dinner",
+"time": 25,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 595,
+"protein": 59,
+"carbs": 15,
+"fat": 32
+},
+"ingredients": [
+{
+"name": "Chicken breast",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.2
+},
+{
+"name": "Mushrooms",
+"qty": 300,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.05
+},
+{
+"name": "Half-fat crème fraîche",
+"qty": 250,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 1.35
+},
+{
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Frozen cauliflower rice",
+"qty": 400,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 1.25
+},
+{
+"name": "Butter",
+"qty": 15,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.15
+}
+],
+"steps": [
+"Fry the sliced chicken until golden, then lift out.",
+"Soften the onion, add the mushrooms and cook on a high heat until browned. Add the paprika.",
+"Return the chicken with the crème fraîche and a splash of water and bubble for 3 minutes. Serve with the cauliflower rice."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-mushroom-stroganoff",
+"id": "lc-chicken-mushroom-stroganoff-with-cauliflower-rice"
+},
+{
+"name": "Sausage & pepper casserole",
+"meal": "dinner",
+"time": 40,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"gluten-free",
+"low-carb",
+"pork"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 470,
+"protein": 27,
+"carbs": 17,
+"fat": 32
+},
+"ingredients": [
+{
+"name": "97% pork sausages",
+"qty": 6,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 2.75
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Courgettes",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+}
+],
+"steps": [
+"Brown the sausages, then lift out and halve.",
+"Soften the sliced onion, pepper and courgette for 6 minutes. Add the paprika.",
+"Return the sausages with the tomatoes and simmer for 20 minutes. High-meat sausages keep the carbs low."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-sausage-butter-bean-casserole",
+"id": "lc-sausage-pepper-casserole"
+},
+{
+"name": "Soy & garlic salmon with greens",
+"meal": "dinner",
+"time": 20,
+"serves": 2,
+"appliances": [
+"Air fryer",
+"Hob"
+],
+"tags": [
+"dairy-free",
+"fish",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 510,
+"protein": 34,
+"carbs": 6,
+"fat": 38
+},
+"ingredients": [
+{
+"name": "Salmon fillets",
+"qty": 2,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 3.5
+},
+{
+"name": "Tenderstem broccoli",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.5
+},
+{
+"name": "Pak choi",
+"qty": 200,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.15
+},
+{
+"name": "Garlic",
+"qty": 1,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.1
+},
+{
+"name": "Sesame oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.4
+}
+],
+"steps": [
+"Brush the salmon with half the soy sauce and the grated garlic.",
+"Air fry at 190°C for 10–12 minutes.",
+"Stir-fry the broccoli and pak choi in the sesame oil with the rest of the soy sauce and serve with the salmon."
+],
+"source": "starter",
+"fav": false,
+"lowCarbOf": "s-honey-soy-salmon-with-rice",
+"id": "lc-soy-garlic-salmon-with-greens"
+},
+{
+"name": "Skyr & peanut butter pot",
+"meal": "snack",
+"time": 2,
+"serves": 2,
+"appliances": [],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 210,
+"protein": 21,
+"carbs": 10,
+"fat": 9
+},
+"ingredients": [
+{
+"name": "Skyr",
+"qty": 300,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Peanut butter",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+},
+{
+"name": "Raspberries",
+"qty": 100,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 1.0
+}
+],
+"steps": [
+"Spoon the skyr into two pots.",
+"Swirl through the peanut butter and top with raspberries."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-skyr-peanut-butter-pot"
+},
+{
+"name": "Ham & cheese roll-ups",
+"meal": "snack",
+"time": 3,
+"serves": 2,
+"appliances": [],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 170,
+"protein": 15,
+"carbs": 1,
+"fat": 12
+},
+"ingredients": [
+{
+"name": "Cooked ham slices",
+"qty": 100,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 1.1
+},
+{
+"name": "Mature cheddar",
+"qty": 50,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+}
+],
+"steps": [
+"Cut the cheese into sticks.",
+"Roll each stick in a slice of ham."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-ham-cheese-roll-ups"
+},
+{
+"name": "Almonds",
+"meal": "snack",
+"time": 1,
+"serves": 2,
+"appliances": [],
+"tags": [
+"dairy-free",
+"gluten-free",
+"low-carb",
+"vegan",
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 150,
+"protein": 5,
+"carbs": 2,
+"fat": 13
+},
+"ingredients": [
+{
+"name": "Almonds",
+"qty": 50,
+"unit": "g",
+"aisle": "Store cupboard",
+"cost": 0.75
+}
+],
+"steps": [
+"Portion out 25g each. A small handful."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-almonds"
+},
+{
+"name": "Cottage cheese & cucumber",
+"meal": "snack",
+"time": 3,
+"serves": 2,
+"appliances": [],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb",
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 165,
+"protein": 17,
+"carbs": 6,
+"fat": 7
+},
+"ingredients": [
+{
+"name": "Cottage cheese",
+"qty": 300,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.1
+},
+{
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.6
+}
+],
+"steps": [
+"Cut half the cucumber into thick slices.",
+"Top each slice with cottage cheese and black pepper."
+],
+"source": "starter",
+"fav": false,
+"id": "lc-cottage-cheese-cucumber"
+}
+]

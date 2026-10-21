@@ -7,11 +7,14 @@ import { Share } from "@capacitor/share";
 import { Camera } from "@capacitor/camera";
 import { Clipboard } from "@capacitor/clipboard";
 import { AppLauncher } from "@capacitor/app-launcher";
-import STARTER from "./recipes.json";
+import STARTER_BASE from "./recipes.json";
+import STARTER_LOWCARB from "./recipes-lowcarb.json";
+const STARTER = [...STARTER_BASE, ...STARTER_LOWCARB];
 
 const AISLES = ["Fruit & veg","Meat & fish","Dairy & eggs","Bakery","Chilled","Frozen","Tins & jars","Pasta, rice & grains","World foods","Herbs & spices","Store cupboard","Household","Other"];
 const APPLIANCES = ["Hob","Oven","Air fryer","Slow cooker","Microwave"];
-const TAGS = ["vegetarian","vegan","gluten-free","dairy-free","fish","pork","high-protein"];
+const TAGS = ["vegetarian","vegan","gluten-free","dairy-free","fish","pork","high-protein","low-carb"];
+const LOW_CARB = 20; // g per serving that counts as a low-carb recipe
 const STYLES = ["Quick","Comfort","Fakeaway","Light"];
 const MEALS = ["breakfast","lunch","dinner","snack"];
 const MEAL_LABEL = {breakfast:"Breakfast",lunch:"Lunch",dinner:"Dinner",snack:"Snack"};
@@ -22,7 +25,7 @@ const DAYN = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const DAYLONG = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const DEFAULT_PANTRY = ["olive-oil","soy-sauce","honey","dried-oregano","ground-cumin","chilli-powder","smoked-paprika","curry-powder","fajita-seasoning","sesame-seeds","vegetable-stock-cube","beef-stock-cube","chicken-stock-cube","worcestershire-sauce"];
 const DEFAULT_SETTINGS = {budget:80,serves:2,diet:[],appliances:["Hob","Oven","Air fryer","Microwave"],styles:[],avoidRepeat:true,
-  kcal:1800,protein:120,meals:["breakfast","lunch","dinner","snack"],clubcard:true,freshDays:3,pantry:DEFAULT_PANTRY,priceSource:"auto"};
+  kcal:1800,protein:120,carbs:0,meals:["breakfast","lunch","dinner","snack"],clubcard:true,freshDays:3,pantry:DEFAULT_PANTRY,priceSource:"auto"};
 const MODEL_SMART = "claude-sonnet-5-5";
 const MODEL_FAST = "claude-haiku-4-5-20251001";
 const TESCO_SEARCH = "https://www.tesco.com/groceries/en-GB/search?query=";
@@ -140,15 +143,26 @@ function setCovers(i, m, c){
 function dropSlot(i, m){ const s = slot(i,m); if (s && s.recipeId) for (let k=1;k<(s.covers||1) && i+k<7;k++) if (slot(i+k,m) && slot(i+k,m).leftover) setS(i+k,m,null); setS(i,m,null); }
 function clearSlot(i, m){ dropSlot(i,m); savePlan(); }
 function recipeAt(i, m){ const s = slot(i,m); if (!s) return null; if (s.recipeId) return S.recipes.get(s.recipeId) || null; if (s.leftover){ const o = ownerIndex(m,i); return o>=0 ? S.recipes.get(slot(o,m).recipeId) || null : null; } return null; }
-function dayTotals(i){ let kcal=0, protein=0, n=0; for (const m of MEALS){ const r = recipeAt(i,m); if (r){ kcal += r.macros?.kcal||0; protein += r.macros?.protein||0; n++; } } return {kcal, protein, n}; }
+function dayTotals(i){ let kcal=0, protein=0, carbs=0, n=0; for (const m of MEALS){ const r = recipeAt(i,m); if (r){ kcal += r.macros?.kcal||0; protein += r.macros?.protein||0; carbs += r.macros?.carbs||0; n++; } } return {kcal, protein, carbs, n}; }
+const carbsOf = r => +(r?.macros?.carbs) || 0;
+const isLowCarb = r => carbsOf(r) <= LOW_CARB;
 function planCost(skipPantry = true){ let t = 0; for (let i=0;i<7;i++) for (const m of MEALS){ const s = slot(i,m); if (s && s.recipeId){ const r = S.recipes.get(s.recipeId); if (r) t += recipeCost(r, s.covers||1, skipPantry); } } return t; }
-function dayScore(k, p, cost, cw){
-  const T = S.settings.kcal || 1800, P = S.settings.protein || 100;
-  const kErr = Math.abs(k - T) / T, pShort = Math.max(0, P - p) / P;
-  return 4*Math.max(0, kErr - 0.03) + 5*pShort + cw * cost / Math.max(1, (S.settings.budget||80)/7);
+function dayScore(k, p, c, cost, cw){
+  const T = S.settings.kcal || 1800, P = S.settings.protein || 100, L = S.settings.carbs || 0;
+  const kErr = Math.abs(k - T) / T, pShort = Math.max(0, P - p) / P, cOver = L ? Math.max(0, c - L) / L : 0;
+  return 10*Math.max(0, kErr - 0.03) + 8*pShort + 12*cOver + cw * cost / Math.max(1, (S.settings.budget||80)/7);
 }
 const pick = a => a[Math.floor(Math.random()*a.length)];
-function pools(){ const p = {}; for (const m of MEALS) p[m] = [...S.recipes.values()].filter(r => mealOf(r)===m && fits(r)); return p; }
+function pools(){
+  const p = {}, L = S.settings.carbs || 0;
+  for (const m of MEALS){
+    const all = [...S.recipes.values()].filter(r => mealOf(r)===m && fits(r));
+    const share = {breakfast:0.4, lunch:0.4, dinner:0.5, snack:0.3}[m]; // most of a day's carb allowance any one meal may use
+    const low = L ? all.filter(r => carbsOf(r) <= L * share) : all;
+    p[m] = low.length ? low : all;
+  }
+  return p;
+}
 async function lastWeekDinners(){
   const ids = new Set(); if (!S.settings.avoidRepeat) return ids;
   const d = migrate(await KV.get("plan:" + iso(addDays(fromIso(S.week), -7))));
@@ -167,7 +181,7 @@ async function autoFill(replan, cheaper = false){
   const open = []; for (let i=0;i<7;i++) for (const m of enabled) if (slot(i,m) === null && P[m].length) open.push([i,m]);
   if (!open.length){ toast("Every meal is already planned."); return; }
   const snapshot = JSON.stringify(S.plan);
-  const weights = cheaper ? [1.5, 4, 10] : [0.15, 0.6, 2, 6];
+  const weights = cheaper ? [0.8, 2, 4] : [0.05, 0.15, 0.35]; // targets first; "Re-plan cheaper" trades them for price
   let best = null;
   for (const cw of weights){
     S.plan = JSON.parse(snapshot);
@@ -178,19 +192,19 @@ async function autoFill(replan, cheaper = false){
       if (!openM.length) continue;
       const base = dayTotals(i);
       let bestCombo = null, bestScore = Infinity;
-      for (let t=0;t<160;t++){
-        const combo = {}; let k = base.kcal, p = base.protein, cost = 0, pen = 0;
+      for (let t=0;t<400;t++){
+        const combo = {}; let k = base.kcal, p = base.protein, c = base.carbs, cost = 0, pen = 0;
         for (const m of openM){
           if (m === "snack" && Math.random() < 0.2){ combo[m] = null; continue; }
           const cand = P[m].filter(r => (used[m][r.id]||0) < MEAL_REPEAT[m]);
           const pool = cand.length ? cand : P[m];
           const favs = pool.filter(x => x.fav);
           const r = favs.length && Math.random() < 0.25 ? pick(favs) : pick(pool);
-          combo[m] = r; k += r.macros?.kcal||0; p += r.macros?.protein||0; cost += recipeCost(r,1,true);
+          combo[m] = r; k += r.macros?.kcal||0; p += r.macros?.protein||0; c += carbsOf(r); cost += recipeCost(r,1,true);
           if (m === "dinner" && lastWeek.has(r.id)) pen += 0.4;
           if (!cand.length) pen += 1;
         }
-        const sc = dayScore(k, p, cost, cw) + pen;
+        const sc = dayScore(k, p, c, cost, cw) + pen;
         if (sc < bestScore){ bestScore = sc; bestCombo = combo; }
       }
       for (const m of openM){ const r = bestCombo[m]; if (r){ setS(i,m,{recipeId:r.id, covers:1, locked:false}); used[m][r.id] = (used[m][r.id]||0)+1; } else setS(i,m,{off:true, auto:true}); }
@@ -210,8 +224,8 @@ function swap(i, m){
   const pool = [...S.recipes.values()].filter(r => mealOf(r)===m && fits(r) && r.id !== s.recipeId && (m !== "dinner" || !usedIds.has(r.id)));
   if (!pool.length){ toast("No other matching recipes to swap in."); return; }
   const cur = S.recipes.get(s.recipeId), base = dayTotals(i);
-  const bk = base.kcal - (cur?.macros?.kcal||0), bp = base.protein - (cur?.macros?.protein||0);
-  const ranked = pool.map(r => ({r, sc: dayScore(bk + (r.macros?.kcal||0), bp + (r.macros?.protein||0), recipeCost(r,1,true), 0.4) + Math.random()*0.15})).sort((a,b)=>a.sc-b.sc);
+  const bk = base.kcal - (cur?.macros?.kcal||0), bp = base.protein - (cur?.macros?.protein||0), bc = base.carbs - carbsOf(cur);
+  const ranked = pool.map(r => ({r, sc: dayScore(bk + (r.macros?.kcal||0), bp + (r.macros?.protein||0), bc + carbsOf(r), recipeCost(r,1,true), 0.4) + Math.random()*0.15})).sort((a,b)=>a.sc-b.sc);
   s.recipeId = pick(ranked.slice(0, Math.min(4, ranked.length))).r.id; savePlan();
 }
 
@@ -548,20 +562,25 @@ function renderSummary(){
   $("#meter").classList.toggle("over", spend > b);
   $("#meter i").style.width = (b ? Math.min(100, spend/b*100) : 0) + "%";
   $("#spendNote").textContent = spend > b ? `${gbp(spend-b)} over budget` : `${gbp(Math.max(0,b-spend))} left · ${t.count && t.live === t.count ? "live Tesco prices" : t.live ? `${t.live}/${t.count} live prices` : "estimated"}`;
-  let days = 0, k = 0, p = 0;
-  for (let i=0;i<7;i++){ const d = dayTotals(i); if (d.n){ days++; k += d.kcal; p += d.protein; } }
+  let days = 0, k = 0, p = 0, cs = 0;
+  for (let i=0;i<7;i++){ const d = dayTotals(i); if (d.n){ days++; k += d.kcal; p += d.protein; cs += d.carbs; } }
+  $("#carbCell").hidden = !S.settings.carbs;
   const T = S.settings.kcal, P = S.settings.protein;
   if (days){
     $("#avgKcal").textContent = ""; $("#avgKcal").append(fmtN(k/days)+" ", el("small",{text:"/ "+fmtN(T)}));
     $("#avgProt").textContent = ""; $("#avgProt").append(Math.round(p/days)+"g ", el("small",{text:"/ "+P+"g"}));
     const kd = k/days - T; $("#avgKcalNote").textContent = Math.abs(kd) <= T*0.1 ? "On target" : (kd > 0 ? fmtN(kd)+" over" : fmtN(-kd)+" under");
     const pd = p/days - P; $("#avgProtNote").textContent = pd >= -P*0.05 ? "On target" : Math.round(-pd)+"g short";
-  } else { $("#avgKcal").textContent = "–"; $("#avgProt").textContent = "–"; $("#avgKcalNote").textContent = "Target "+fmtN(T); $("#avgProtNote").textContent = "Target "+P+"g"; }
+    const L = S.settings.carbs, cd = cs/days; $("#avgCarbs").textContent = ""; $("#avgCarbs").append(Math.round(cd)+"g ", el("small",{text:L ? "/ "+L+"g max" : ""}));
+    $("#avgCarbsNote").textContent = !L ? "No limit set" : cd <= L ? "Under your limit" : Math.round(cd - L)+"g over";
+  } else { $("#avgKcal").textContent = "–"; $("#avgProt").textContent = "–"; $("#avgKcalNote").textContent = "Target "+fmtN(T); $("#avgProtNote").textContent = "Target "+P+"g"; $("#avgCarbs").textContent = "–"; $("#avgCarbsNote").textContent = S.settings.carbs ? "Max "+S.settings.carbs+"g" : ""; }
 }
-function dayState(i){ const d = dayTotals(i), T = S.settings.kcal, P = S.settings.protein; if (!d.n) return {cls:"", pct:0}; const ok = Math.abs(d.kcal - T) <= T*0.1 && d.protein >= P*0.95; return {cls: ok ? "ok" : "off", pct: Math.min(100, d.kcal/T*100)}; }
+function dayState(i){ const d = dayTotals(i), T = S.settings.kcal, P = S.settings.protein, L = S.settings.carbs; if (!d.n) return {cls:"", pct:0}; const ok = Math.abs(d.kcal - T) <= T*0.1 && d.protein >= P*0.95 && (!L || d.carbs <= L*1.05); return {cls: ok ? "ok" : "off", pct: Math.min(100, d.kcal/T*100)}; }
 function targetBar(label, val, target, unit){
-  const pct = target ? val/target*100 : 0, ok = label === "Protein" ? pct >= 95 : Math.abs(pct-100) <= 10;
-  return el("div",{class:"target"}, el("div",{class:"lab"}, el("span",{text:label}), el("b",{text:`${fmtN(val)}${unit} / ${fmtN(target)}${unit}`})), el("div",{class:"meter " + (!val || ok ? "" : (pct > 100 ? "over" : "under"))}, el("i",{style:`width:${Math.min(100,pct)}%`})));
+  const pct = target ? val/target*100 : 0;
+  const ok = label === "Protein" ? pct >= 95 : label === "Carbs" ? pct <= 100 : Math.abs(pct-100) <= 10;
+  const lab = label === "Carbs" ? `${fmtN(val)}g / ${fmtN(target)}g max` : `${fmtN(val)}${unit} / ${fmtN(target)}${unit}`;
+  return el("div",{class:"target"}, el("div",{class:"lab"}, el("span",{text:label}), el("b",{text:lab})), el("div",{class:"meter " + (!val || ok ? "" : (pct > 100 ? "over" : "under"))}, el("i",{style:`width:${Math.min(100,pct)}%`})));
 }
 function renderPlan(){
   const mon = fromIso(S.week), todayIso = iso(new Date());
@@ -577,10 +596,11 @@ function renderPlan(){
   const wrap = el("div",{class:"daycard"},
     el("div",{class:"dayhead"}, el("h2",{text:d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}),
       el("span",{class:"eyebrow",text:"Planned"}),
-      targetBar("Calories", tot.kcal, S.settings.kcal, ""), targetBar("Protein", tot.protein, S.settings.protein, "g"),
+      targetBar("Calories", tot.kcal, S.settings.kcal, ""), targetBar("Protein", tot.protein, S.settings.protein, "g"), S.settings.carbs ? targetBar("Carbs", tot.carbs, S.settings.carbs, "g") : null,
       entries.length ? el("span",{class:"eyebrow",style:"margin-top:4px",text:"Eaten (from your photos)"}) : null,
       entries.length ? targetBar("Calories", eaten.kcal, S.settings.kcal, "") : null,
-      entries.length ? targetBar("Protein", eaten.protein, S.settings.protein, "g") : null));
+      entries.length ? targetBar("Protein", eaten.protein, S.settings.protein, "g") : null,
+      entries.length && S.settings.carbs ? targetBar("Carbs", eaten.carbs, S.settings.carbs, "g") : null));
   for (const m of MEALS){ const s = slot(i,m); if (!S.settings.meals.includes(m) && !s) continue; wrap.append(mealRow(i, m, s)); }
   const ate = el("div",{class:"ate"},
     el("div",{class:"ate-head"}, el("div",{}, el("h3",{text:"What you ate"}), el("span",{class:"muted small",text: entries.length ? `${fmtN(eaten.kcal)} kcal · ${Math.round(eaten.protein)}g protein so far` : "Snap a photo of a meal and Claude estimates the calories."})),
@@ -609,7 +629,7 @@ function mealRow(i, m, s){
       el("button",{class:"btn sm ghost",text:"Remove",onclick:()=>clearSlot(i,m)}));
     return el("div",{class:"meal"}, label,
       el("div",{class:"mhead"}, el("button",{class:"mname",text:r.name,onclick:()=>openRecipe(r.id)}), el("span",{class:live?"price":"price est"}, gbp(recipeCost(r,c)))),
-      el("div",{class:"meta"}, el("span",{class:"pr",text:(r.macros?.kcal||"?")+" kcal"}), el("span",{class:"pr",text:(r.macros?.protein||"?")+"g protein"}), el("span",{text:r.time+" min"}), c>1 ? el("span",{text:`Makes ${c} days`}) : null),
+      el("div",{class:"meta"}, el("span",{class:"pr",text:(r.macros?.kcal||"?")+" kcal"}), el("span",{class:"pr",text:(r.macros?.protein||"?")+"g protein"}), el("span",{class:S.settings.carbs?"pr":"",text:carbsOf(r)+"g carbs"}), el("span",{text:r.time+" min"}), c>1 ? el("span",{text:`Makes ${c} days`}) : null),
       tools);
   }
   if (s && s.leftover){
@@ -625,7 +645,7 @@ function mealRow(i, m, s){
 }
 
 // ---------- recipes ----------
-const FILTERS = [["all","All"],["fits","Fits my settings"],["fav","Favourites"],["mine","Mine"],["protein","25g+ protein"],["quick","Under 20 min"],["budget","Under £2 a serving"]];
+const FILTERS = [["all","All"],["lowcarb","Low carb"],["fits","Fits my settings"],["fav","Favourites"],["mine","Mine"],["protein","25g+ protein"],["quick","Under 20 min"],["budget","Under £2 a serving"]];
 function renderFilters(){
   const mf = $("#mealFilters"); mf.textContent = "";
   [["all","All meals"],...MEALS.map(m=>[m,MEAL_LABEL[m]])].forEach(([k,l]) => mf.append(el("button",{class:"chip","aria-pressed":String(S.mealFilter===k),text:l,onclick:()=>{S.mealFilter=k;renderFilters();renderRecipes();}})));
@@ -636,6 +656,7 @@ function filteredRecipes(){
   const q = S.query.trim().toLowerCase();
   return [...S.recipes.values()].filter(r => {
     if (S.mealFilter !== "all" && mealOf(r) !== S.mealFilter) return false;
+    if (S.filter==="lowcarb" && !isLowCarb(r)) return false;
     if (S.filter==="fits" && !fits(r)) return false;
     if (S.filter==="fav" && !r.fav) return false;
     if (S.filter==="mine" && r.source==="starter") return false;
@@ -654,8 +675,8 @@ function renderRecipes(){
     g.append(el("button",{class:"card",onclick:()=>openRecipe(r.id)},
       el("div",{class:"row",style:"justify-content:space-between"}, el("span",{class:"eyebrow",text:MEAL_LABEL[mealOf(r)]+" · "+r.time+" min"}), r.fav ? el("span",{class:"fav","aria-label":"Favourite",text:"♥"}) : null),
       el("h3",{text:r.name}),
-      el("div",{class:"chips"}, (r.tags||[]).filter(t=>t!=="pork"&&t!=="fish").slice(0,3).map(t => el("span",{class:"tag",text:t.replace("-"," ")}))),
-      el("div",{class:"foot"}, el("span",{class:"muted small",text:(r.macros?.kcal||"?")+" kcal · "+(r.macros?.protein||"?")+"g protein"}), el("span",{class:recipeLive(r)?"price":"price est"}, gbp(perServing(r)), el("small",{text:"/serving"})))));
+      el("div",{class:"chips"}, [...new Set([...(isLowCarb(r)?["low-carb"]:[]), ...(r.tags||[])])].filter(t=>t!=="pork"&&t!=="fish").slice(0,3).map(t => el("span",{class:"tag",text:t.replace("-"," ")}))),
+      el("div",{class:"foot"}, el("span",{class:"muted small",text:(r.macros?.kcal||"?")+" kcal · "+(r.macros?.protein||"?")+"g protein · "+carbsOf(r)+"g carbs"}), el("span",{class:recipeLive(r)?"price":"price est"}, gbp(perServing(r)), el("small",{text:"/serving"})))));
   }
 }
 
@@ -673,6 +694,7 @@ function recipeSheet(r, opts = {}){
     el("div",{class:"row",style:"justify-content:space-between;align-items:flex-start;flex-wrap:nowrap"}, el("div",{style:"display:flex;flex-direction:column;gap:4px;min-width:0"}, el("span",{class:"eyebrow",text:[MEAL_LABEL[m], r.time+" min", (r.appliances||[]).join(" + ") || "No cooking"].join(" · ")}), el("h2",{text:r.name})), closeBtn()),
     el("div",{class:"row"}, el("span",{class:recipeLive(r)?"price":"price est"}, gbp(recipeCost(r)), el("small",{text:"for "+sv})), el("span",{class:"muted small",text:gbp(perServing(r))+" a serving · "+(recipeLive(r)?"Tesco prices":"estimated")}), !fits(r) ? el("span",{class:"tag",style:"color:var(--warn);background:var(--warn-soft)",text:"Outside your settings"}) : null),
     r.tags?.length ? el("div",{class:"chips"}, r.tags.map(t => el("span",{class:"tag",text:t.replace("-"," ")}))) : null,
+    versionLink(r),
     el("div",{class:"macros"}, [["kcal","kcal"],["protein","protein"],["carbs","carbs"],["fat","fat"]].map(([k,l]) => el("div",{}, el("b",{text:(r.macros?.[k]??"?")+(k==="kcal"?"":"g")}), el("span",{text:l})))),
     el("p",{class:"muted",style:"margin:-6px 0 0;font-size:12px",text:"Per serving, estimated."}),
     el("h3",{text:"Ingredients for "+sv}),
@@ -686,6 +708,13 @@ function recipeSheet(r, opts = {}){
     delRow
   ];
 }
+function versionLink(r){
+  const lc = [...S.recipes.values()].find(x => x.lowCarbOf === r.id);
+  if (lc) return el("button",{class:"btn sm",style:"align-self:flex-start",onclick:()=>openRecipe(lc.id)}, `Low-carb version: ${lc.name} (${carbsOf(lc)}g carbs)`);
+  const orig = r.lowCarbOf && S.recipes.get(r.lowCarbOf);
+  if (orig) return el("p",{class:"muted small",style:"margin:0"}, "Low-carb version of ", el("button",{class:"linkbtn",text:orig.name,onclick:()=>openRecipe(orig.id)}), `, which has ${carbsOf(orig)}g carbs.`);
+  return null;
+}
 function openRecipe(id){ const r = S.recipes.get(id); if (r) openDialog(...recipeSheet(r)); }
 function openPicker(i, m){
   const search = el("input",{type:"search",placeholder:"Search",id:"pickSearch","aria-label":"Search recipes"});
@@ -694,14 +723,14 @@ function openPicker(i, m){
   const draw = () => {
     list.textContent = ""; const q = search.value.toLowerCase();
     const rs = [...S.recipes.values()].filter(r => mealOf(r)===m && (!q || r.name.toLowerCase().includes(q)))
-      .map(r => ({r, sc: dayScore(base.kcal + (r.macros?.kcal||0), base.protein + (r.macros?.protein||0), 0, 0) + (fits(r)?0:5)})).sort((a,b)=>a.sc-b.sc).map(x=>x.r);
+      .map(r => ({r, sc: dayScore(base.kcal + (r.macros?.kcal||0), base.protein + (r.macros?.protein||0), base.carbs + carbsOf(r), 0, 0) + (fits(r)?0:5)})).sort((a,b)=>a.sc-b.sc).map(x=>x.r);
     if (!rs.length) list.append(el("div",{class:"muted",text:"No "+MEAL_LABEL[m].toLowerCase()+" recipes found."}));
-    rs.forEach(r => list.append(el("button",{onclick:()=>{ setSlot(i, m, r.id); dlg.close(); }}, el("span",{}, el("b",{text:r.name}), el("span",{class:"muted",style:"display:block;font-size:12px",text:`${r.macros?.kcal||"?"} kcal · ${r.macros?.protein||"?"}g protein · ${r.time} min${fits(r)?"":" · outside your settings"}`})), el("span",{class:recipeLive(r)?"price":"price est"}, gbp(recipeCost(r))))));
+    rs.forEach(r => list.append(el("button",{onclick:()=>{ setSlot(i, m, r.id); dlg.close(); }}, el("span",{}, el("b",{text:r.name}), el("span",{class:"muted",style:"display:block;font-size:12px",text:`${r.macros?.kcal||"?"} kcal · ${r.macros?.protein||"?"}g protein · ${carbsOf(r)}g carbs · ${r.time} min${fits(r)?"":" · outside your settings"}`})), el("span",{class:recipeLive(r)?"price":"price est"}, gbp(recipeCost(r))))));
   };
   search.addEventListener("input", draw); draw();
   const d = addDays(fromIso(S.week), i);
   openDialog(el("div",{class:"row",style:"justify-content:space-between;flex-wrap:nowrap"}, el("h2",{text:MEAL_LABEL[m]+", "+d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric"})}), closeBtn()),
-    el("p",{class:"muted small",style:"margin:0",text:`Best fit for today's ${fmtN(S.settings.kcal)} kcal and ${S.settings.protein}g protein first.`}), search, list);
+    el("p",{class:"muted small",style:"margin:0",text:`Best fit for today's ${fmtN(S.settings.kcal)} kcal, ${S.settings.protein}g protein${S.settings.carbs ? " and "+S.settings.carbs+"g carb limit" : ""} first.`}), search, list);
 }
 
 // ---------- meal photos: calorie estimates ----------
@@ -926,7 +955,7 @@ function guessAisle(n){
 function renderSettings(){
   const st = S.settings;
   const setIfIdle = (sel, v) => { const e = $(sel); if (document.activeElement !== e) e.value = v; };
-  setIfIdle("#sKcal", st.kcal); setIfIdle("#sProt", st.protein); setIfIdle("#sBudget", st.budget); setIfIdle("#sServes", st.serves);
+  setIfIdle("#sKcal", st.kcal); setIfIdle("#sProt", st.protein); setIfIdle("#sCarbs", st.carbs || 0); setIfIdle("#sBudget", st.budget); setIfIdle("#sServes", st.serves);
   $("#sRepeat").value = st.avoidRepeat ? "1" : "0"; $("#sClub").value = st.clubcard ? "1" : "0"; $("#sFresh").value = String(st.freshDays||3); $("#sSource").value = st.priceSource || "auto";
   const checks = (box, items, key) => { box.textContent = ""; items.forEach(it => { const [v,l] = Array.isArray(it) ? it : [it,it]; const id = key+"-"+v.replace(/\W/g,""); box.append(el("label",{for:id}, el("input",{type:"checkbox",id,checked:(S.settings[key]||[]).includes(v),onchange:e=>{ const s = new Set(S.settings[key]); e.target.checked ? s.add(v) : s.delete(v); S.settings = {...S.settings, [key]:[...s]}; saveSettings(); }}), l)); }); };
   checks($("#sMeals"), MEALS.map(m=>[m,MEAL_LABEL[m]]), "meals");
@@ -935,7 +964,7 @@ function renderSettings(){
   checks($("#sStyles"), STYLES, "styles");
 }
 const numSetting = (sel, key, min, max, def) => $(sel).addEventListener("change", e => { const v = Math.min(max, Math.max(min, Math.round(+e.target.value||def))); S.settings = {...S.settings, [key]:v}; saveSettings(); });
-numSetting("#sKcal","kcal",800,5000,1800); numSetting("#sProt","protein",20,400,120); numSetting("#sBudget","budget",5,2000,80); numSetting("#sServes","serves",1,12,2);
+numSetting("#sKcal","kcal",800,5000,1800); numSetting("#sProt","protein",20,400,120); numSetting("#sCarbs","carbs",0,500,0); numSetting("#sBudget","budget",5,2000,80); numSetting("#sServes","serves",1,12,2);
 $("#sRepeat").addEventListener("change", e => { S.settings = {...S.settings, avoidRepeat:e.target.value==="1"}; saveSettings(); });
 $("#sClub").addEventListener("change", e => { S.settings = {...S.settings, clubcard:e.target.value==="1"}; saveSettings(); });
 $("#sFresh").addEventListener("change", e => { S.settings = {...S.settings, freshDays:+e.target.value}; saveSettings(); });
@@ -1065,6 +1094,10 @@ async function loadAll(){
   $("#kAnthropic").value = S.keys.anthropic; $("#kFirecrawl").value = S.keys.firecrawl;
   let recipes = await KV.get("recipes");
   if (!Array.isArray(recipes)) { recipes = STARTER.map(r => ({...r})); await KV.set("recipes", recipes); }
+  else {
+    const have = new Set(recipes.map(r => r.id)), added = STARTER.filter(r => !have.has(r.id)).map(r => ({...r}));
+    if (added.length){ recipes = [...recipes, ...added]; await KV.set("recipes", recipes); setTimeout(() => toast(`${added.length} new recipes added to your recipe book.`), 800); }
+  }
   S.recipes = new Map(recipes.map(r => [r.id, r]));
   S.prices = new Map(Object.entries((await KV.get("prices")) || {}));
   await loadWeek();

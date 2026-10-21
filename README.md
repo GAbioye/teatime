@@ -24,6 +24,12 @@ Each new build installs over the previous one and keeps your data.
 so updates install over the top. Keep this repository **private**. If you lose this key, uninstall the app
 (back up your data first in Settings → Backup) before installing a build signed with a new key.
 
+## Low carb
+
+Settings → Daily targets → **Carb limit** (grams per person per day, 0 for no limit). The planner keeps every
+day under it as well as hitting your calorie and protein targets. Recipes → **Low carb** shows recipes with
+20g of carbs or less a serving, and carb-heavy recipes link to their low-carb versions.
+
 ## Meal photos
 
 Plan → **Snap a meal** takes a photo (or picks one from your gallery). Claude identifies each food,
