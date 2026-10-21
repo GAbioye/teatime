@@ -100,6 +100,8 @@ a{color:var(--tesco)}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .summary>div{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
 .summary .wide{grid-column:1/-1}
+.summary .extra{display:contents}
+.summary .extra>div{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
 .big{font-family:var(--f-display);font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.05}
 .big small{font-family:var(--f-body);font-size:13px;font-weight:500;color:var(--muted)}
 .meter{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
@@ -199,6 +201,8 @@ dialog::backdrop{background:var(--scrim)}
 .macros{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .macros div{background:var(--sunk);padding:8px 4px;text-align:center}
 .macros b{display:block;font-family:var(--f-mono);font-size:15px}
+.macros.five{grid-template-columns:repeat(5,1fr)}
+.macros.five b{font-size:14px}
 .macros span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .ings{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
 .ings li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
@@ -218,6 +222,8 @@ dialog::backdrop{background:var(--scrim)}
 .preview{font-family:var(--f-mono);font-size:12px;white-space:pre-wrap;background:var(--sunk);border:1px solid var(--line);border-radius:12px;padding:10px 12px;max-height:180px;overflow:auto}
 
 /* food log from photos */
+.import-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.import-list .bad{color:var(--warn)}
 .linkbtn{background:none;border:0;padding:0;color:var(--tesco);text-decoration:underline;font:inherit}
 .ico{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ate{margin-bottom:14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden}

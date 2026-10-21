@@ -1,0 +1,1406 @@
+[
+{
+"name": "Cheesy egg & spinach scramble",
+"meal": "breakfast",
+"time": 10,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 469,
+"protein": 35,
+"carbs": 3,
+"fat": 36,
+"fibre": 1.6
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 8,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 2.0
+},
+{
+"name": "Frozen spinach",
+"qty": 150,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.3
+},
+{
+"name": "Mature cheddar",
+"qty": 60,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.6
+},
+{
+"name": "Butter",
+"qty": 10,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.1
+}
+],
+"steps": [
+"Defrost the spinach in the pan with the butter and cook off any water.",
+"Add the beaten eggs and stir gently over a low heat.",
+"Just before they set, stir through the grated cheese."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-cheesy-egg-spinach-scramble"
+},
+{
+"name": "Egg muffins (makes 8)",
+"meal": "breakfast",
+"time": 25,
+"serves": 4,
+"appliances": [
+"Oven"
+],
+"tags": [
+"vegetarian",
+"gluten-free",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 220,
+"protein": 17,
+"carbs": 3,
+"fat": 15,
+"fibre": 1.3
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 8,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 2.0
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Mature cheddar",
+"qty": 60,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.6
+}
+],
+"steps": [
+"Heat the oven to 180°C (160°C fan) and grease a muffin tin.",
+"Divide the chopped pepper, spring onions and cheese between 8 holes. Pour over the beaten eggs.",
+"Bake for 18–20 minutes. Two muffins is a serving; they keep for 3 days in the fridge."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-egg-muffins-makes-8"
+},
+{
+"name": "Tuna & egg salad",
+"meal": "lunch",
+"time": 12,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"fish",
+"gluten-free",
+"dairy-free",
+"high-protein",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 415,
+"protein": 42,
+"carbs": 6,
+"fat": 22,
+"fibre": 2.4
+},
+"ingredients": [
+{
+"name": "Tuna chunks",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 1.8
+},
+{
+"name": "Eggs",
+"qty": 4,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Iceberg lettuce",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Cucumber",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.6
+},
+{
+"name": "Mayonnaise",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.2
+}
+],
+"steps": [
+"Boil the eggs for 8 minutes, cool and quarter.",
+"Shred the lettuce and slice the cucumber.",
+"Mix the drained tuna with the mayo and pile onto the salad with the eggs."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-tuna-egg-salad"
+},
+{
+"name": "Mackerel, egg & crunchy slaw",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"fish",
+"gluten-free",
+"dairy-free",
+"low-carb"
+],
+"style": "Light",
+"macros": {
+"kcal": 420,
+"protein": 25,
+"carbs": 14,
+"fat": 28,
+"fibre": 5.2
+},
+"ingredients": [
+{
+"name": "Mackerel fillets in tomato sauce",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 1.6
+},
+{
+"name": "White cabbage",
+"qty": 300,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.3
+},
+{
+"name": "Carrot",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.1
+},
+{
+"name": "Light mayonnaise",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.15
+},
+{
+"name": "Eggs",
+"qty": 2,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+}
+],
+"steps": [
+"Boil the eggs for 8 minutes, then cool and halve.",
+"Finely shred the cabbage and grate the carrot. Mix with the mayo and a pinch of salt.",
+"Serve the slaw with the mackerel and eggs."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-mackerel-egg-crunchy-slaw"
+},
+{
+"name": "Egg-fried cabbage with ham",
+"meal": "lunch",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 457,
+"protein": 31,
+"carbs": 10,
+"fat": 31,
+"fibre": 4.9
+},
+"ingredients": [
+{
+"name": "White cabbage",
+"qty": 400,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.4
+},
+{
+"name": "Eggs",
+"qty": 6,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.5
+},
+{
+"name": "Cooked ham slices",
+"qty": 100,
+"unit": "g",
+"aisle": "Chilled",
+"cost": 1.1
+},
+{
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.15
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Stir-fry the finely shredded cabbage in the oil on a high heat for 5 minutes.",
+"Push aside, scramble the eggs, then mix through with the torn ham.",
+"Season with the soy sauce."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-egg-fried-cabbage-with-ham"
+},
+{
+"name": "Chicken thigh, cabbage & bacon traybake",
+"meal": "dinner",
+"time": 40,
+"serves": 2,
+"appliances": [
+"Oven"
+],
+"tags": [
+"gluten-free",
+"dairy-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 620,
+"protein": 59,
+"carbs": 8,
+"fat": 38,
+"fibre": 4.8
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.6
+},
+{
+"name": "White cabbage",
+"qty": 400,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.4
+},
+{
+"name": "Smoked bacon lardons",
+"qty": 100,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 0.9
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan).",
+"Toss the chicken, cabbage wedges and lardons with the oil and plenty of pepper.",
+"Roast for 30–35 minutes, turning the cabbage halfway, until the chicken is cooked through."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-chicken-thigh-cabbage-bacon-traybake"
+},
+{
+"name": "Cheesy mince & cauliflower bake",
+"meal": "dinner",
+"time": 45,
+"serves": 4,
+"appliances": [
+"Oven",
+"Hob"
+],
+"tags": [
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 636,
+"protein": 42,
+"carbs": 10,
+"fat": 47,
+"fibre": 4.6
+},
+"ingredients": [
+{
+"name": "Beef mince (20% fat)",
+"qty": 750,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.75
+},
+{
+"name": "Cauliflower",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Mature cheddar",
+"qty": 100,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Dried oregano",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Boil the cauliflower florets for 6 minutes and drain well.",
+"Brown the mince with the chopped onion, then add the tomatoes and oregano and simmer for 10 minutes.",
+"Mix with the cauliflower in a dish, top with the cheese and bake for 20 minutes. Serves 4, so it covers two dinners."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-cheesy-mince-cauliflower-bake"
+},
+{
+"name": "Sausage & cabbage one-pan",
+"meal": "dinner",
+"time": 30,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"pork",
+"dairy-free"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 520,
+"protein": 27,
+"carbs": 20,
+"fat": 34,
+"fibre": 6.4
+},
+"ingredients": [
+{
+"name": "Pork sausages",
+"qty": 6,
+"unit": "whole",
+"aisle": "Meat & fish",
+"cost": 1.5
+},
+{
+"name": "White cabbage",
+"qty": 300,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.3
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Wholegrain mustard",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Tins & jars",
+"cost": 0.15
+}
+],
+"steps": [
+"Brown the sausages, then lift out and slice.",
+"Fry the sliced onion and shredded cabbage in the same pan for 8 minutes.",
+"Return the sausages with the mustard and a splash of water and cook for 5 more minutes."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-sausage-cabbage-one-pan"
+},
+{
+"name": "Spinach, pepper & feta frittata",
+"meal": "dinner",
+"time": 25,
+"serves": 2,
+"appliances": [
+"Hob",
+"Oven"
+],
+"tags": [
+"vegetarian",
+"gluten-free",
+"high-protein",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 475,
+"protein": 37,
+"carbs": 8,
+"fat": 31,
+"fibre": 4.4
+},
+"ingredients": [
+{
+"name": "Eggs",
+"qty": 8,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 2.0
+},
+{
+"name": "Courgettes",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Frozen spinach",
+"qty": 150,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.3
+},
+{
+"name": "Feta",
+"qty": 100,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+}
+],
+"steps": [
+"Soften the chopped courgette and pepper in an ovenproof pan for 6 minutes. Add the defrosted spinach.",
+"Pour in the beaten eggs and crumble over the feta.",
+"Cook on a low heat for 5 minutes, then finish under the grill until set."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-spinach-pepper-feta-frittata"
+},
+{
+"name": "Budget chicken curry with cauliflower rice",
+"meal": "dinner",
+"time": 35,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"gluten-free",
+"dairy-free",
+"high-protein",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 508,
+"protein": 54,
+"carbs": 13,
+"fat": 27,
+"fibre": 6.3
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 800,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 5.2
+},
+{
+"name": "Curry powder",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Herbs & spices",
+"cost": 0.2
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Frozen spinach",
+"qty": 150,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.3
+},
+{
+"name": "Cauliflower",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 1.0
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+}
+],
+"steps": [
+"Soften the chopped onion, add the diced chicken and curry powder and cook for 5 minutes.",
+"Add the tomatoes and a splash of water and simmer for 20 minutes. Stir in the spinach.",
+"Grate the cauliflower, microwave for 4 minutes and serve with the curry. Serves 4, so it covers two dinners."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-budget-chicken-curry-with-cauliflower-rice"
+},
+{
+"name": "Pork mince lettuce cups",
+"meal": "dinner",
+"time": 20,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"pork",
+"dairy-free",
+"low-carb"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 485,
+"protein": 37,
+"carbs": 6,
+"fat": 35,
+"fibre": 2.0
+},
+"ingredients": [
+{
+"name": "Pork mince",
+"qty": 750,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 4.2
+},
+{
+"name": "Soy sauce",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.15
+},
+{
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Carrot",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.1
+},
+{
+"name": "Iceberg lettuce",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Sesame oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.2
+}
+],
+"steps": [
+"Fry the mince in the sesame oil until browned and a little crispy.",
+"Add the soy sauce, grated carrot and most of the spring onions and cook for 2 minutes.",
+"Spoon into lettuce leaves and top with the rest of the spring onions. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-pork-mince-lettuce-cups"
+},
+{
+"name": "Peanut butter celery",
+"meal": "snack",
+"time": 3,
+"serves": 2,
+"appliances": [],
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free",
+"low-carb"
+],
+"style": "Quick",
+"macros": {
+"kcal": 205,
+"protein": 9,
+"carbs": 7,
+"fat": 16,
+"fibre": 3.6
+},
+"ingredients": [
+{
+"name": "Celery",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Peanut butter",
+"qty": 4,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.4
+}
+],
+"steps": [
+"Cut half the celery into sticks.",
+"Spread or dip into the peanut butter."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-peanut-butter-celery"
+},
+{
+"name": "Lentil & bean chilli",
+"meal": "dinner",
+"time": 40,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 515,
+"protein": 21,
+"carbs": 96,
+"fat": 2,
+"fibre": 12.4
+},
+"ingredients": [
+{
+"name": "Red lentils",
+"qty": 150,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.3
+},
+{
+"name": "Kidney beans",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.45
+},
+{
+"name": "Chopped tomatoes",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.8
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Chilli powder",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Ground cumin",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Basmati rice",
+"qty": 300,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.6
+}
+],
+"steps": [
+"Soften the onion and pepper, then add the spices for 1 minute.",
+"Add the lentils, tomatoes, drained beans and 400ml water. Simmer for 25 minutes, stirring.",
+"Serve with rice. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-lentil-bean-chilli"
+},
+{
+"name": "Chicken & veg fried rice",
+"meal": "dinner",
+"time": 25,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"dairy-free",
+"high-protein"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 580,
+"protein": 38,
+"carbs": 66,
+"fat": 17,
+"fibre": 4.3
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 400,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 2.6
+},
+{
+"name": "Basmati rice",
+"qty": 300,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.6
+},
+{
+"name": "Frozen peas",
+"qty": 200,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.3
+},
+{
+"name": "Eggs",
+"qty": 3,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 0.75
+},
+{
+"name": "Soy sauce",
+"qty": 3,
+"unit": "tbsp",
+"aisle": "World foods",
+"cost": 0.2
+},
+{
+"name": "Spring onions",
+"qty": 1,
+"unit": "bunch",
+"aisle": "Fruit & veg",
+"cost": 0.55
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Cook the rice, spread it out and let it steam dry.",
+"Stir-fry the diced chicken in the oil for 6 minutes, then add the peas.",
+"Scramble in the eggs, add the rice and soy sauce and stir-fry for 3 minutes. Top with spring onions. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-chicken-veg-fried-rice"
+},
+{
+"name": "Creamy tomato & spinach pasta",
+"meal": "dinner",
+"time": 20,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 525,
+"protein": 23,
+"carbs": 79,
+"fat": 12,
+"fibre": 5.9
+},
+"ingredients": [
+{
+"name": "Penne",
+"qty": 400,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.6
+},
+{
+"name": "Chopped tomatoes",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.8
+},
+{
+"name": "Light cream cheese",
+"qty": 150,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.9
+},
+{
+"name": "Frozen spinach",
+"qty": 200,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.4
+},
+{
+"name": "Garlic",
+"qty": 2,
+"unit": "clove",
+"aisle": "Fruit & veg",
+"cost": 0.2
+},
+{
+"name": "Mature cheddar",
+"qty": 60,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 0.6
+}
+],
+"steps": [
+"Cook the pasta.",
+"Simmer the tomatoes and garlic for 10 minutes, then stir in the cream cheese and spinach.",
+"Toss with the pasta and top with the cheese. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-creamy-tomato-spinach-pasta"
+},
+{
+"name": "Egg & potato hash",
+"meal": "dinner",
+"time": 30,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian",
+"gluten-free",
+"dairy-free"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 430,
+"protein": 19,
+"carbs": 51,
+"fat": 17,
+"fibre": 7.0
+},
+"ingredients": [
+{
+"name": "Potatoes",
+"qty": 500,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.45
+},
+{
+"name": "Eggs",
+"qty": 4,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Peppers",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.5
+},
+{
+"name": "Smoked paprika",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+},
+{
+"name": "Olive oil",
+"qty": 1,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.1
+}
+],
+"steps": [
+"Boil the diced potatoes for 6 minutes and drain.",
+"Fry them in the oil with the onion, pepper and paprika for 12 minutes until crisp.",
+"Make 4 wells, crack in the eggs, cover and cook until set."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-egg-potato-hash"
+},
+{
+"name": "Chickpea & spinach curry",
+"meal": "dinner",
+"time": 30,
+"serves": 4,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian",
+"vegan",
+"gluten-free",
+"dairy-free"
+],
+"style": "Fakeaway",
+"macros": {
+"kcal": 545,
+"protein": 18,
+"carbs": 89,
+"fat": 11,
+"fibre": 12.7
+},
+"ingredients": [
+{
+"name": "Chickpeas",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 1.0
+},
+{
+"name": "Chopped tomatoes",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.8
+},
+{
+"name": "Onion",
+"qty": 1,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.15
+},
+{
+"name": "Curry powder",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Herbs & spices",
+"cost": 0.25
+},
+{
+"name": "Frozen spinach",
+"qty": 200,
+"unit": "g",
+"aisle": "Frozen",
+"cost": 0.4
+},
+{
+"name": "Light coconut milk",
+"qty": 400,
+"unit": "ml",
+"aisle": "World foods",
+"cost": 1.0
+},
+{
+"name": "Basmati rice",
+"qty": 300,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.6
+}
+],
+"steps": [
+"Soften the onion, add the curry powder for 1 minute.",
+"Add the chickpeas, tomatoes and coconut milk and simmer for 15 minutes. Stir in the spinach.",
+"Serve with rice. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-chickpea-spinach-curry"
+},
+{
+"name": "Chicken traybake with potatoes & carrots",
+"meal": "dinner",
+"time": 50,
+"serves": 4,
+"appliances": [
+"Oven"
+],
+"tags": [
+"gluten-free",
+"dairy-free",
+"high-protein"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 535,
+"protein": 41,
+"carbs": 46,
+"fat": 21,
+"fibre": 6.8
+},
+"ingredients": [
+{
+"name": "Chicken thighs (boneless)",
+"qty": 600,
+"unit": "g",
+"aisle": "Meat & fish",
+"cost": 3.9
+},
+{
+"name": "Potatoes",
+"qty": 800,
+"unit": "g",
+"aisle": "Fruit & veg",
+"cost": 0.7
+},
+{
+"name": "Carrot",
+"qty": 4,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.4
+},
+{
+"name": "Onion",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.3
+},
+{
+"name": "Olive oil",
+"qty": 2,
+"unit": "tbsp",
+"aisle": "Store cupboard",
+"cost": 0.2
+},
+{
+"name": "Dried mixed herbs",
+"qty": 1,
+"unit": "tsp",
+"aisle": "Herbs & spices",
+"cost": 0.1
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Toss the chopped potatoes, carrots and onions with half the oil and the herbs. Roast for 20 minutes.",
+"Add the chicken tossed in the rest of the oil and roast for 25 minutes more. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-chicken-traybake-with-potatoes-carrots"
+},
+{
+"name": "Tuna pasta bake",
+"meal": "dinner",
+"time": 35,
+"serves": 4,
+"appliances": [
+"Oven",
+"Hob"
+],
+"tags": [
+"fish",
+"high-protein"
+],
+"style": "Comfort",
+"macros": {
+"kcal": 480,
+"protein": 32,
+"carbs": 62,
+"fat": 11,
+"fibre": 4.2
+},
+"ingredients": [
+{
+"name": "Penne",
+"qty": 300,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.45
+},
+{
+"name": "Tuna chunks",
+"qty": 2,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 1.8
+},
+{
+"name": "Sweetcorn",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.45
+},
+{
+"name": "Chopped tomatoes",
+"qty": 1,
+"unit": "tin",
+"aisle": "Tins & jars",
+"cost": 0.4
+},
+{
+"name": "Mature cheddar",
+"qty": 100,
+"unit": "g",
+"aisle": "Dairy & eggs",
+"cost": 1.0
+}
+],
+"steps": [
+"Heat the oven to 200°C (180°C fan). Cook the pasta for 2 minutes less than the pack says.",
+"Mix with the tomatoes, drained tuna and sweetcorn in a dish and top with the cheese.",
+"Bake for 20 minutes. Serves 4."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-tuna-pasta-bake"
+},
+{
+"name": "Banana oat pancakes",
+"meal": "breakfast",
+"time": 15,
+"serves": 2,
+"appliances": [
+"Hob"
+],
+"tags": [
+"vegetarian"
+],
+"style": "Quick",
+"macros": {
+"kcal": 385,
+"protein": 16,
+"carbs": 60,
+"fat": 10,
+"fibre": 7.6
+},
+"ingredients": [
+{
+"name": "Porridge oats",
+"qty": 100,
+"unit": "g",
+"aisle": "Pasta, rice & grains",
+"cost": 0.12
+},
+{
+"name": "Bananas",
+"qty": 2,
+"unit": "whole",
+"aisle": "Fruit & veg",
+"cost": 0.3
+},
+{
+"name": "Eggs",
+"qty": 2,
+"unit": "whole",
+"aisle": "Dairy & eggs",
+"cost": 0.5
+},
+{
+"name": "Semi-skimmed milk",
+"qty": 100,
+"unit": "ml",
+"aisle": "Dairy & eggs",
+"cost": 0.1
+}
+],
+"steps": [
+"Blend everything into a smooth batter.",
+"Cook spoonfuls in a lightly oiled non-stick pan for 2 minutes a side."
+],
+"source": "starter",
+"fav": false,
+"budget": true,
+"id": "bb-banana-oat-pancakes"
+}
+]

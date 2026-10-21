@@ -24,6 +24,23 @@ Each new build installs over the previous one and keeps your data.
 so updates install over the top. Keep this repository **private**. If you lose this key, uninstall the app
 (back up your data first in Settings → Backup) before installing a build signed with a new key.
 
+## Budget first
+
+The planner keeps the week within your budget first. For each day it tries every combination of recipes,
+picks the one that best fits your targets within that day's share of the budget, then swaps the costliest
+meals for cheaper ones if the week still comes out over.
+
+## Nutrition targets
+
+Calories and protein, plus optional carb limit, fat target and minimum fibre (Settings, 0 = off).
+Every recipe and photo-logged meal tracks calories, protein, carbs, fat and fibre.
+
+## Adding recipes from websites
+
+Recipes → paste one or more recipe links (one per line), for example from beatthebudget.com. The phone opens
+each page, reads its recipe data, and Claude turns it into a Teatime recipe with the site's own nutrition and
+cost per portion where given. The recipe keeps a link back to the original page. For personal use.
+
 ## Low carb
 
 Settings → Daily targets → **Carb limit** (grams per person per day, 0 for no limit). The planner keeps every

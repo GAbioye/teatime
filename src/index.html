@@ -26,9 +26,7 @@
         <div class="meter" id="meter"><i style="width:0%"></i></div>
         <span class="muted small" id="spendNote"></span>
       </div>
-      <div><span class="eyebrow">Avg kcal / day</span><div class="big" id="avgKcal">–</div><span class="muted small" id="avgKcalNote">&nbsp;</span></div>
-      <div><span class="eyebrow">Avg protein / day</span><div class="big" id="avgProt">–</div><span class="muted small" id="avgProtNote">&nbsp;</span></div>
-      <div class="wide" id="carbCell" hidden><span class="eyebrow">Avg carbs / day</span><div class="big" id="avgCarbs">–</div><span class="muted small" id="avgCarbsNote">&nbsp;</span></div>
+      <div class="extra" id="nutriCells"></div>
     </div>
     <div id="priceStatus"></div>
     <div class="row">
@@ -66,8 +64,8 @@
   <section id="v-recipes" class="tabview view" hidden>
     <div class="panel" id="importPanel">
       <div class="row"><h2>Add a recipe with Claude</h2></div>
-      <p class="muted small" style="margin:0">Paste a TikTok or Instagram caption, a recipe from a website, or describe what you fancy ("a high-protein breakfast without eggs"). You can also add a screenshot.</p>
-      <textarea id="importText" placeholder="e.g. Crispy gnocchi traybake: 500g gnocchi, 1 courgette, cherry tomatoes, feta, olive oil..."></textarea>
+      <p class="muted small" style="margin:0">Paste a link to a recipe page (one per line to add several, e.g. from beatthebudget.com), a TikTok or Instagram caption, or describe what you fancy. You can also add a screenshot.</p>
+      <textarea id="importText" placeholder="https://beatthebudget.com/recipe/...&#10;or paste a recipe, or describe what you fancy"></textarea>
       <div class="row">
         <label class="btn sm" for="importImg">Add screenshot</label>
         <input type="file" id="importImg" accept="image/*" hidden>
@@ -88,6 +86,9 @@
         <label class="field"><span>Serves</span><input type="number" inputmode="numeric" id="mServes" min="1" value="2"></label>
         <label class="field"><span>kcal / serving</span><input type="number" inputmode="numeric" id="mKcal" min="0" value="0"></label>
         <label class="field"><span>Protein g / serving</span><input type="number" inputmode="numeric" id="mProt" min="0" value="0"></label>
+        <label class="field"><span>Carbs g / serving</span><input type="number" inputmode="numeric" id="mCarbs" min="0" value="0"></label>
+        <label class="field"><span>Fat g / serving</span><input type="number" inputmode="numeric" id="mFat" min="0" value="0"></label>
+        <label class="field"><span>Fibre g / serving</span><input type="number" inputmode="numeric" id="mFibre" min="0" value="0"></label>
       </div>
       <label class="field"><span>Ingredients, one per line: amount, unit, name, £cost</span>
         <textarea id="mIngs" placeholder="300 g Chicken breast, £2.40&#10;2 Peppers, £1.00&#10;1 tin Chopped tomatoes, £0.40"></textarea></label>
@@ -110,9 +111,14 @@
         <label class="field"><span>Calories per person (kcal)</span><input type="number" inputmode="numeric" id="sKcal" min="800" max="5000" step="50"></label>
         <label class="field"><span>Protein per person (g)</span><input type="number" inputmode="numeric" id="sProt" min="20" max="400" step="5"></label>
       </div>
-      <label class="field"><span>Carb limit per person (g a day, 0 for no limit)</span><input type="number" inputmode="numeric" id="sCarbs" min="0" max="500" step="5" placeholder="0"></label>
+      <div class="two">
+        <label class="field"><span>Carb limit (g, 0 = none)</span><input type="number" inputmode="numeric" id="sCarbs" min="0" max="500" step="5" placeholder="0"></label>
+        <label class="field"><span>Fat target (g, 0 = none)</span><input type="number" inputmode="numeric" id="sFat" min="0" max="400" step="5" placeholder="0"></label>
+        <label class="field"><span>Fibre, at least (g, 0 = none)</span><input type="number" inputmode="numeric" id="sFibre" min="0" max="100" step="1" placeholder="0"></label>
+      </div>
+      <p class="muted small" id="fatHint" style="margin:0"></p>
       <div class="field"><span>Meals to plan</span><div class="checks" id="sMeals"></div></div>
-      <p class="muted small" style="margin:0">The planner picks each day's meals to land within about 10% of your calorie target, at or above your protein target and under your carb limit. For low carb, 50g is a common daily limit.</p>
+      <p class="muted small" style="margin:0">The planner picks each day's meals to land within about 10% of your calorie target, at or above your protein target and under your carb limit. For low carb, 50g is a common daily limit. The NHS recommends 30g of fibre a day.</p>
     </form>
 
     <form class="panel" id="settingsForm2">

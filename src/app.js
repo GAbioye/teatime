@@ -9,7 +9,8 @@ import { Clipboard } from "@capacitor/clipboard";
 import { AppLauncher } from "@capacitor/app-launcher";
 import STARTER_BASE from "./recipes.json";
 import STARTER_LOWCARB from "./recipes-lowcarb.json";
-const STARTER = [...STARTER_BASE, ...STARTER_LOWCARB];
+import STARTER_BUDGET from "./recipes-budget.json";
+const STARTER = [...STARTER_BASE, ...STARTER_LOWCARB, ...STARTER_BUDGET];
 
 const AISLES = ["Fruit & veg","Meat & fish","Dairy & eggs","Bakery","Chilled","Frozen","Tins & jars","Pasta, rice & grains","World foods","Herbs & spices","Store cupboard","Household","Other"];
 const APPLIANCES = ["Hob","Oven","Air fryer","Slow cooker","Microwave"];
@@ -25,7 +26,7 @@ const DAYN = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 const DAYLONG = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const DEFAULT_PANTRY = ["olive-oil","soy-sauce","honey","dried-oregano","ground-cumin","chilli-powder","smoked-paprika","curry-powder","fajita-seasoning","sesame-seeds","vegetable-stock-cube","beef-stock-cube","chicken-stock-cube","worcestershire-sauce"];
 const DEFAULT_SETTINGS = {budget:80,serves:2,diet:[],appliances:["Hob","Oven","Air fryer","Microwave"],styles:[],avoidRepeat:true,
-  kcal:1800,protein:120,carbs:0,meals:["breakfast","lunch","dinner","snack"],clubcard:true,freshDays:3,pantry:DEFAULT_PANTRY,priceSource:"auto"};
+  kcal:1800,protein:120,carbs:0,fat:0,fibre:0,meals:["breakfast","lunch","dinner","snack"],clubcard:true,freshDays:3,pantry:DEFAULT_PANTRY,priceSource:"auto"};
 const MODEL_SMART = "claude-sonnet-5-5";
 const MODEL_FAST = "claude-haiku-4-5-20251001";
 const TESCO_SEARCH = "https://www.tesco.com/groceries/en-GB/search?query=";
@@ -143,14 +144,22 @@ function setCovers(i, m, c){
 function dropSlot(i, m){ const s = slot(i,m); if (s && s.recipeId) for (let k=1;k<(s.covers||1) && i+k<7;k++) if (slot(i+k,m) && slot(i+k,m).leftover) setS(i+k,m,null); setS(i,m,null); }
 function clearSlot(i, m){ dropSlot(i,m); savePlan(); }
 function recipeAt(i, m){ const s = slot(i,m); if (!s) return null; if (s.recipeId) return S.recipes.get(s.recipeId) || null; if (s.leftover){ const o = ownerIndex(m,i); return o>=0 ? S.recipes.get(slot(o,m).recipeId) || null : null; } return null; }
-function dayTotals(i){ let kcal=0, protein=0, carbs=0, n=0; for (const m of MEALS){ const r = recipeAt(i,m); if (r){ kcal += r.macros?.kcal||0; protein += r.macros?.protein||0; carbs += r.macros?.carbs||0; n++; } } return {kcal, protein, carbs, n}; }
-const carbsOf = r => +(r?.macros?.carbs) || 0;
+const NUTR = ["kcal","protein","carbs","fat","fibre"];
+const mac = (r, k) => +(r?.macros?.[k]) || 0;
+const carbsOf = r => mac(r, "carbs");
 const isLowCarb = r => carbsOf(r) <= LOW_CARB;
+const zeroT = () => ({kcal:0, protein:0, carbs:0, fat:0, fibre:0, n:0});
+const addR = (t, r, sign = 1) => { for (const k of NUTR) t[k] += sign * mac(r, k); t.n += sign; return t; };
+function dayTotals(i){ const t = zeroT(); for (const m of MEALS){ const r = recipeAt(i,m); if (r) addR(t, r); } return t; }
 function planCost(skipPantry = true){ let t = 0; for (let i=0;i<7;i++) for (const m of MEALS){ const s = slot(i,m); if (s && s.recipeId){ const r = S.recipes.get(s.recipeId); if (r) t += recipeCost(r, s.covers||1, skipPantry); } } return t; }
-function dayScore(k, p, c, cost, cw){
-  const T = S.settings.kcal || 1800, P = S.settings.protein || 100, L = S.settings.carbs || 0;
-  const kErr = Math.abs(k - T) / T, pShort = Math.max(0, P - p) / P, cOver = L ? Math.max(0, c - L) / L : 0;
-  return 10*Math.max(0, kErr - 0.03) + 8*pShort + 12*cOver + cw * cost / Math.max(1, (S.settings.budget||80)/7);
+// How far a day's nutrition is from the targets (0 = spot on). Cost only counts when cw > 0.
+function dayScore(t, cost = 0, cw = 0){
+  const st = S.settings, T = st.kcal || 1800, P = st.protein || 100, L = st.carbs || 0, F = st.fat || 0, FI = st.fibre || 0;
+  const kErr = Math.abs(t.kcal - T) / T, pShort = Math.max(0, P - t.protein) / P;
+  const cOver = L ? Math.max(0, t.carbs - L) / L : 0;
+  const fErr = F ? Math.max(0, Math.abs(t.fat - F) / F - 0.15) : 0;
+  const fiShort = FI ? Math.max(0, FI - t.fibre) / FI : 0;
+  return 10*Math.max(0, kErr - 0.03) + 8*pShort + 12*cOver + 3*fErr + 3*fiShort + cw * cost / Math.max(1, (st.budget||80)/7);
 }
 const pick = a => a[Math.floor(Math.random()*a.length)];
 function pools(){
@@ -170,6 +179,34 @@ async function lastWeekDinners(){
   return ids;
 }
 
+// Budget first: after planning for nutrition, swap the meal that saves the most money for the
+// least damage to the day's targets, again and again, until the week fits the budget.
+function fitBudget(target){
+  const P = pools();
+  for (let step = 0; step < 120; step++){
+    const cost = planCost(); if (cost <= target) return true;
+    let best = null;
+    for (let i=0;i<7;i++) for (const m of MEALS){
+      const s = slot(i,m); if (!s || !s.recipeId || s.locked) continue;
+      const cur = S.recipes.get(s.recipeId); if (!cur) continue;
+      const c = s.covers || 1, curCost = recipeCost(cur, c, true);
+      const used = {}; for (let j=0;j<7;j++){ const x = slot(j,m); if (x && x.recipeId) used[x.recipeId] = (used[x.recipeId]||0) + 1; }
+      const days = []; for (let k=0;k<c && i+k<7;k++) days.push(i+k);
+      const before = days.reduce((a,d) => a + dayScore(dayTotals(d)), 0);
+      for (const alt of P[m]){
+        if (alt.id === cur.id || (used[alt.id]||0) >= MEAL_REPEAT[m]) continue;
+        const saving = curCost - recipeCost(alt, c, true); if (saving <= 0.05) continue;
+        const after = days.reduce((a,d) => a + dayScore(addR(addR(dayTotals(d), cur, -1), alt)), 0);
+        const value = saving / (0.05 + Math.max(0, after - before));
+        if (!best || value > best.value) best = {value, i, m, id: alt.id};
+      }
+    }
+    if (!best) return false;
+    slot(best.i, best.m).recipeId = best.id;
+  }
+  return planCost() <= target;
+}
+
 async function autoFill(replan, cheaper = false){
   const enabled = MEALS.filter(m => S.settings.meals.includes(m));
   const P = pools();
@@ -179,43 +216,56 @@ async function autoFill(replan, cheaper = false){
   if (replan) for (let i=0;i<7;i++) for (const m of enabled){ const s = slot(i,m); if (s && ((s.recipeId && !s.locked) || (s.off && s.auto))) dropSlot(i,m); }
   normalise();
   const open = []; for (let i=0;i<7;i++) for (const m of enabled) if (slot(i,m) === null && P[m].length) open.push([i,m]);
-  if (!open.length){ toast("Every meal is already planned."); return; }
-  const snapshot = JSON.stringify(S.plan);
-  const weights = cheaper ? [0.8, 2, 4] : [0.05, 0.15, 0.35]; // targets first; "Re-plan cheaper" trades them for price
-  let best = null;
-  for (const cw of weights){
-    S.plan = JSON.parse(snapshot);
-    const used = {}; for (const m of MEALS) used[m] = {};
-    for (let i=0;i<7;i++) for (const m of MEALS){ const s = slot(i,m); if (s && s.recipeId) used[m][s.recipeId] = (used[m][s.recipeId]||0)+1; }
-    for (let i=0;i<7;i++){
-      const openM = enabled.filter(m => slot(i,m) === null && P[m].length);
-      if (!openM.length) continue;
-      const base = dayTotals(i);
-      let bestCombo = null, bestScore = Infinity;
-      for (let t=0;t<400;t++){
-        const combo = {}; let k = base.kcal, p = base.protein, c = base.carbs, cost = 0, pen = 0;
-        for (const m of openM){
-          if (m === "snack" && Math.random() < 0.2){ combo[m] = null; continue; }
-          const cand = P[m].filter(r => (used[m][r.id]||0) < MEAL_REPEAT[m]);
-          const pool = cand.length ? cand : P[m];
-          const favs = pool.filter(x => x.fav);
-          const r = favs.length && Math.random() < 0.25 ? pick(favs) : pick(pool);
-          combo[m] = r; k += r.macros?.kcal||0; p += r.macros?.protein||0; c += carbsOf(r); cost += recipeCost(r,1,true);
-          if (m === "dinner" && lastWeek.has(r.id)) pen += 0.4;
-          if (!cand.length) pen += 1;
-        }
-        const sc = dayScore(k, p, c, cost, cw) + pen;
-        if (sc < bestScore){ bestScore = sc; bestCombo = combo; }
+  if (!open.length && !cheaper){ toast("Every meal is already planned."); return; }
+  const used = {}; for (const m of MEALS) used[m] = {};
+  for (let i=0;i<7;i++) for (const m of MEALS){ const s = slot(i,m); if (s && s.recipeId) used[m][s.recipeId] = (used[m][s.recipeId]||0)+1; }
+  // Budget first: share what's left of the budget across the days still to plan, then for each day
+  // try every combination of recipes and keep the best one for your targets that fits that day's share.
+  const budget = S.settings.budget || 80, goal = (cheaper ? 0.85 : 0.97) * budget;
+  const costOf = new Map(); const cost1 = r => { if (!costOf.has(r.id)) costOf.set(r.id, recipeCost(r, 1, true)); return costOf.get(r.id); };
+  const openDays = [...new Set(open.map(([i]) => i))];
+  let spent = planCost();
+  for (const i of openDays){
+    const openM = enabled.filter(m => slot(i,m) === null && P[m].length);
+    if (!openM.length) continue;
+    const daysLeft = openDays.length - openDays.indexOf(i);
+    const cap = Math.max(0, (goal - spent) / daysLeft);
+    const base = dayTotals(i);
+    const options = openM.map(m => {
+      const fresh = P[m].filter(r => (used[m][r.id]||0) < MEAL_REPEAT[m]);
+      const list = (fresh.length ? fresh : P[m]).map(r => ({m, r, cost: cost1(r), pen: (m === "dinner" && lastWeek.has(r.id) ? 0.4 : 0) + (fresh.length ? 0 : 1) - (r.fav ? 0.15 : 0)}));
+      return m === "snack" ? [...list, {m, r:null, cost:0, pen:0}] : list;
+    });
+    let best = null;
+    const tot = {...base};
+    const walk = (k, cost, pen, picks) => {
+      if (k === options.length){
+        const over = Math.max(0, cost - cap);
+        const sc = dayScore(tot) + pen + (over > 0 ? 6 + over : 0) + Math.random() * 0.25;
+        if (!best || sc < best.sc) best = {sc, picks: picks.slice(), cost};
+        return;
       }
-      for (const m of openM){ const r = bestCombo[m]; if (r){ setS(i,m,{recipeId:r.id, covers:1, locked:false}); used[m][r.id] = (used[m][r.id]||0)+1; } else setS(i,m,{off:true, auto:true}); }
+      for (const o of options[k]){
+        if (o.r) addR(tot, o.r);
+        picks.push(o); walk(k + 1, cost + o.cost, pen + o.pen, picks); picks.pop();
+        if (o.r) addR(tot, o.r, -1);
+      }
+    };
+    walk(0, 0, 0, []);
+    for (const o of best.picks){
+      if (o.r){ setS(i, o.m, {recipeId:o.r.id, covers:1, locked:false}); used[o.m][o.r.id] = (used[o.m][o.r.id]||0)+1; }
+      else setS(i, o.m, {off:true, auto:true});
     }
-    best = S.plan;
-    if (planCost() <= S.settings.budget) break;
+    spent += best.cost;
   }
-  S.plan = best; normalise(); savePlan();
+  normalise();
+  const withinBudget = fitBudget(goal);
+  savePlan();
   const total = planCost();
   const note = missing.length ? ` No ${missing.map(m=>MEAL_LABEL[m].toLowerCase()).join(" or ")} recipes match your settings yet.` : "";
-  toast((total > S.settings.budget ? `Planned, about ${gbp(total - S.settings.budget)} over budget.` : `Planned ${open.length} meals.`) + note);
+  if (total > budget) toast(`Still ${gbp(total - budget)} over budget with the cheapest recipes that suit your settings. Unlock meals, loosen a target or add cheaper recipes.` + note);
+  else if (!withinBudget && cheaper) toast(`That's as cheap as your recipes allow: ${gbp(total)}.` + note);
+  else toast((cheaper ? `Re-planned for ${gbp(total)}.` : `Planned ${open.length} meals for ${gbp(total)}.`) + note);
   if (S.keys.anthropic) checkPrices(false, true);
 }
 function swap(i, m){
@@ -223,9 +273,9 @@ function swap(i, m){
   const usedIds = new Set(); for (let j=0;j<7;j++){ const x = slot(j,m); if (x && x.recipeId) usedIds.add(x.recipeId); }
   const pool = [...S.recipes.values()].filter(r => mealOf(r)===m && fits(r) && r.id !== s.recipeId && (m !== "dinner" || !usedIds.has(r.id)));
   if (!pool.length){ toast("No other matching recipes to swap in."); return; }
-  const cur = S.recipes.get(s.recipeId), base = dayTotals(i);
-  const bk = base.kcal - (cur?.macros?.kcal||0), bp = base.protein - (cur?.macros?.protein||0), bc = base.carbs - carbsOf(cur);
-  const ranked = pool.map(r => ({r, sc: dayScore(bk + (r.macros?.kcal||0), bp + (r.macros?.protein||0), bc + carbsOf(r), recipeCost(r,1,true), 0.4) + Math.random()*0.15})).sort((a,b)=>a.sc-b.sc);
+  const cur = S.recipes.get(s.recipeId), base = addR(dayTotals(i), cur, -1);
+  const room = (S.settings.budget || 80) - planCost() + recipeCost(cur, s.covers||1, true);
+  const ranked = pool.map(r => ({r, sc: dayScore(addR({...base}, r)) + (recipeCost(r, s.covers||1, true) > room ? 5 : 0) + Math.random()*0.15})).sort((a,b)=>a.sc-b.sc);
   s.recipeId = pick(ranked.slice(0, Math.min(4, ranked.length))).r.id; savePlan();
 }
 
@@ -555,6 +605,23 @@ async function checkPrices(force, quiet = false){
 }
 
 // ---------- rendering: plan ----------
+// Each nutrient's goal: "target" = land near it, "min" = at least, "max" = no more than. 0 = not set.
+const NUTR_LABEL = {kcal:"Calories", protein:"Protein", carbs:"Carbs", fat:"Fat", fibre:"Fibre"};
+function goals(){
+  const st = S.settings;
+  return [
+    {k:"kcal", mode:"target", tol:0.10, val:st.kcal}, {k:"protein", mode:"min", val:st.protein},
+    {k:"carbs", mode:"max", val:st.carbs||0}, {k:"fat", mode:"target", tol:0.15, val:st.fat||0}, {k:"fibre", mode:"min", val:st.fibre||0},
+  ].filter(g => g.val > 0);
+}
+const unitOf = k => k === "kcal" ? "" : "g";
+const fmtMac = (k, v) => fmtN(v) + unitOf(k) + (k === "kcal" ? " kcal" : " " + (k === "fibre" ? "fibre" : NUTR_LABEL[k].toLowerCase()));
+function goalOk(g, v){ return g.mode === "target" ? Math.abs(v - g.val) / g.val <= g.tol : g.mode === "min" ? v >= g.val * 0.95 : v <= g.val * 1.05; }
+function goalNote(g, v){
+  if (goalOk(g, v)) return g.mode === "max" ? "Under your limit" : "On target";
+  const d = Math.round(Math.abs(v - g.val)), u = unitOf(g.k);
+  return v > g.val ? `${fmtN(d)}${u} over` : `${fmtN(d)}${u} ${g.mode === "target" && g.k === "kcal" ? "under" : "short"}`;
+}
 function renderSummary(){
   const t = shopTotals(), b = S.settings.budget;
   const spend = t.count ? t.total : planCost();
@@ -562,25 +629,31 @@ function renderSummary(){
   $("#meter").classList.toggle("over", spend > b);
   $("#meter i").style.width = (b ? Math.min(100, spend/b*100) : 0) + "%";
   $("#spendNote").textContent = spend > b ? `${gbp(spend-b)} over budget` : `${gbp(Math.max(0,b-spend))} left · ${t.count && t.live === t.count ? "live Tesco prices" : t.live ? `${t.live}/${t.count} live prices` : "estimated"}`;
-  let days = 0, k = 0, p = 0, cs = 0;
-  for (let i=0;i<7;i++){ const d = dayTotals(i); if (d.n){ days++; k += d.kcal; p += d.protein; cs += d.carbs; } }
-  $("#carbCell").hidden = !S.settings.carbs;
-  const T = S.settings.kcal, P = S.settings.protein;
-  if (days){
-    $("#avgKcal").textContent = ""; $("#avgKcal").append(fmtN(k/days)+" ", el("small",{text:"/ "+fmtN(T)}));
-    $("#avgProt").textContent = ""; $("#avgProt").append(Math.round(p/days)+"g ", el("small",{text:"/ "+P+"g"}));
-    const kd = k/days - T; $("#avgKcalNote").textContent = Math.abs(kd) <= T*0.1 ? "On target" : (kd > 0 ? fmtN(kd)+" over" : fmtN(-kd)+" under");
-    const pd = p/days - P; $("#avgProtNote").textContent = pd >= -P*0.05 ? "On target" : Math.round(-pd)+"g short";
-    const L = S.settings.carbs, cd = cs/days; $("#avgCarbs").textContent = ""; $("#avgCarbs").append(Math.round(cd)+"g ", el("small",{text:L ? "/ "+L+"g max" : ""}));
-    $("#avgCarbsNote").textContent = !L ? "No limit set" : cd <= L ? "Under your limit" : Math.round(cd - L)+"g over";
-  } else { $("#avgKcal").textContent = "–"; $("#avgProt").textContent = "–"; $("#avgKcalNote").textContent = "Target "+fmtN(T); $("#avgProtNote").textContent = "Target "+P+"g"; $("#avgCarbs").textContent = "–"; $("#avgCarbsNote").textContent = S.settings.carbs ? "Max "+S.settings.carbs+"g" : ""; }
+  let days = 0; const sum = zeroT();
+  for (let i=0;i<7;i++){ const d = dayTotals(i); if (d.n){ days++; for (const k of NUTR) sum[k] += d[k]; } }
+  const box = $("#nutriCells"); box.textContent = "";
+  const gs = goals();
+  gs.forEach((g, n) => {
+    const avg = days ? sum[g.k] / days : 0, u = unitOf(g.k);
+    box.append(el("div",{class: (gs.length % 2 && n === gs.length - 1) ? "wide" : ""},
+      el("span",{class:"eyebrow",text:`Avg ${g.k === "kcal" ? "kcal" : NUTR_LABEL[g.k].toLowerCase()} / day`}),
+      el("div",{class:"big"}, days ? fmtN(avg) + u + " " : "–", el("small",{text:"/ " + fmtN(g.val) + u + (g.mode === "max" ? " max" : "")})),
+      el("span",{class:"muted small",text: days ? goalNote(g, avg) : (g.mode === "max" ? "Limit " : "Target ") + fmtN(g.val) + u})));
+  });
 }
-function dayState(i){ const d = dayTotals(i), T = S.settings.kcal, P = S.settings.protein, L = S.settings.carbs; if (!d.n) return {cls:"", pct:0}; const ok = Math.abs(d.kcal - T) <= T*0.1 && d.protein >= P*0.95 && (!L || d.carbs <= L*1.05); return {cls: ok ? "ok" : "off", pct: Math.min(100, d.kcal/T*100)}; }
-function targetBar(label, val, target, unit){
-  const pct = target ? val/target*100 : 0;
-  const ok = label === "Protein" ? pct >= 95 : label === "Carbs" ? pct <= 100 : Math.abs(pct-100) <= 10;
-  const lab = label === "Carbs" ? `${fmtN(val)}g / ${fmtN(target)}g max` : `${fmtN(val)}${unit} / ${fmtN(target)}${unit}`;
-  return el("div",{class:"target"}, el("div",{class:"lab"}, el("span",{text:label}), el("b",{text:lab})), el("div",{class:"meter " + (!val || ok ? "" : (pct > 100 ? "over" : "under"))}, el("i",{style:`width:${Math.min(100,pct)}%`})));
+function dayState(i){ const d = dayTotals(i); if (!d.n) return {cls:"", pct:0}; const ok = goals().every(g => goalOk(g, d[g.k])); return {cls: ok ? "ok" : "off", pct: Math.min(100, d.kcal/(S.settings.kcal||1800)*100)}; }
+function targetBar(g, val){
+  const pct = g.val ? val/g.val*100 : 0, u = unitOf(g.k), ok = goalOk(g, val);
+  return el("div",{class:"target"}, el("div",{class:"lab"}, el("span",{text:NUTR_LABEL[g.k]}), el("b",{text:`${fmtN(val)}${u} / ${fmtN(g.val)}${u}${g.mode === "max" ? " max" : ""}`})),
+    el("div",{class:"meter " + (!val || ok ? "" : (pct > 100 ? "over" : "under"))}, el("i",{style:`width:${Math.min(100,pct)}%`})));
+}
+function nutritionBlock(t){
+  const gs = goals(), set = new Set(gs.map(g => g.k)), rest = NUTR.filter(k => !set.has(k));
+  return [...gs.map(g => targetBar(g, t[g.k])), rest.length ? el("span",{class:"muted small",text:"Also " + rest.map(k => fmtMac(k, t[k])).join(" · ")}) : null];
+}
+function macroMeta(r, extra = []){
+  const set = new Set(goals().map(g => g.k));
+  return el("div",{class:"meta"}, ...NUTR.map(k => el("span",{class: set.has(k) ? "pr" : "", text: fmtMac(k, mac(r, k))})), ...extra);
 }
 function renderPlan(){
   const mon = fromIso(S.week), todayIso = iso(new Date());
@@ -595,15 +668,12 @@ function renderPlan(){
   const i = S.day, d = addDays(mon,i), tot = dayTotals(i), dIso = iso(d), eaten = logTotals(dIso), entries = S.logs[dIso] || [];
   const wrap = el("div",{class:"daycard"},
     el("div",{class:"dayhead"}, el("h2",{text:d.toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long"})}),
-      el("span",{class:"eyebrow",text:"Planned"}),
-      targetBar("Calories", tot.kcal, S.settings.kcal, ""), targetBar("Protein", tot.protein, S.settings.protein, "g"), S.settings.carbs ? targetBar("Carbs", tot.carbs, S.settings.carbs, "g") : null,
+      el("span",{class:"eyebrow",text:"Planned"}), ...nutritionBlock(tot),
       entries.length ? el("span",{class:"eyebrow",style:"margin-top:4px",text:"Eaten (from your photos)"}) : null,
-      entries.length ? targetBar("Calories", eaten.kcal, S.settings.kcal, "") : null,
-      entries.length ? targetBar("Protein", eaten.protein, S.settings.protein, "g") : null,
-      entries.length && S.settings.carbs ? targetBar("Carbs", eaten.carbs, S.settings.carbs, "g") : null));
+      ...(entries.length ? nutritionBlock(eaten) : [])));
   for (const m of MEALS){ const s = slot(i,m); if (!S.settings.meals.includes(m) && !s) continue; wrap.append(mealRow(i, m, s)); }
   const ate = el("div",{class:"ate"},
-    el("div",{class:"ate-head"}, el("div",{}, el("h3",{text:"What you ate"}), el("span",{class:"muted small",text: entries.length ? `${fmtN(eaten.kcal)} kcal · ${Math.round(eaten.protein)}g protein so far` : "Snap a photo of a meal and Claude estimates the calories."})),
+    el("div",{class:"ate-head"}, el("div",{}, el("h3",{text:"What you ate"}), el("span",{class:"muted small",text: entries.length ? NUTR.map(k => fmtMac(k, eaten[k])).join(" · ") + " so far" : "Snap a photo of a meal and Claude estimates the calories."})),
       el("button",{class:"btn primary",onclick:()=>openSnap(dIso)}, cameraIcon(), "Snap a meal")));
   for (const e of entries.slice().sort((a,b)=>a.at.localeCompare(b.at))){
     const t = entryTotals(e);
@@ -613,7 +683,7 @@ function renderPlan(){
       el("span",{class:"ate-num"}, el("b",{text:fmtN(t.kcal)}), el("span",{class:"muted small",text:" kcal"}), el("br"), el("span",{class:"muted small",text:Math.round(t.protein)+"g protein"}))));
   }
   card.append(ate, wrap);
-  card.append(el("p",{class:"muted small",style:"margin:8px 2px 0",text:`Calories and protein are per person. Costs are for ${S.settings.serves} ${S.settings.serves>1?"people":"person"}.`}));
+  card.append(el("p",{class:"muted small",style:"margin:8px 2px 0",text:`Nutrition is per person. Costs are for ${S.settings.serves} ${S.settings.serves>1?"people":"person"}.`}));
 }
 function mealRow(i, m, s){
   const label = el("span",{class:"ml",text:MEAL_LABEL[m]});
@@ -629,12 +699,12 @@ function mealRow(i, m, s){
       el("button",{class:"btn sm ghost",text:"Remove",onclick:()=>clearSlot(i,m)}));
     return el("div",{class:"meal"}, label,
       el("div",{class:"mhead"}, el("button",{class:"mname",text:r.name,onclick:()=>openRecipe(r.id)}), el("span",{class:live?"price":"price est"}, gbp(recipeCost(r,c)))),
-      el("div",{class:"meta"}, el("span",{class:"pr",text:(r.macros?.kcal||"?")+" kcal"}), el("span",{class:"pr",text:(r.macros?.protein||"?")+"g protein"}), el("span",{class:S.settings.carbs?"pr":"",text:carbsOf(r)+"g carbs"}), el("span",{text:r.time+" min"}), c>1 ? el("span",{text:`Makes ${c} days`}) : null),
+      macroMeta(r, [el("span",{text:r.time+" min"}), c>1 ? el("span",{text:`Makes ${c} days`}) : null]),
       tools);
   }
   if (s && s.leftover){
     const o = ownerIndex(m,i), r = recipeAt(i,m);
-    return el("div",{class:"meal leftover"}, el("span",{class:"ml",text:MEAL_LABEL[m]+" · cooked "+DAYLONG[o]}), el("button",{class:"mname",text:"Leftovers: "+(r?r.name:"?"),onclick:()=>r&&openRecipe(r.id)}), r ? el("div",{class:"meta"}, el("span",{class:"pr",text:(r.macros?.kcal||"?")+" kcal"}), el("span",{class:"pr",text:(r.macros?.protein||"?")+"g protein"})) : null);
+    return el("div",{class:"meal leftover"}, el("span",{class:"ml",text:MEAL_LABEL[m]+" · cooked "+DAYLONG[o]}), el("button",{class:"mname",text:"Leftovers: "+(r?r.name:"?"),onclick:()=>r&&openRecipe(r.id)}), r ? macroMeta(r) : null);
   }
   if (s && s.off){
     return el("div",{class:"meal empty"}, label, el("div",{class:"line"}, el("span",{class:"muted grow",text: m==="snack" ? "No snack needed" : "Skipped. Eating out or sorted elsewhere."}), el("button",{class:"btn sm ghost",text:"Plan it",onclick:()=>{setS(i,m,null);savePlan();}})));
@@ -645,7 +715,7 @@ function mealRow(i, m, s){
 }
 
 // ---------- recipes ----------
-const FILTERS = [["all","All"],["lowcarb","Low carb"],["fits","Fits my settings"],["fav","Favourites"],["mine","Mine"],["protein","25g+ protein"],["quick","Under 20 min"],["budget","Under £2 a serving"]];
+const FILTERS = [["all","All"],["budget","Under £1.50 a serving"],["lowcarb","Low carb"],["fits","Fits my settings"],["fav","Favourites"],["mine","Mine"],["protein","25g+ protein"],["quick","Under 20 min"]];
 function renderFilters(){
   const mf = $("#mealFilters"); mf.textContent = "";
   [["all","All meals"],...MEALS.map(m=>[m,MEAL_LABEL[m]])].forEach(([k,l]) => mf.append(el("button",{class:"chip","aria-pressed":String(S.mealFilter===k),text:l,onclick:()=>{S.mealFilter=k;renderFilters();renderRecipes();}})));
@@ -662,7 +732,7 @@ function filteredRecipes(){
     if (S.filter==="mine" && r.source==="starter") return false;
     if (S.filter==="protein" && !((r.macros?.protein||0) >= 25)) return false;
     if (S.filter==="quick" && !(r.time<=20)) return false;
-    if (S.filter==="budget" && perServing(r) >= 2) return false;
+    if (S.filter==="budget" && perServing(r) > 1.5) return false;
     if (q && !(r.name.toLowerCase().includes(q) || (r.ingredients||[]).some(i => (i.name||"").toLowerCase().includes(q)))) return false;
     return true;
   }).sort((a,b) => MEALS.indexOf(mealOf(a)) - MEALS.indexOf(mealOf(b)) || (b.fav-a.fav) || a.name.localeCompare(b.name));
@@ -695,8 +765,9 @@ function recipeSheet(r, opts = {}){
     el("div",{class:"row"}, el("span",{class:recipeLive(r)?"price":"price est"}, gbp(recipeCost(r)), el("small",{text:"for "+sv})), el("span",{class:"muted small",text:gbp(perServing(r))+" a serving · "+(recipeLive(r)?"Tesco prices":"estimated")}), !fits(r) ? el("span",{class:"tag",style:"color:var(--warn);background:var(--warn-soft)",text:"Outside your settings"}) : null),
     r.tags?.length ? el("div",{class:"chips"}, r.tags.map(t => el("span",{class:"tag",text:t.replace("-"," ")}))) : null,
     versionLink(r),
-    el("div",{class:"macros"}, [["kcal","kcal"],["protein","protein"],["carbs","carbs"],["fat","fat"]].map(([k,l]) => el("div",{}, el("b",{text:(r.macros?.[k]??"?")+(k==="kcal"?"":"g")}), el("span",{text:l})))),
-    el("p",{class:"muted",style:"margin:-6px 0 0;font-size:12px",text:"Per serving, estimated."}),
+    el("div",{class:"macros five"}, NUTR.map(k => el("div",{}, el("b",{text:(r.macros?.[k] ?? "?")+(k==="kcal"?"":"g")}), el("span",{text:k})))),
+    el("p",{class:"muted",style:"margin:-6px 0 0;font-size:12px",text:"Per serving, estimated." + (r.budget ? " Budget recipe." : "")}),
+    r.sourceUrl ? el("p",{class:"small",style:"margin:0"}, "From ", el("a",{href:r.sourceUrl,target:"_blank",rel:"noopener",text:r.sourceName || hostOf(r.sourceUrl)}), ". Saved for your own use.") : null,
     el("h3",{text:"Ingredients for "+sv}),
     el("ul",{class:"ings"}, (r.ingredients||[]).map(i => { const p = liveP(i.name, i.unit), pan = isPantry(i.name); return el("li",{}, el("span",{}, el("span",{class:"qty",text:fmtQty((+i.qty||0)*f, i.unit)}), i.name, pan ? el("span",{class:"muted small",text:" · in cupboard"}) : null), el("span",{class:"mono small",style:p?"":"color:var(--muted)",text:gbp(unitCost(i)*(+i.qty||0)*f) + (p?"":" est.")})); })),
     el("h3",{text:"Method"}),
@@ -723,7 +794,7 @@ function openPicker(i, m){
   const draw = () => {
     list.textContent = ""; const q = search.value.toLowerCase();
     const rs = [...S.recipes.values()].filter(r => mealOf(r)===m && (!q || r.name.toLowerCase().includes(q)))
-      .map(r => ({r, sc: dayScore(base.kcal + (r.macros?.kcal||0), base.protein + (r.macros?.protein||0), base.carbs + carbsOf(r), 0, 0) + (fits(r)?0:5)})).sort((a,b)=>a.sc-b.sc).map(x=>x.r);
+      .map(r => ({r, sc: dayScore(addR({...base}, r)) + (fits(r)?0:5)})).sort((a,b)=>a.sc-b.sc).map(x=>x.r);
     if (!rs.length) list.append(el("div",{class:"muted",text:"No "+MEAL_LABEL[m].toLowerCase()+" recipes found."}));
     rs.forEach(r => list.append(el("button",{onclick:()=>{ setSlot(i, m, r.id); dlg.close(); }}, el("span",{}, el("b",{text:r.name}), el("span",{class:"muted",style:"display:block;font-size:12px",text:`${r.macros?.kcal||"?"} kcal · ${r.macros?.protein||"?"}g protein · ${carbsOf(r)}g carbs · ${r.time} min${fits(r)?"":" · outside your settings"}`})), el("span",{class:recipeLive(r)?"price":"price est"}, gbp(recipeCost(r))))));
   };
@@ -736,8 +807,8 @@ function openPicker(i, m){
 // ---------- meal photos: calorie estimates ----------
 const PORTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
 const portionLabel = p => ({0.5:"½",0.75:"¾",1:"All",1.25:"1¼",1.5:"1½",2:"2×"})[p] || p+"×";
-function entryTotals(e){ const t = {kcal:0, protein:0, carbs:0, fat:0}; for (const it of e.items||[]) for (const k in t) t[k] += (+it[k]||0); for (const k in t) t[k] *= (e.portion||1); return t; }
-function logTotals(dIso){ const t = {kcal:0, protein:0, carbs:0, fat:0}; for (const e of S.logs[dIso]||[]){ const x = entryTotals(e); for (const k in t) t[k] += x[k]; } return t; }
+function entryTotals(e){ const t = {kcal:0, protein:0, carbs:0, fat:0, fibre:0}; for (const it of e.items||[]) for (const k in t) t[k] += (+it[k]||0); for (const k in t) t[k] *= (e.portion||1); return t; }
+function logTotals(dIso){ const t = {kcal:0, protein:0, carbs:0, fat:0, fibre:0}; for (const e of S.logs[dIso]||[]){ const x = entryTotals(e); for (const k in t) t[k] += x[k]; } return t; }
 function saveLog(dIso){ const arr = S.logs[dIso] || []; if (arr.length) persist("log:"+dIso, () => S.logs[dIso] || []); else { clearTimeout(timers.get("log:"+dIso)); timers.delete("log:"+dIso); KV.remove("log:"+dIso); } }
 function mealForTime(d = new Date()){ const h = d.getHours() + d.getMinutes()/60; return h < 11 ? "breakfast" : h < 15 ? "lunch" : h < 17.5 ? "snack" : "dinner"; }
 function cameraIcon(){ const s = document.createElementNS("http://www.w3.org/2000/svg","svg"); s.setAttribute("viewBox","0 0 24 24"); s.setAttribute("class","ico"); s.setAttribute("aria-hidden","true"); s.innerHTML = '<path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.6l1.4-2h5l1.4 2h1.6A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.5"/>'; return s; }
@@ -769,13 +840,13 @@ async function estimateMeal(photoDataUrl, note){
 Identify each distinct food and drink item. Estimate each portion in grams, using the plate, bowl, cutlery, hands or packaging for scale (a standard UK dinner plate is about 27 cm across). Estimate kcal, protein, carbs and fat for that portion, including visible oil, butter, dressings and sauces. Be realistic rather than optimistic. If the photo shows packaging with nutrition information, use it.
 ${note ? "The person adds: " + note.slice(0, 500) + "\n" : ""}
 Reply with only a JSON object:
-{"isFood": true or false, "name": short name for the whole meal, "items": [{"name": string, "grams": number, "kcal": number, "protein": number, "carbs": number, "fat": number}], "confidence": "low" | "medium" | "high", "notes": one short sentence on what would most change the estimate}
+{"isFood": true or false, "name": short name for the whole meal, "items": [{"name": string, "grams": number, "kcal": number, "protein": number, "carbs": number, "fat": number, "fibre": number}], "confidence": "low" | "medium" | "high", "notes": one short sentence on what would most change the estimate}
 If the photo doesn't show food or drink, set isFood to false and items to [].`;
   const r = parseJSON(await claude(prompt, { images:[{type:"image/jpeg", b64: photoDataUrl.split(",")[1]}], maxTokens: 1500 }));
   if (!r || r.isFood === false || !Array.isArray(r.items) || !r.items.length) throw new AppError("not_food", "Claude couldn't see a meal in that photo. Try again closer up, with the whole plate in view.");
   const num = v => { const n = Number(v); return Number.isFinite(n) && n >= 0 ? Math.round(n*10)/10 : 0; };
   return { name: String(r.name || "Meal").slice(0,80), confidence: ["low","medium","high"].includes(r.confidence) ? r.confidence : "medium", notes: String(r.notes||"").slice(0,200),
-    items: r.items.slice(0,15).map(it => ({ name:String(it.name||"Item").slice(0,60), grams:num(it.grams), kcal:num(it.kcal), protein:num(it.protein), carbs:num(it.carbs), fat:num(it.fat) })) };
+    items: r.items.slice(0,15).map(it => ({ name:String(it.name||"Item").slice(0,60), grams:num(it.grams), kcal:num(it.kcal), protein:num(it.protein), carbs:num(it.carbs), fat:num(it.fat), fibre:num(it.fibre) })) };
 }
 function openSnap(dIso, existing = null){
   const draft = existing ? JSON.parse(JSON.stringify(existing)) : null;
@@ -815,8 +886,8 @@ function openSnap(dIso, existing = null){
   const editor = (e, saved) => {
     body.textContent = "";
     const orig = e.items.map(it => ({...it}));
-    const totalsBox = el("div",{class:"macros"});
-    const drawTotals = () => { const t = entryTotals(e); totalsBox.textContent = ""; [["kcal","kcal",""],["protein","protein","g"],["carbs","carbs","g"],["fat","fat","g"]].forEach(([k,l,u]) => totalsBox.append(el("div",{}, el("b",{text:fmtN(t[k])+u}), el("span",{text:l})))); };
+    const totalsBox = el("div",{class:"macros five"});
+    const drawTotals = () => { const t = entryTotals(e); totalsBox.textContent = ""; NUTR.forEach(k => totalsBox.append(el("div",{}, el("b",{text:fmtN(t[k])+unitOf(k)}), el("span",{text:k})))); };
     const rows = el("div",{class:"est-items"});
     const drawRows = () => {
       rows.textContent = "";
@@ -824,10 +895,10 @@ function openSnap(dIso, existing = null){
         const base = orig[n] && orig[n].grams > 0 ? orig[n] : null;
         const g = el("input",{type:"number",inputmode:"numeric",min:"0",value:String(Math.round(it.grams)),"aria-label":"Grams of "+it.name,onchange:ev=>{
           const v = Math.max(0, +ev.target.value || 0);
-          if (base){ const k = v / base.grams; for (const f of ["kcal","protein","carbs","fat"]) it[f] = Math.round(base[f]*k*10)/10; }
+          if (base){ const k = v / base.grams; for (const f of NUTR) it[f] = Math.round((+base[f]||0)*k*10)/10; }
           it.grams = v; drawRows(); drawTotals(); }});
         rows.append(el("div",{class:"est-row"},
-          el("span",{class:"grow",style:"min-width:0"}, el("b",{text:it.name}), el("span",{class:"muted small",style:"display:block",text:`${fmtN(it.kcal)} kcal · ${Math.round(it.protein)}g protein`})),
+          el("span",{class:"grow",style:"min-width:0"}, el("b",{text:it.name}), el("span",{class:"muted small",style:"display:block",text:`${fmtN(it.kcal)} kcal · ${Math.round(it.protein)}g protein · ${Math.round(it.carbs)}g carbs · ${Math.round(it.fat)}g fat`})),
           el("label",{class:"grams"}, g, el("span",{class:"muted small",text:"g"})),
           el("button",{class:"iconbtn sm","aria-label":"Remove "+it.name,text:"×",onclick:()=>{ e.items.splice(n,1); orig.splice(n,1); drawRows(); drawTotals(); }})));
       });
@@ -878,7 +949,7 @@ function cleanRecipe(x){
     appliances:(Array.isArray(x.appliances)?x.appliances:[]).filter(a=>APPLIANCES.includes(a)),
     tags:(Array.isArray(x.tags)?x.tags:[]).filter(t=>TAGS.includes(t)),
     style:STYLES.includes(x.style) ? x.style : "Comfort",
-    macros:{kcal:Math.round(num(x.macros?.kcal,0)), protein:Math.round(num(x.macros?.protein,0)), carbs:Math.round(num(x.macros?.carbs,0)), fat:Math.round(num(x.macros?.fat,0))},
+    macros:{kcal:Math.round(num(x.macros?.kcal,0)), protein:Math.round(num(x.macros?.protein,0)), carbs:Math.round(num(x.macros?.carbs,0)), fat:Math.round(num(x.macros?.fat,0)), fibre:Math.round(num(x.macros?.fibre,0)*10)/10},
     ingredients:(Array.isArray(x.ingredients)?x.ingredients:[]).slice(0,30).map(i => ({name:String(i.name||"").slice(0,60), qty:num(i.qty,1), unit:UNITS.includes(i.unit)?i.unit:"whole", aisle:AISLES.includes(i.aisle)?i.aisle:"Other", cost:Math.round(num(i.cost,0)*100)/100})).filter(i=>i.name),
     steps:(Array.isArray(x.steps)?x.steps:[]).slice(0,15).map(s=>String(s).slice(0,400)),
     source:"mine", fav:false
@@ -897,32 +968,89 @@ function shrinkImage(file){
     img.src = url;
   });
 }
-async function runImport(){
-  const text = $("#importText").value.trim();
-  if (!text && !importImg){ toast("Paste a recipe or describe what you fancy first."); return; }
-  if (importing) return;
-  const out = $("#importOut"); out.textContent = "";
-  if (!S.keys.anthropic){ out.append(el("p",{class:"banner",text:"Add your Anthropic API key in Settings to use Claude. You can still type recipes in yourself."})); return; }
-  out.append(el("div",{class:"thinking"}, el("i",{class:"dot"}), "Claude is writing your recipe. This can take up to a minute."));
-  importing = true; $("#importGo").disabled = true;
-  const prompt = `You are the recipe engine for a UK home meal planner. Turn the user's input into ONE recipe. If the input is a recipe (caption, web page, screenshot), faithfully structure it. If it is a wish or a list of ingredients, invent a good, realistic recipe that fits it. Use British ingredient names and metric units.
+const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return "the web"; } };
+function recipePrompt(input, page){
+  return `You are the recipe engine for a UK home meal planner. ${page
+    ? `The user saved this recipe page for their own use (${page.url}). Structure that recipe faithfully: keep its name, ingredients, quantities and number of servings. Use the page's own nutrition figures per serving where given, and estimate any that are missing (especially fibre). If the page states a cost per portion or per serving, set the ingredient costs so they add up to that cost times the number of servings. Write the method as your own short steps.`
+    : `Turn the user's input into ONE recipe. If the input is a recipe (caption, web page, screenshot), faithfully structure it. If it is a wish or a list of ingredients, invent a good, realistic recipe that fits it.`} Use British ingredient names and metric units.
 
 Reply with only a JSON object with exactly these fields:
 {"name": string, "meal": one of ["breakfast","lunch","dinner","snack"], "time": total minutes (number), "serves": number (default 2),
  "appliances": array from ${JSON.stringify(APPLIANCES)} (only what is really needed; [] if no cooking),
- "tags": array from ${JSON.stringify(TAGS)} (only those that are true; "pork" if it contains pork, bacon, chorizo or ham; "fish" if it contains fish or seafood; "high-protein" if 25g+ protein per serving),
+ "tags": array from ${JSON.stringify(TAGS)} (only those that are true; "pork" if it contains pork, bacon, chorizo or ham; "fish" if it contains fish or seafood; "high-protein" if 25g+ protein per serving; "low-carb" if 20g or less carbs per serving),
  "style": one of ${JSON.stringify(STYLES)},
- "macros": {"kcal": n, "protein": n, "carbs": n, "fat": n} per serving, careful best estimate,
+ "macros": {"kcal": n, "protein": n, "carbs": n, "fat": n, "fibre": n} per serving in grams (kcal for kcal), careful best estimate,
  "ingredients": [{"name": plain supermarket name, "qty": number, "unit": one of ${JSON.stringify(UNITS)}, "aisle": one of ${JSON.stringify(AISLES)}, "cost": estimated GBP at Tesco for just this quantity (pro rata, not whole pack)}],
  "steps": [short imperative steps, 3 to 8]}
 Example ingredient: {"name":"Chicken breast","qty":300,"unit":"g","aisle":"Meat & fish","cost":2.4}
 Skip salt, pepper and water.
 
-User input:
-${text.slice(0, 12000) || "(see the attached screenshot)"}`;
+${page ? "Recipe page" : "User input"}:
+${input.slice(0, 14000)}`;
+}
+// Read a recipe web page on the phone. Most recipe sites embed schema.org Recipe data, which is cleaner than the page text.
+async function fetchRecipePage(url){
+  let html = "", text = "";
+  if (NATIVE || window.__teatimeTest){
+    try { const res = await fetch(url, { headers:{"User-Agent":UA, "Accept":"text/html,application/xhtml+xml", "Accept-Language":"en-GB,en;q=0.9"} }); if (res.ok) html = await res.text(); } catch {}
+  }
+  if (!html && S.keys.firecrawl){
+    try {
+      const res = await fetch("https://api.firecrawl.dev/v2/scrape", { method:"POST", headers:{"content-type":"application/json","Authorization":"Bearer " + S.keys.firecrawl.trim()}, body: JSON.stringify({ url, formats:["markdown"], onlyMainContent:true }) });
+      const j = await res.json().catch(() => null); if (j?.success) text = j.data?.markdown || "";
+    } catch {}
+  }
+  if (!html && !text) throw new AppError("link", NATIVE ? `Couldn't open ${hostOf(url)}. Check the link, or copy the recipe text and paste that instead.` : "Links can only be opened in the installed app. Paste the recipe text instead.");
+  let site = hostOf(url), data = null;
+  if (html){
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    site = doc.querySelector('meta[property="og:site_name"]')?.content || site;
+    const flat = x => Array.isArray(x) ? x.flatMap(flat) : x && typeof x === "object" ? [x, ...flat(x["@graph"] || [])] : [];
+    for (const sc of doc.querySelectorAll('script[type="application/ld+json"]')){
+      try { const hit = flat(JSON.parse(sc.textContent)).find(o => [].concat(o["@type"] || []).includes("Recipe")); if (hit){ data = hit; break; } } catch {}
+    }
+    doc.querySelectorAll("script,style,noscript,svg,iframe,nav,header,footer").forEach(n => n.remove());
+    text = (doc.body ? doc.body.textContent : "").replace(/[ \t ]+/g," ").replace(/\n\s*\n+/g,"\n").trim();
+  }
+  const steps = d => [].concat(d || []).flatMap(x => typeof x === "string" ? [x] : x?.itemListElement ? steps(x.itemListElement) : x?.text ? [x.text] : []);
+  const recipe = data ? { name:data.name, servings:data.recipeYield, totalTime:data.totalTime, ingredients:data.recipeIngredient, method:steps(data.recipeInstructions), nutrition:data.nutrition } : null;
+  const costBits = (text.match(/[^\n]{0,80}£\s?\d+(?:\.\d{2})?[^\n]{0,80}/g) || []).slice(0, 8).join("\n");
+  const body = recipe ? `Structured recipe data:\n${JSON.stringify(recipe).slice(0, 9000)}\n\nPrices mentioned on the page:\n${costBits || "none"}` : `Page text:\n${text.slice(0, 12000)}`;
+  if (!recipe && text.length < 200) throw new AppError("link", `There's no recipe on that ${hostOf(url)} page that Teatime can read. Try pasting the recipe text instead.`);
+  return { url, site, body };
+}
+async function recipeFromLink(url){
+  const page = await fetchRecipePage(url);
+  const r = cleanRecipe(parseJSON(await claude(recipePrompt(page.body, page))));
+  r.sourceUrl = url; r.sourceName = page.site;
+  if (r.ingredients.length && r.serves && (r.ingredients.reduce((a,i)=>a+i.cost,0) / r.serves) <= 1.6) r.budget = true;
+  return r;
+}
+async function runImport(){
+  const text = $("#importText").value.trim();
+  if (!text && !importImg){ toast("Paste a recipe, a link or describe what you fancy first."); return; }
+  if (importing) return;
+  const out = $("#importOut"); out.textContent = "";
+  if (!S.keys.anthropic){ out.append(el("p",{class:"banner",text:"Add your Anthropic API key in Settings to use Claude. You can still type recipes in yourself."})); return; }
+  const urls = [...new Set(text.match(/https?:\/\/[^\s<>"']+/g) || [])];
+  const onlyLinks = urls.length && !text.replace(/https?:\/\/[^\s<>"']+/g, "").trim();
+  importing = true; $("#importGo").disabled = true;
   try {
-    const images = importImg ? [await shrinkImage(importImg)] : [];
-    const r = cleanRecipe(parseJSON(await claude(prompt, { images })));
+    if (onlyLinks && urls.length > 1){
+      const list = el("ul",{class:"import-list"}); out.append(el("div",{class:"thinking"}, el("i",{class:"dot"}), `Adding ${urls.length} recipes. Keep Teatime open; each takes about 20 seconds.`), list);
+      let ok = 0;
+      for (const u of urls){
+        const li = el("li",{}, el("span",{class:"muted",text:hostOf(u) + "… "})); list.append(li);
+        try { const r = await recipeFromLink(u); addRecipe(r, true); ok++; li.textContent = "Added " + r.name; }
+        catch(e){ li.textContent = `Couldn't add ${u}: ${e.message}`; li.className = "bad"; if (["no_key","bad_key","no_credit"].includes(e.code)) break; }
+      }
+      out.firstChild.replaceWith(el("p",{class:"small",style:"margin:0",text:`Added ${ok} of ${urls.length} recipes to your recipe book.`}));
+      if (ok) $("#importText").value = "";
+      return;
+    }
+    out.append(el("div",{class:"thinking"}, el("i",{class:"dot"}), onlyLinks ? `Reading ${hostOf(urls[0])} and turning it into a Teatime recipe…` : "Claude is writing your recipe. This can take up to a minute."));
+    const r = onlyLinks ? await recipeFromLink(urls[0])
+      : cleanRecipe(parseJSON(await claude(recipePrompt(text || "(see the attached screenshot)"), { images: importImg ? [await shrinkImage(importImg)] : [] })));
     out.textContent = "";
     const saveRow = el("div",{class:"sheet-actions"},
       el("button",{class:"btn primary",text:"Save to my recipes",onclick:()=>{ addRecipe(r); dlg.close(); $("#importText").value=""; importImg=null; $("#importImg").value=""; $("#imgName").textContent=""; }}),
@@ -932,7 +1060,7 @@ ${text.slice(0, 12000) || "(see the attached screenshot)"}`;
     out.textContent = ""; out.append(el("p",{class:"banner",text:e.message || "That didn't work. Try again."}));
   } finally { importing = false; $("#importGo").disabled = false; }
 }
-function addRecipe(r){ const id = "m-" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); r.id = id; S.recipes.set(id, r); saveRecipes(); renderAll(); toast("Saved "+r.name+"."); }
+function addRecipe(r, quiet = false){ const id = "m-" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); r.id = id; S.recipes.set(id, r); saveRecipes(); renderAll(); if (!quiet) toast("Saved "+r.name+"."); }
 function parseIngredient(line){
   const costM = line.match(/[,@]\s*£?\s*(\d+(?:\.\d+)?)\s*$/); let cost = 0;
   if (costM){ cost = +costM[1]; line = line.slice(0, costM.index); }
@@ -955,7 +1083,11 @@ function guessAisle(n){
 function renderSettings(){
   const st = S.settings;
   const setIfIdle = (sel, v) => { const e = $(sel); if (document.activeElement !== e) e.value = v; };
-  setIfIdle("#sKcal", st.kcal); setIfIdle("#sProt", st.protein); setIfIdle("#sCarbs", st.carbs || 0); setIfIdle("#sBudget", st.budget); setIfIdle("#sServes", st.serves);
+  setIfIdle("#sKcal", st.kcal); setIfIdle("#sProt", st.protein); setIfIdle("#sCarbs", st.carbs || 0); setIfIdle("#sFat", st.fat || 0); setIfIdle("#sFibre", st.fibre || 0);
+  const fh = $("#fatHint"); fh.textContent = "";
+  if (st.carbs){ const room = Math.max(0, Math.round((st.kcal - 4*st.protein - 4*st.carbs) / 9 / 5) * 5);
+    fh.append(`Your calorie, protein and carb targets leave room for about ${room}g of fat a day. `);
+    if (room && room !== st.fat) fh.append(el("button",{class:"linkbtn",type:"button",text:`Use ${room}g`,onclick:()=>{ S.settings = {...S.settings, fat:room}; saveSettings(); }})); } setIfIdle("#sBudget", st.budget); setIfIdle("#sServes", st.serves);
   $("#sRepeat").value = st.avoidRepeat ? "1" : "0"; $("#sClub").value = st.clubcard ? "1" : "0"; $("#sFresh").value = String(st.freshDays||3); $("#sSource").value = st.priceSource || "auto";
   const checks = (box, items, key) => { box.textContent = ""; items.forEach(it => { const [v,l] = Array.isArray(it) ? it : [it,it]; const id = key+"-"+v.replace(/\W/g,""); box.append(el("label",{for:id}, el("input",{type:"checkbox",id,checked:(S.settings[key]||[]).includes(v),onchange:e=>{ const s = new Set(S.settings[key]); e.target.checked ? s.add(v) : s.delete(v); S.settings = {...S.settings, [key]:[...s]}; saveSettings(); }}), l)); }); };
   checks($("#sMeals"), MEALS.map(m=>[m,MEAL_LABEL[m]]), "meals");
@@ -964,7 +1096,7 @@ function renderSettings(){
   checks($("#sStyles"), STYLES, "styles");
 }
 const numSetting = (sel, key, min, max, def) => $(sel).addEventListener("change", e => { const v = Math.min(max, Math.max(min, Math.round(+e.target.value||def))); S.settings = {...S.settings, [key]:v}; saveSettings(); });
-numSetting("#sKcal","kcal",800,5000,1800); numSetting("#sProt","protein",20,400,120); numSetting("#sCarbs","carbs",0,500,0); numSetting("#sBudget","budget",5,2000,80); numSetting("#sServes","serves",1,12,2);
+numSetting("#sKcal","kcal",800,5000,1800); numSetting("#sProt","protein",20,400,120); numSetting("#sCarbs","carbs",0,500,0); numSetting("#sFat","fat",0,400,0); numSetting("#sFibre","fibre",0,100,0); numSetting("#sBudget","budget",5,2000,80); numSetting("#sServes","serves",1,12,2);
 $("#sRepeat").addEventListener("change", e => { S.settings = {...S.settings, avoidRepeat:e.target.value==="1"}; saveSettings(); });
 $("#sClub").addEventListener("change", e => { S.settings = {...S.settings, clubcard:e.target.value==="1"}; saveSettings(); });
 $("#sFresh").addEventListener("change", e => { S.settings = {...S.settings, freshDays:+e.target.value}; saveSettings(); });
@@ -1068,7 +1200,7 @@ $("#manualPanel").addEventListener("submit", e => {
   const time = Math.max(1, +$("#mTime").value||30);
   addRecipe({name, meal:$("#mMeal").value, time, serves:Math.max(1, +$("#mServes").value||2),
     appliances:[...document.querySelectorAll("#mApps input:checked")].map(i=>i.value), tags:[...document.querySelectorAll("#mTags input:checked")].map(i=>i.value),
-    style: time <= 25 ? "Quick" : "Comfort", macros:{kcal:Math.max(0,+$("#mKcal").value||0), protein:Math.max(0,+$("#mProt").value||0), carbs:0, fat:0},
+    style: time <= 25 ? "Quick" : "Comfort", macros:{kcal:Math.max(0,+$("#mKcal").value||0), protein:Math.max(0,+$("#mProt").value||0), carbs:Math.max(0,+$("#mCarbs").value||0), fat:Math.max(0,+$("#mFat").value||0), fibre:Math.max(0,+$("#mFibre").value||0)},
     ingredients:$("#mIngs").value.split("\n").map(l=>l.trim()).filter(Boolean).map(parseIngredient),
     steps:$("#mSteps").value.split("\n").map(s=>s.trim()).filter(Boolean), source:"mine", fav:false});
   e.target.reset(); $("#manualPanel").hidden = true;
@@ -1095,8 +1227,12 @@ async function loadAll(){
   let recipes = await KV.get("recipes");
   if (!Array.isArray(recipes)) { recipes = STARTER.map(r => ({...r})); await KV.set("recipes", recipes); }
   else {
+    const fresh = new Map(STARTER.map(r => [r.id, r]));
+    let changed = false;
+    recipes = recipes.map(r => { const f = r.source === "starter" && fresh.get(r.id); if (f && JSON.stringify({...f, fav:r.fav}) !== JSON.stringify(r)){ changed = true; return {...f, fav: !!r.fav}; } return r; });
     const have = new Set(recipes.map(r => r.id)), added = STARTER.filter(r => !have.has(r.id)).map(r => ({...r}));
-    if (added.length){ recipes = [...recipes, ...added]; await KV.set("recipes", recipes); setTimeout(() => toast(`${added.length} new recipes added to your recipe book.`), 800); }
+    if (added.length || changed){ recipes = [...recipes, ...added]; await KV.set("recipes", recipes); }
+    if (added.length) setTimeout(() => toast(`${added.length} new recipes added to your recipe book.`), 800);
   }
   S.recipes = new Map(recipes.map(r => [r.id, r]));
   S.prices = new Map(Object.entries((await KV.get("prices")) || {}));
@@ -1104,6 +1240,11 @@ async function loadAll(){
   S.loaded = true;
   renderFilters(); renderAll();
 }
+
+document.addEventListener("click", e => {
+  const a = e.target.closest && e.target.closest('a[href^="http"]');
+  if (a && NATIVE){ e.preventDefault(); AppLauncher.openUrl({ url: a.href }).catch(() => {}); }
+});
 
 (async function boot(){
   renderFilters(); renderAll();

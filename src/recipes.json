@@ -54,7 +54,8 @@
 "carbs": 66,
 "fat": 18,
 "kcal": 600,
-"protein": 42
+"protein": 42,
+"fibre": 3.5
 },
 "meal": "dinner",
 "name": "Air fryer teriyaki chicken",
@@ -97,7 +98,8 @@
 "carbs": 22,
 "fat": 9,
 "kcal": 190,
-"protein": 5
+"protein": 5,
+"fibre": 5.0
 },
 "meal": "snack",
 "name": "Apple & peanut butter",
@@ -169,7 +171,8 @@
 "carbs": 66,
 "fat": 16,
 "kcal": 590,
-"protein": 38
+"protein": 38,
+"fibre": 5.8
 },
 "meal": "dinner",
 "name": "Beef & veg noodle stir-fry",
@@ -226,7 +229,8 @@
 "carbs": 52,
 "fat": 8,
 "kcal": 380,
-"protein": 22
+"protein": 22,
+"fibre": 7.3
 },
 "meal": "breakfast",
 "name": "Berry overnight oats",
@@ -269,7 +273,8 @@
 "carbs": 4,
 "fat": 11,
 "kcal": 170,
-"protein": 13
+"protein": 13,
+"fibre": 0.9
 },
 "meal": "snack",
 "name": "Boiled eggs & cherry tomatoes",
@@ -335,7 +340,8 @@
 "carbs": 10,
 "fat": 26,
 "kcal": 420,
-"protein": 36
+"protein": 36,
+"fibre": 6.2
 },
 "meal": "lunch",
 "name": "Chicken & avocado salad box",
@@ -408,7 +414,8 @@
 "carbs": 44,
 "fat": 20,
 "kcal": 520,
-"protein": 40
+"protein": 40,
+"fibre": 7.4
 },
 "meal": "dinner",
 "name": "Chicken Caesar wraps",
@@ -474,7 +481,8 @@
 "carbs": 80,
 "fat": 24,
 "kcal": 760,
-"protein": 52
+"protein": 52,
+"fibre": 3.9
 },
 "meal": "dinner",
 "name": "Chicken & chorizo pasta bake",
@@ -554,7 +562,8 @@
 "carbs": 52,
 "fat": 18,
 "kcal": 560,
-"protein": 42
+"protein": 42,
+"fibre": 8.4
 },
 "meal": "dinner",
 "name": "Chicken fajita traybake",
@@ -617,7 +626,8 @@
 "carbs": 40,
 "fat": 15,
 "kcal": 450,
-"protein": 36
+"protein": 36,
+"fibre": 6.3
 },
 "meal": "lunch",
 "name": "Chicken & hummus wraps",
@@ -689,7 +699,8 @@
 "carbs": 46,
 "fat": 6,
 "kcal": 400,
-"protein": 34
+"protein": 34,
+"fibre": 3.7
 },
 "meal": "lunch",
 "name": "Chicken noodle soup",
@@ -760,7 +771,8 @@
 "carbs": 64,
 "fat": 14,
 "kcal": 470,
-"protein": 20
+"protein": 20,
+"fibre": 12.2
 },
 "meal": "lunch",
 "name": "Chickpea, feta & couscous salad",
@@ -801,7 +813,8 @@
 "carbs": 16,
 "fat": 7,
 "kcal": 200,
-"protein": 18
+"protein": 18,
+"fibre": 2.7
 },
 "meal": "snack",
 "name": "Cottage cheese & oatcakes",
@@ -886,7 +899,8 @@
 "carbs": 62,
 "fat": 24,
 "kcal": 650,
-"protein": 38
+"protein": 38,
+"fibre": 9.2
 },
 "meal": "dinner",
 "name": "Cottage pie",
@@ -958,7 +972,8 @@
 "carbs": 80,
 "fat": 16,
 "kcal": 560,
-"protein": 20
+"protein": 20,
+"fibre": 5.3
 },
 "meal": "dinner",
 "name": "Creamy mushroom & spinach penne",
@@ -1030,7 +1045,8 @@
 "carbs": 66,
 "fat": 22,
 "kcal": 580,
-"protein": 26
+"protein": 26,
+"fibre": 8.6
 },
 "meal": "dinner",
 "name": "Fish finger tacos",
@@ -1102,7 +1118,8 @@
 "carbs": 50,
 "fat": 15,
 "kcal": 520,
-"protein": 42
+"protein": 42,
+"fibre": 2.8
 },
 "meal": "lunch",
 "name": "Greek chicken rice bowl",
@@ -1158,7 +1175,8 @@
 "carbs": 40,
 "fat": 6,
 "kcal": 330,
-"protein": 26
+"protein": 26,
+"fibre": 4.9
 },
 "meal": "breakfast",
 "name": "Greek yoghurt, berry & granola pot",
@@ -1230,7 +1248,8 @@
 "carbs": 58,
 "fat": 30,
 "kcal": 610,
-"protein": 30
+"protein": 30,
+"fibre": 14.8
 },
 "meal": "dinner",
 "name": "Halloumi & chickpea traybake",
@@ -1304,7 +1323,8 @@
 "carbs": 58,
 "fat": 22,
 "kcal": 590,
-"protein": 36
+"protein": 36,
+"fibre": 3.7
 },
 "meal": "dinner",
 "name": "Honey-soy salmon with rice",
@@ -1355,7 +1375,8 @@
 "carbs": 13,
 "fat": 8,
 "kcal": 150,
-"protein": 5
+"protein": 5,
+"fibre": 6.1
 },
 "meal": "snack",
 "name": "Hummus & veg sticks",
@@ -1407,7 +1428,8 @@
 "carbs": 75,
 "fat": 9,
 "kcal": 470,
-"protein": 20
+"protein": 20,
+"fibre": 13.0
 },
 "meal": "lunch",
 "name": "Jacket potato with beans & cheese",
@@ -1472,7 +1494,8 @@
 "carbs": 78,
 "fat": 6,
 "kcal": 420,
-"protein": 12
+"protein": 12,
+"fibre": 12.7
 },
 "meal": "dinner",
 "name": "Leek & potato soup",
@@ -1546,7 +1569,8 @@
 "carbs": 82,
 "fat": 12,
 "kcal": 490,
-"protein": 14
+"protein": 14,
+"fibre": 4.4
 },
 "meal": "dinner",
 "name": "Mushroom stroganoff",
@@ -1596,7 +1620,8 @@
 "carbs": 55,
 "fat": 14,
 "kcal": 400,
-"protein": 13
+"protein": 13,
+"fibre": 9.1
 },
 "meal": "breakfast",
 "name": "Peanut butter & banana toast",
@@ -1662,7 +1687,8 @@
 "carbs": 42,
 "fat": 30,
 "kcal": 620,
-"protein": 40
+"protein": 40,
+"fibre": 7.2
 },
 "meal": "dinner",
 "name": "Pesto chicken traybake",
@@ -1735,7 +1761,8 @@
 "carbs": 70,
 "fat": 12,
 "kcal": 520,
-"protein": 32
+"protein": 32,
+"fibre": 5.0
 },
 "meal": "dinner",
 "name": "Prawn egg fried rice",
@@ -1771,7 +1798,8 @@
 "carbs": 18,
 "fat": 7,
 "kcal": 200,
-"protein": 20
+"protein": 20,
+"fibre": 3.0
 },
 "meal": "snack",
 "name": "Protein bar",
@@ -1827,7 +1855,8 @@
 "carbs": 62,
 "fat": 7,
 "kcal": 420,
-"protein": 30
+"protein": 30,
+"fibre": 7.6
 },
 "meal": "breakfast",
 "name": "Protein porridge with banana",
@@ -1913,7 +1942,8 @@
 "carbs": 84,
 "fat": 12,
 "kcal": 540,
-"protein": 24
+"protein": 24,
+"fibre": 12.7
 },
 "meal": "dinner",
 "name": "Red lentil & spinach dal",
@@ -1981,7 +2011,8 @@
 "carbs": 60,
 "fat": 4,
 "kcal": 380,
-"protein": 20
+"protein": 20,
+"fibre": 11.9
 },
 "meal": "lunch",
 "name": "Red lentil & tomato soup",
@@ -2019,7 +2050,8 @@
 "carbs": 6,
 "fat": 6,
 "kcal": 130,
-"protein": 12
+"protein": 12,
+"fibre": 5.0
 },
 "meal": "snack",
 "name": "Salted edamame",
@@ -2093,7 +2125,8 @@
 "carbs": 62,
 "fat": 34,
 "kcal": 690,
-"protein": 32
+"protein": 32,
+"fibre": 13.2
 },
 "meal": "dinner",
 "name": "Sausage & butter bean casserole",
@@ -2151,7 +2184,8 @@
 "carbs": 30,
 "fat": 18,
 "kcal": 390,
-"protein": 25
+"protein": 25,
+"fibre": 5.9
 },
 "meal": "breakfast",
 "name": "Scrambled eggs & spinach on toast",
@@ -2238,7 +2272,8 @@
 "carbs": 44,
 "fat": 20,
 "kcal": 470,
-"protein": 24
+"protein": 24,
+"fibre": 8.1
 },
 "meal": "dinner",
 "name": "Shakshuka with feta",
@@ -2280,7 +2315,8 @@
 "carbs": 14,
 "fat": 0,
 "kcal": 140,
-"protein": 17
+"protein": 17,
+"fibre": 0.0
 },
 "meal": "snack",
 "name": "Skyr with honey",
@@ -2358,7 +2394,8 @@
 "carbs": 62,
 "fat": 24,
 "kcal": 640,
-"protein": 40
+"protein": 40,
+"fibre": 5.1
 },
 "meal": "dinner",
 "name": "Slow cooker chicken tikka masala",
@@ -2415,7 +2452,8 @@
 "carbs": 42,
 "fat": 10,
 "kcal": 360,
-"protein": 24
+"protein": 24,
+"fibre": 2.8
 },
 "meal": "breakfast",
 "name": "Smoked salmon & cream cheese bagels",
@@ -2501,7 +2539,8 @@
 "carbs": 78,
 "fat": 20,
 "kcal": 680,
-"protein": 42
+"protein": 42,
+"fibre": 7.1
 },
 "meal": "dinner",
 "name": "Spaghetti bolognese",
@@ -2580,7 +2619,8 @@
 "carbs": 96,
 "fat": 16,
 "kcal": 610,
-"protein": 18
+"protein": 18,
+"fibre": 21.5
 },
 "meal": "dinner",
 "name": "Sweet potato & black bean burritos",
@@ -2654,7 +2694,8 @@
 "carbs": 80,
 "fat": 26,
 "kcal": 620,
-"protein": 16
+"protein": 16,
+"fibre": 14.2
 },
 "meal": "dinner",
 "name": "Thai green veg curry",
@@ -2750,7 +2791,8 @@
 "carbs": 96,
 "fat": 5,
 "kcal": 520,
-"protein": 22
+"protein": 22,
+"fibre": 21.9
 },
 "meal": "dinner",
 "name": "Three-bean veggie chilli",
@@ -2819,7 +2861,8 @@
 "carbs": 56,
 "fat": 18,
 "kcal": 520,
-"protein": 32
+"protein": 32,
+"fibre": 6.7
 },
 "meal": "lunch",
 "name": "Tofu & edamame rice bowl",
@@ -2886,7 +2929,8 @@
 "carbs": 68,
 "fat": 8,
 "kcal": 480,
-"protein": 28
+"protein": 28,
+"fibre": 8.2
 },
 "meal": "dinner",
 "name": "Tuna & sweetcorn jacket potatoes",
@@ -2952,7 +2996,8 @@
 "carbs": 58,
 "fat": 9,
 "kcal": 480,
-"protein": 38
+"protein": 38,
+"fibre": 5.0
 },
 "meal": "lunch",
 "name": "Tuna & sweetcorn pasta salad",
@@ -3026,7 +3071,8 @@
 "carbs": 72,
 "fat": 14,
 "kcal": 640,
-"protein": 50
+"protein": 50,
+"fibre": 5.7
 },
 "meal": "dinner",
 "name": "Turkey meatballs in tomato sauce",
@@ -3077,7 +3123,8 @@
 "carbs": 28,
 "fat": 11,
 "kcal": 340,
-"protein": 30
+"protein": 30,
+"fibre": 2.2
 },
 "meal": "breakfast",
 "name": "Turkey rasher & egg muffins",
@@ -3140,7 +3187,8 @@
 "carbs": 40,
 "fat": 9,
 "kcal": 380,
-"protein": 32
+"protein": 32,
+"fibre": 5.9
 },
 "meal": "lunch",
 "name": "Turkey salad sandwich",
@@ -3198,7 +3246,8 @@
 "carbs": 6,
 "fat": 22,
 "kcal": 330,
-"protein": 26
+"protein": 26,
+"fibre": 1.9
 },
 "meal": "breakfast",
 "name": "Veggie omelette",
