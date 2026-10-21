@@ -33,7 +33,12 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - uses: android-actions/setup-android@v3
+      - name: Use the Android SDK on the build machine
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "sdk.dir=$SDK" > android/local.properties
+          echo "SDK at $SDK"; ls "$SDK/platforms" "$SDK/build-tools" || true
 
       - name: Build signed APK
         working-directory: android
